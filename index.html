@@ -3,49 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boucherie Lenggana | Artisanal Halal Butcher & Deli</title>
-    
-    <!-- Google Fonts import for luxury serif and clean sans-serif -->
+    <title>Boucherie Lenggana — Artisanal Halal Butchery</title>
+    <!-- Google Fonts for Luxury Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
+            --color-accent-red: #B01E28;
+            --color-accent-red-hover: #8B0000;
+            --color-accent-gold: #C5A059;
+            --transition-speed: 0.3s;
+            --border-radius: 3px;
+            --font-heading: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        [data-theme="dark"] {
             --bg-primary: #0D0D0D;
             --bg-secondary: #141414;
             --bg-card: #1A1A1A;
+            --bg-modal-overlay: rgba(0, 0, 0, 0.8);
             --text-primary: #F2F2F2;
             --text-secondary: #A0A0A0;
-            --accent-red: #B01E28;
-            --accent-red-hover: #D02430;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --border-light: rgba(255, 255, 255, 0.05);
+            --border-color: #262626;
+            --border-highlight: #333333;
             --header-bg: rgba(13, 13, 13, 0.92);
-            --shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            --font-serif: 'Cormorant Garamond', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-color: rgba(0, 0, 0, 0.5);
         }
 
         [data-theme="light"] {
             --bg-primary: #FAFAFA;
-            --bg-secondary: #F0F0F0;
+            --bg-secondary: #F3F3F3;
             --bg-card: #FFFFFF;
+            --bg-modal-overlay: rgba(0, 0, 0, 0.6);
             --text-primary: #1A1A1A;
             --text-secondary: #666666;
-            --accent-red: #8B0000;
-            --accent-red-hover: #A00000;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --border-light: rgba(0, 0, 0, 0.05);
+            --border-color: #E5E5E5;
+            --border-highlight: #CCCCCC;
             --header-bg: rgba(250, 250, 250, 0.92);
-            --shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+            --shadow-color: rgba(0, 0, 0, 0.1);
         }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -56,112 +60,114 @@
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            font-family: var(--font-sans);
-            line-height: 1.7;
+            font-family: var(--font-body);
+            line-height: 1.6;
             font-weight: 300;
-            letter-spacing: 0.02em;
-            transition: background-color 0.4s ease, color 0.4s ease;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, .brand-font {
-            font-family: var(--font-serif);
-            font-weight: 400;
-            letter-spacing: 0.08em;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
         }
 
         a {
             color: inherit;
             text-decoration: none;
-            transition: var(--transition);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+            transition: color var(--transition-speed) ease;
         }
 
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        .section {
-            padding: 7rem 0;
-            border-bottom: 1px solid var(--border-light);
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .text-center {
+            text-align: center;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4.5rem;
+            margin-bottom: 4rem;
         }
 
         .section-subtitle {
+            font-family: var(--font-body);
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.3em;
-            color: var(--accent-red);
-            margin-bottom: 0.75rem;
+            color: var(--color-accent-red);
+            margin-bottom: 0.5rem;
             display: block;
             font-weight: 500;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            color: var(--text-primary);
+            font-size: 2.25rem;
             position: relative;
             display: inline-block;
+            padding-bottom: 1rem;
         }
 
         .section-title::after {
             content: '';
-            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 40px;
             height: 1px;
-            background-color: var(--accent-red);
-            margin: 1.25rem auto 0;
+            background-color: var(--color-accent-red);
         }
 
-        .header {
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             background-color: var(--header-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-light);
-            transition: var(--transition);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
         }
 
-        .header-nav {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 90px;
+            height: 80px;
         }
 
         .brand-logo {
+            font-family: var(--font-heading);
             font-size: 1.5rem;
-            font-family: var(--font-serif);
-            letter-spacing: 0.18em;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
         }
 
         .brand-logo span {
-            color: var(--accent-red);
+            color: var(--color-accent-red);
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
             align-items: center;
             gap: 2.5rem;
@@ -171,10 +177,14 @@
         .nav-link {
             font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.15em;
             color: var(--text-secondary);
             position: relative;
-            padding: 0.5rem 0;
+            padding: 0.25rem 0;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
         }
 
         .nav-link::after {
@@ -182,14 +192,10 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 0;
+            width: 0%;
             height: 1px;
-            background-color: var(--accent-red);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover {
-            color: var(--text-primary);
+            background-color: var(--color-accent-red);
+            transition: width var(--transition-speed) ease;
         }
 
         .nav-link:hover::after {
@@ -199,599 +205,621 @@
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
 
-        .theme-toggle {
+        .theme-toggle-btn {
             background: none;
             border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 6px;
-            cursor: pointer;
-            width: 50px;
-            height: 26px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        .theme-toggle-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background-color: var(--accent-red);
-            position: absolute;
-            left: 5px;
-            transition: var(--transition);
-        }
-
-        [data-theme="light"] .theme-toggle-dot {
-            transform: translateX(24px);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
             color: var(--text-primary);
-        }
-
-        .mobile-toggle svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--text-primary);
-        }
-
-        .hero {
-            min-height: 100vh;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding-top: 120px;
-            position: relative;
-            background: radial-gradient(circle at center, rgba(176, 30, 40, 0.08) 0%, transparent 70%);
+            transition: border-color var(--transition-speed) ease, color var(--transition-speed) ease;
         }
 
-        .hero-content {
-            max-width: 800px;
+        .theme-toggle-btn:hover {
+            border-color: var(--color-accent-red);
+            color: var(--color-accent-red);
         }
 
-        .hero-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            padding: 6px 18px;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            color: var(--accent-red);
-            margin-bottom: 2rem;
-            background-color: rgba(176, 30, 40, 0.03);
+        .theme-toggle-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        .hero-title {
-            font-size: 3.8rem;
-            line-height: 1.15;
-            margin-bottom: 1.5rem;
+        .sun-icon { display: none; }
+        .moon-icon { display: block; }
+
+        [data-theme="light"] .sun-icon { display: block; }
+        [data-theme="light"] .moon-icon { display: none; }
+
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
             color: var(--text-primary);
-            font-weight: 300;
+            cursor: pointer;
+            padding: 0.5rem;
         }
 
-        .hero-title em {
-            font-style: italic;
-            font-weight: 400;
-            color: var(--accent-red);
-        }
-
-        .hero-description {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 620px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 300;
-            line-height: 1.8;
+        .hamburger-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            padding: 1rem 2.5rem;
-            font-size: 0.8rem;
+            padding: 0.85rem 2rem;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-sans);
             font-weight: 500;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            border: 1px solid transparent;
         }
 
         .btn-primary {
-            background-color: var(--accent-red);
+            background-color: var(--color-accent-red);
             color: #FFFFFF;
-            border: 1px solid var(--accent-red);
+            border-color: var(--color-accent-red);
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-red-hover);
-            border-color: var(--accent-red-hover);
-            box-shadow: 0 8px 25px rgba(176, 30, 40, 0.3);
+            background-color: var(--color-accent-red-hover);
+            border-color: var(--color-accent-red-hover);
         }
 
         .btn-outline {
             background-color: transparent;
             color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            border-color: var(--border-highlight);
         }
 
         .btn-outline:hover {
-            border-color: var(--accent-red);
-            color: var(--accent-red);
+            border-color: var(--color-accent-red);
+            color: var(--color-accent-red);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 80px;
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-content {
+            max-width: 780px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent-gold);
+            margin-bottom: 1.5rem;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-tagline {
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
         .specialties-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
         }
 
         .specialty-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
+            transition: transform var(--transition-speed) ease, border-color var(--transition-speed) ease;
         }
 
         .specialty-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--accent-red);
-            box-shadow: var(--shadow);
+            border-color: var(--border-highlight);
+            transform: translateY(-4px);
         }
 
         .specialty-img-wrapper {
-            position: relative;
             width: 100%;
             height: 240px;
             overflow: hidden;
             background-color: var(--bg-secondary);
+            position: relative;
         }
 
-        .specialty-img-svg {
+        .specialty-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            filter: grayscale(15%);
+            transition: transform 0.6s ease, filter 0.6s ease;
         }
 
-        .specialty-card:hover .specialty-img-svg {
-            transform: scale(1.05);
+        .specialty-card:hover .specialty-img {
+            transform: scale(1.03);
+            filter: grayscale(0%);
         }
 
-        .specialty-content {
+        .specialty-body {
             padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
         }
 
-        .specialty-title {
+        .specialty-name {
             font-size: 1.4rem;
             margin-bottom: 0.75rem;
-            color: var(--text-primary);
+            font-weight: 600;
         }
 
         .specialty-desc {
             font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        .specialty-origin {
-            margin-top: auto;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent-red);
-            font-weight: 500;
-        }
-
-        .product-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 3.5rem;
-            flex-wrap: wrap;
-        }
-
-        .product-tab {
-            background: none;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: 0.6rem 1.5rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            cursor: pointer;
-            transition: var(--transition);
-            border-radius: 2px;
-        }
-
-        .product-tab.active, .product-tab:hover {
-            color: var(--text-primary);
-            border-color: var(--accent-red);
-            background-color: rgba(176, 30, 40, 0.05);
-        }
-
-        .product-grid {
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .product-item {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-light);
-            padding: 1.75rem 2rem;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .product-item:hover {
-            border-color: var(--border-color);
-            background-color: var(--bg-secondary);
-        }
-
-        .product-info {
-            flex-grow: 1;
-        }
-
-        .product-name {
-            font-size: 1.25rem;
-            margin-bottom: 0.4rem;
-            color: var(--text-primary);
-        }
-
-        .product-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .product-price {
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            color: var(--accent-red);
-            white-space: nowrap;
-            font-weight: 600;
-        }
-
-        .about-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 1.5rem;
         }
 
-        .about-paragraph {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.85;
-        }
-
-        .about-highlights {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .highlight-item {
-            border-left: 2px solid var(--accent-red);
-            padding-left: 1rem;
-        }
-
-        .highlight-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .highlight-sub {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .about-image-card {
+        .product-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .about-image-inner {
-            background-color: var(--bg-secondary);
-            height: 420px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3.5rem;
-        }
-
-        .contact-info-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 3rem;
-            border-radius: 4px;
+            padding: 1.75rem;
+            border-radius: var(--border-radius);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: border-color var(--transition-speed) ease;
         }
 
-        .info-group {
-            margin-bottom: 2rem;
+        .product-card:hover {
+            border-color: var(--color-accent-red);
         }
 
-        .info-label {
-            font-size: 0.75rem;
+        .product-category {
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent-red);
+            letter-spacing: 0.25em;
+            color: var(--color-accent-gold);
             margin-bottom: 0.5rem;
             display: block;
             font-weight: 500;
         }
 
-        .info-value {
-            font-size: 1.05rem;
-            color: var(--text-primary);
-            line-height: 1.6;
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-transform: none;
+            letter-spacing: 0.03em;
         }
 
-        .hours-list {
-            list-style: none;
+        .product-desc {
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
-        .hours-row {
+        .product-footer {
             display: flex;
             justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed var(--border-light);
-            font-size: 0.9rem;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: auto;
         }
 
-        .hours-row:last-child {
-            border-bottom: none;
-        }
-
-        .hours-day {
+        .product-price {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
             color: var(--text-primary);
+            font-weight: 600;
         }
 
-        .hours-time {
+        .product-unit {
+            font-size: 0.75rem;
             color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-weight: 300;
+        }
+
+        .about-section {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 3rem;
+        }
+
+        .value-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent-gold);
+        }
+
+        .value-item p {
+            font-size: 0.85rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-block h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--color-accent-gold);
+        }
+
+        .contact-block p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .whatsapp-cta-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .whatsapp-cta-card p {
+            margin-bottom: 1.5rem;
         }
 
         .map-container {
             width: 100%;
-            height: 100%;
-            min-height: 420px;
-            border-radius: 4px;
-            overflow: hidden;
+            height: 420px;
             border: 1px solid var(--border-color);
-            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background-color: var(--bg-card);
         }
 
-        .map-iframe {
+        .map-container iframe {
             width: 100%;
             height: 100%;
-            border: none;
-            filter: grayscale(0.8) contrast(1.2);
-            transition: var(--transition);
+            border: 0;
+            filter: grayscale(80%) invert(90%) contrast(120%);
+            transition: filter var(--transition-speed) ease;
         }
 
-        [data-theme="dark"] .map-iframe {
-            filter: invert(0.9) hue-rotate(180deg) grayscale(0.7) contrast(1.1);
+        [data-theme="light"] .map-container iframe {
+            filter: grayscale(20%);
         }
 
-        .whatsapp-cta-block {
-            margin-top: 2rem;
-        }
-
-        .btn-whatsapp {
-            width: 100%;
-            background-color: var(--accent-red);
-            color: #FFFFFF;
-            padding: 1.15rem 2rem;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.22em;
-            border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.85rem;
-            border: 1px solid var(--accent-red);
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn-whatsapp:hover {
-            background-color: var(--accent-red-hover);
-            border-color: var(--accent-red-hover);
-            box-shadow: 0 10px 30px rgba(176, 30, 40, 0.35);
-        }
-
-        .footer {
-            padding: 3.5rem 0;
+        footer {
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
             background-color: var(--bg-primary);
-            border-top: 1px solid var(--border-light);
-            text-align: center;
         }
 
-        .footer-brand {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .footer-text {
+        .copyright {
             font-size: 0.8rem;
             color: var(--text-secondary);
-            letter-spacing: 0.05em;
         }
 
-        .whatsapp-float {
+        .footer-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+        }
+
+        .floating-whatsapp {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 58px;
-            height: 58px;
-            background-color: var(--accent-red);
+            width: 56px;
+            height: 56px;
+            background-color: var(--color-accent-red);
             color: #FFFFFF;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-            z-index: 999;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 900;
+            transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: var(--accent-red-hover);
-            box-shadow: 0 12px 30px rgba(176, 30, 40, 0.5);
+        .floating-whatsapp:hover {
+            transform: scale(1.08);
+            background-color: var(--color-accent-red-hover);
+            box-shadow: 0 6px 24px rgba(176, 30, 40, 0.4);
         }
 
-        @media (max-width: 992px) {
-            .hero-title {
-                font-size: 2.8rem;
-            }
+        .floating-whatsapp svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+        }
 
-            .specialties-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-modal-overlay);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
 
-            .about-wrapper, .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
+        .modal-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-accent-red);
+            padding: 3rem 2.5rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            border-radius: var(--border-radius);
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-close-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+        }
+
+        .modal-badge {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-accent-gold);
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .modal-divider {
+            width: 30px;
+            height: 1px;
+            background-color: var(--color-accent-red);
+            margin: 1.25rem auto;
+        }
+
+        .modal-desc {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-code-box {
+            background-color: var(--bg-secondary);
+            border: 1px dashed var(--border-highlight);
+            padding: 0.75rem;
+            margin-bottom: 2rem;
+            font-family: monospace;
+            letter-spacing: 0.15em;
+            font-size: 0.95rem;
+            color: var(--color-accent-gold);
         }
 
         @media (max-width: 768px) {
-            .header-nav {
-                height: 75px;
-            }
-
-            .mobile-toggle {
+            .hamburger-btn {
                 display: block;
             }
 
             .nav-menu {
                 position: fixed;
-                top: 75px;
+                top: 80px;
                 left: 0;
                 width: 100%;
                 background-color: var(--bg-primary);
                 border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
                 padding: 2rem;
+                gap: 1.5rem;
                 transform: translateY(-150%);
-                transition: var(--transition);
-                box-shadow: var(--shadow);
+                transition: transform 0.4s ease;
+                z-index: 999;
             }
 
             .nav-menu.active {
                 transform: translateY(0);
             }
 
-            .nav-links {
-                flex-direction: column;
-                gap: 1.5rem;
-                align-items: flex-start;
+            .hero-title {
+                font-size: 2.5rem;
             }
 
-            .specialties-grid {
+            .contact-grid {
                 grid-template-columns: 1fr;
             }
 
-            .hero-title {
-                font-size: 2.2rem;
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
-            .section {
-                padding: 5rem 0;
+            .section-padding {
+                padding: 4rem 0;
             }
 
             .map-container {
-                min-height: 320px;
+                height: 320px;
+            }
+
+            .floating-whatsapp {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 48px;
+                height: 48px;
+            }
+
+            .floating-whatsapp svg {
+                width: 22px;
+                height: 22px;
             }
         }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="container header-nav">
-            <a href="#home" class="brand-logo">
-                Boucherie <span>Lenggana</span>
-            </a>
-
-            <div class="nav-menu" id="navMenu">
-                <ul class="nav-links">
+    <header>
+        <div class="container header-container">
+            <a href="#" class="brand-logo">Boucherie <span>Lenggana</span></a>
+            
+            <nav>
+                <ul class="nav-menu" id="navMenu">
                     <li><a href="#home" class="nav-link">Home</a></li>
                     <li><a href="#specialties" class="nav-link">Specialties</a></li>
                     <li><a href="#products" class="nav-link">Products</a></li>
-                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
-            </div>
+            </nav>
 
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <span class="theme-toggle-dot"></span>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
+                    <!-- Sun Icon (Light Mode) -->
+                    <svg class="sun-icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon Icon (Dark Mode) -->
+                    <svg class="moon-icon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
                 </button>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle mobile menu">
-                    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
+
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
+                    <svg viewBox="0 0 24 24">
                         <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
                 </button>
@@ -801,253 +829,213 @@
 
     <main>
         <section id="home" class="hero">
-            <div class="container hero-content">
-                <span class="hero-badge">100% Halal Certified Artisanal Butchery</span>
-                <h1 class="hero-title">Refined Cuts. <em>Uncompromised</em> Halal Quality.</h1>
-                <p class="hero-description">
-                    Family-owned boucherie delivering dry-aged prime beef, traditional Merguez, and hand-selected halal specialties prepared with heritage craftsmanship and utmost precision.
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#specialties" class="btn btn-primary">Discover Specialties</a>
-                    <a href="#contact" class="btn btn-outline">Visit Store</a>
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">Strictly Halal Certified</span>
+                    <h1 class="hero-title">Artisanal Butchery &amp; Fine Culinary Cuts</h1>
+                    <p class="hero-tagline">Experience exceptionally sourced, premium grade halal meats, hand-selected and expertly prepared by our master butchers with uncompromising family traditions.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
+                        <a href="#specialties" class="btn btn-outline">Explore Specialties</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="specialties" class="section">
+        <section id="specialties" class="section-padding">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-subtitle">Handcrafted In-House</span>
-                    <h2 class="section-title">World Specialties</h2>
+                    <span class="section-subtitle">Crafted Precision</span>
+                    <h2 class="section-title">House Specialties</h2>
                 </div>
 
                 <div class="specialties-grid">
-                    <!-- Specialty 1: Merguez -->
+                    <!-- Specialty Card 1 -->
                     <article class="specialty-card">
                         <div class="specialty-img-wrapper">
-                            <!-- Monochromatic Line & Gradient Art SVG Placeholder -->
-                            <svg class="specialty-img-svg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="400" height="240" fill="var(--bg-secondary)"/>
-                                <circle cx="200" cy="120" r="80" stroke="var(--accent-red)" stroke-width="1" stroke-dasharray="4 4" opacity="0.4"/>
-                                <path d="M120 130 C 160 80, 240 80, 280 130 C 260 170, 140 170, 120 130 Z" stroke="var(--text-primary)" stroke-width="1.5" fill="none"/>
-                                <path d="M140 125 C 170 95, 230 95, 260 125" stroke="var(--accent-red)" stroke-width="1.2" fill="none"/>
-                                <line x1="200" y1="40" x2="200" y2="200" stroke="var(--border-color)" stroke-width="0.5"/>
-                            </svg>
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Artisanal Merguez Sausage" class="specialty-img" loading="lazy">
                         </div>
-                        <div class="specialty-content">
-                            <h3 class="specialty-title">Artisanal Merguez</h3>
-                            <p class="specialty-desc">Traditional North African lamb and beef sausage seasoned with hand-ground cumin, coriander, garlic, and authentic harissa spice mix.</p>
-                            <span class="specialty-origin">North African Recipe</span>
+                        <div class="specialty-body">
+                            <h3 class="specialty-name">Artisanal Merguez</h3>
+                            <p class="specialty-desc">Hand-crafted North African beef and lamb sausages, seasoned with our proprietary blend of cumin, paprika, and subtle harissa spice notes.</p>
                         </div>
                     </article>
 
-                    <!-- Specialty 2: Brisket -->
+                    <!-- Specialty Card 2 -->
                     <article class="specialty-card">
                         <div class="specialty-img-wrapper">
-                            <svg class="specialty-img-svg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="400" height="240" fill="var(--bg-secondary)"/>
-                                <rect x="100" y="80" width="200" height="80" rx="4" stroke="var(--text-primary)" stroke-width="1.5" fill="none"/>
-                                <path d="M100 105 H300" stroke="var(--accent-red)" stroke-width="1" stroke-dasharray="2 2"/>
-                                <path d="M100 130 H300" stroke="var(--border-color)" stroke-width="1"/>
-                                <circle cx="200" cy="120" r="60" stroke="var(--accent-red)" stroke-width="0.75" opacity="0.3"/>
-                            </svg>
+                            <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Prime Halal Brisket" class="specialty-img" loading="lazy">
                         </div>
-                        <div class="specialty-content">
-                            <h3 class="specialty-title">Slow-Aged Brisket</h3>
-                            <p class="specialty-desc">Premium halal beef brisket featuring superb intramuscular marbling. Perfect for low-and-slow smoking or slow braising.</p>
-                            <span class="specialty-origin">Prime Halal Cut</span>
+                        <div class="specialty-body">
+                            <h3 class="specialty-name">Prime Beef Brisket</h3>
+                            <p class="specialty-desc">Generously marbled cuts selected specifically for slow smoking and braising, yielding unparalleled tenderness and rich flavor depth.</p>
                         </div>
                     </article>
 
-                    <!-- Specialty 3: Roasted Beef -->
+                    <!-- Specialty Card 3 -->
                     <article class="specialty-card">
                         <div class="specialty-img-wrapper">
-                            <svg class="specialty-img-svg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="400" height="240" fill="var(--bg-secondary)"/>
-                                <ellipse cx="200" cy="120" rx="90" ry="50" stroke="var(--text-primary)" stroke-width="1.5" fill="none"/>
-                                <ellipse cx="200" cy="120" rx="70" ry="35" stroke="var(--accent-red)" stroke-width="1" stroke-dasharray="3 3"/>
-                                <line x1="110" y1="120" x2="290" y2="120" stroke="var(--border-color)" stroke-width="0.75"/>
-                            </svg>
+                            <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Slow Roasted Beef" class="specialty-img" loading="lazy">
                         </div>
-                        <div class="specialty-content">
-                            <h3 class="specialty-title">House Roasted Beef</h3>
-                            <p class="specialty-desc">Herb-crusted tenderloin gently roasted with fresh rosemary, cracked black pepper, and sea salt. Thinly sliced for deli service.</p>
-                            <span class="specialty-origin">Deli Signature</span>
+                        <div class="specialty-body">
+                            <h3 class="specialty-name">Herb-Crusted Roasted Beef</h3>
+                            <p class="specialty-desc">Pre-marinated premium roast wrapped in wild rosemary, garlic, and cracked pepper, ready for fine home roasting.</p>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="products" class="section">
+        <section id="products" class="section-padding" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
             <div class="container">
                 <div class="section-header">
                     <span class="section-subtitle">Curated Selection</span>
-                    <h2 class="section-title">Products & Add-Ons</h2>
+                    <h2 class="section-title">Boutique Offerings</h2>
                 </div>
 
-                <div class="product-tabs" id="productTabs">
-                    <button class="product-tab active" data-category="all">All Items</button>
-                    <button class="product-tab" data-category="beef">Beef Cuts</button>
-                    <button class="product-tab" data-category="sauces">House Sauces</button>
-                    <button class="product-tab" data-category="mushrooms">Mushrooms & Add-Ons</button>
-                </div>
-
-                <div class="product-grid" id="productGrid">
-                    <!-- Beef Item 1 -->
-                    <div class="product-item" data-cat="beef">
-                        <div class="product-info">
-                            <h3 class="product-name">Halal Wagyu Ribeye MB5+</h3>
-                            <p class="product-desc">Exquisite marbling delivering buttery texture and deep umami flavor. Cut to order.</p>
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div>
+                            <span class="product-category">Beef Cuts</span>
+                            <h3 class="product-title">Wagyu Ribeye Steak</h3>
+                            <p class="product-desc">Grade A5/MS7 halal certified wagyu ribeye, highly marbled for melt-in-the-mouth texture.</p>
                         </div>
-                        <span class="product-price">Market Price</span>
+                        <div class="product-footer">
+                            <span class="product-price">Market Price</span>
+                            <span class="product-unit">per 200g</span>
+                        </div>
                     </div>
 
-                    <!-- Beef Item 2 -->
-                    <div class="product-item" data-cat="beef">
-                        <div class="product-info">
-                            <h3 class="product-name">Grain-Fed Beef Tenderloin</h3>
-                            <p class="product-desc">Ultra-tender lean cut, trimmed cleanly by our master butchers.</p>
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div>
+                            <span class="product-category">Beef Cuts</span>
+                            <h3 class="product-title">Dry-Aged Tenderloin</h3>
+                            <p class="product-desc">Aged 28 days under controlled humidity to concentrate rich savory aromas and tenderness.</p>
                         </div>
-                        <span class="product-price">Market Price</span>
+                        <div class="product-footer">
+                            <span class="product-price">Market Price</span>
+                            <span class="product-unit">per 250g</span>
+                        </div>
                     </div>
 
-                    <!-- Sauce Item 1 -->
-                    <div class="product-item" data-cat="sauces">
-                        <div class="product-info">
-                            <h3 class="product-name">House Harissa Paste</h3>
-                            <p class="product-desc">Smoky chili pepper paste enriched with roasted garlic, olive oil, and coriander seeds.</p>
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div>
+                            <span class="product-category">Sauces</span>
+                            <h3 class="product-title">Truffle Chimichurri</h3>
+                            <p class="product-desc">Freshly minced parsley, garlic, red wine vinegar, infused with black winter truffle oil.</p>
                         </div>
-                        <span class="product-price">In-Store</span>
+                        <div class="product-footer">
+                            <span class="product-price">Market Price</span>
+                            <span class="product-unit">250ml jar</span>
+                        </div>
                     </div>
 
-                    <!-- Sauce Item 2 -->
-                    <div class="product-item" data-cat="sauces">
-                        <div class="product-info">
-                            <h3 class="product-name">Truffle Chimichurri</h3>
-                            <p class="product-desc">Fresh parsley, shallots, garlic, white truffle oil, and red wine vinegar infusion.</p>
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div>
+                            <span class="product-category">Mushrooms &amp; Add-ons</span>
+                            <h3 class="product-title">Wild Morel Mushrooms</h3>
+                            <p class="product-desc">Premium dried morels, carefully inspected, providing an earthy complement to rich beef cuts.</p>
                         </div>
-                        <span class="product-price">In-Store</span>
+                        <div class="product-footer">
+                            <span class="product-price">Market Price</span>
+                            <span class="product-unit">per 100g</span>
+                        </div>
                     </div>
 
-                    <!-- Mushrooms Item 1 -->
-                    <div class="product-item" data-cat="mushrooms">
-                        <div class="product-info">
-                            <h3 class="product-name">Wild King Oyster Mushrooms</h3>
-                            <p class="product-desc">Flesh stems perfect for searing alongside prime steaks in brown butter.</p>
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <div>
+                            <span class="product-category">Sauces</span>
+                            <h3 class="product-title">Smoked Demi-Glace</h3>
+                            <p class="product-desc">Rich 48-hour simmered veal-style beef stock reduction flavored with toasted spices.</p>
                         </div>
-                        <span class="product-price">In-Store</span>
+                        <div class="product-footer">
+                            <span class="product-price">Market Price</span>
+                            <span class="product-unit">300ml jar</span>
+                        </div>
                     </div>
 
-                    <!-- Mushrooms Item 2 -->
-                    <div class="product-item" data-cat="mushrooms">
-                        <div class="product-info">
-                            <h3 class="product-name">Fresh Morel Mushrooms</h3>
-                            <p class="product-desc">Earthy, nut-like profile prized by gourmet chefs for rich cream sauces.</p>
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <div>
+                            <span class="product-category">Beef Cuts</span>
+                            <h3 class="product-title">Short Ribs (Flanken Cut)</h3>
+                            <p class="product-desc">Cross-cut short ribs ideal for Korean-style BBQ, braising, or high-heat searing.</p>
                         </div>
-                        <span class="product-price">Seasonal</span>
+                        <div class="product-footer">
+                            <span class="product-price">Market Price</span>
+                            <span class="product-unit">per 500g</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="section">
+        <section id="about" class="section-padding">
             <div class="container">
-                <div class="about-wrapper">
-                    <div class="about-text">
-                        <span class="section-subtitle" style="text-align: left;">Family Heritage</span>
-                        <h2 class="section-title" style="text-align: left;">Artisanal Craftsmanship, Certified Halal Trust</h2>
-                        <p class="about-paragraph">
-                            Founded on generations of butchery knowledge, Boucherie Lenggana brings upscale European deli culture and strict halal standards together under one roof. Every piece of meat is carefully selected from ethically managed farms with full traceability.
-                        </p>
-                        <p class="about-paragraph">
-                            We believe that meat preparation is an art form. From our custom dry-aging cabinet to our handmade sausages and spice blends, we preserve timeless techniques to ensure superior taste, tenderness, and satisfaction for your family table.
-                        </p>
+                <div class="about-content">
+                    <span class="section-subtitle">Heritage &amp; Integrity</span>
+                    <h2 class="section-title" style="margin-bottom: 2rem;">The Lenggana Legacy</h2>
+                    
+                    <p class="about-text">
+                        Boucherie Lenggana was founded on a singular commitment: delivering uncompromised quality meats prepared according to rigorous halal standards. As a family-owned operation, we honor classical butchery techniques passed through generations while introducing modern culinary refinement to discerning tables.
+                    </p>
 
-                        <div class="about-highlights">
-                            <div class="highlight-item">
-                                <h3 class="highlight-title">Strictly Halal</h3>
-                                <p class="highlight-sub">100% certified slaughter & handling processes</p>
-                            </div>
-                            <div class="highlight-item">
-                                <h3 class="highlight-title">Ethical Sourcing</h3>
-                                <p class="highlight-sub">Grass-fed and premium grain-fed options</p>
-                            </div>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <h4>100% Halal</h4>
+                            <p>Full traceability and strict halal certification from farm source to counter display.</p>
                         </div>
-                    </div>
-
-                    <div class="about-image-card">
-                        <div class="about-image-inner">
-                            <svg viewBox="0 0 300 300" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="150" cy="150" r="120" stroke="var(--border-color)" stroke-width="1"/>
-                                <circle cx="150" cy="150" r="100" stroke="var(--accent-red)" stroke-width="1" stroke-dasharray="6 6"/>
-                                <path d="M150 70 V230" stroke="var(--border-color)" stroke-width="0.5"/>
-                                <path d="M70 150 H230" stroke="var(--border-color)" stroke-width="0.5"/>
-                                <text x="150" y="145" font-family="var(--font-serif)" font-size="20" fill="var(--text-primary)" text-anchor="middle" letter-spacing="3">LENGGANA</text>
-                                <text x="150" y="170" font-family="var(--font-sans)" font-size="9" fill="var(--accent-red)" text-anchor="middle" letter-spacing="4">HALAL BOUCHERIE</text>
-                            </svg>
+                        <div class="value-item">
+                            <h4>Ethical Sourcing</h4>
+                            <p>We partner exclusively with pastures practicing humane, sustainable livestock care.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4>Master Craftsmanship</h4>
+                            <p>Every cut is hand-trimmed with precision to maximize flavor, tenderness, and presentation.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section">
+        <section id="contact" class="section-padding" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-subtitle">Visit Us or Order Direct</span>
-                    <h2 class="section-title">Location & Contact</h2>
+                    <span class="section-subtitle">Visit or Order</span>
+                    <h2 class="section-title">Get In Touch</h2>
                 </div>
 
                 <div class="contact-grid">
-                    <div class="contact-info-card">
-                        <div>
-                            <div class="info-group">
-                                <span class="info-label">Address</span>
-                                <p class="info-value">
-                                    Villa Mahkota Pesona Blok D3 No.24<br>
-                                    Cileungsi, West Java, Indonesia
-                                </p>
-                            </div>
-
-                            <div class="info-group">
-                                <span class="info-label">Store Opening Hours</span>
-                                <ul class="hours-list">
-                                    <li class="hours-row">
-                                        <span class="hours-day">Tuesday – Friday</span>
-                                        <span class="hours-time">08:00 – 19:00</span>
-                                    </li>
-                                    <li class="hours-row">
-                                        <span class="hours-day">Saturday – Sunday</span>
-                                        <span class="hours-time">07:30 – 20:00</span>
-                                    </li>
-                                    <li class="hours-row">
-                                        <span class="hours-day">Monday</span>
-                                        <span class="hours-time">Closed for Preparation</span>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="contact-info">
+                        <div class="contact-block">
+                            <h4>Boutique Address</h4>
+                            <p>Villa Mahkota Pesona Blok D3 No.24<br>West Java, Indonesia</p>
                         </div>
 
-                        <!-- WhatsApp Direct Order CTA Button -->
-                        <div class="whatsapp-cta-block">
-                            <a href="https://wa.me/6281220613226?text=Hello%20Boucherie%20Lenggana,%20I%20would%20like%20to%20place%20an%20order." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                                </svg>
-                                Order on WhatsApp
-                            </a>
+                        <div class="contact-block">
+                            <h4>Operating Hours</h4>
+                            <p>Tuesday – Sunday: 08:00 AM – 07:00 PM<br>Monday: Closed for Preparation</p>
+                        </div>
+
+                        <div class="whatsapp-cta-card">
+                            <h4>Direct Orders</h4>
+                            <p>Speak directly with our butcher to customize cuts, reserve specialty items, or organize delivery.</p>
+                            <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">Order on WhatsApp</a>
                         </div>
                     </div>
 
-                    <!-- Responsive Embedded Google Map iframe -->
                     <div class="map-container">
                         <iframe 
-                            class="map-iframe" 
+                            title="Boucherie Lenggana Location Map"
                             src="https://www.google.com/maps?q=Villa+Mahkota+Pesona+Blok+D3+No.24&output=embed" 
                             allowfullscreen="" 
                             loading="lazy" 
-                            title="Boucherie Lenggana Location Map">
+                            referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
@@ -1055,86 +1043,119 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-brand brand-font">Boucherie Lenggana</div>
-            <p class="footer-text">&copy; 2026 Boucherie Lenggana. All rights reserved. Halal certified artisanal meat & deli.</p>
+    <footer>
+        <div class="container footer-container">
+            <p class="copyright">&copy; <span id="currentYear"></span> Boucherie Lenggana. All rights reserved.</p>
+            <span class="footer-tag">Family-Owned Halal Boucherie</span>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Chat Button -->
-    <a href="https://wa.me/6281220613226?text=Hello%20Boucherie%20Lenggana,%20I%20would%20like%20to%20place%20an%20order." 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="whatsapp-float" 
-       aria-label="Chat on WhatsApp">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contact us on WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.12-1.32C8.54 21.53 10.22 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.57 0-3.04-.42-4.32-1.15l-.31-.18-3.1.8 1.05-2.95-.2-.32C4.37 14.93 3.8 13.52 3.8 12c0-4.52 3.68-8.2 8.2-8.2 4.52 0 8.2 3.68 8.2 8.2 0 4.52-3.68 8.2-8.2 8.2zm4.51-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.18-.48-.3z"/>
         </svg>
     </a>
 
+    <div class="modal-overlay" id="promoModal" aria-hidden="true" role="dialog">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close promotion modal">
+                <svg viewBox="0 0 24 24">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <span class="modal-badge">Exclusive Welcome Privilege</span>
+            <h3 class="modal-title">Special Offer — 10% Off Your First Order</h3>
+            <div class="modal-divider"></div>
+            <p class="modal-desc">Experience our signature cuts and house specialties. Mention this welcome code during your WhatsApp consultation to claim your discount.</p>
+            
+            <div class="modal-code-box">LENGGANA10</div>
+
+            <button class="btn btn-primary" id="modalClaimBtn" style="width: 100%;">Claim Now</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Set dynamic current year in footer
+            const currentYearElem = document.getElementById('currentYear');
+            if (currentYearElem) {
+                currentYearElem.textContent = new Date().getFullYear();
+            }
+
+            // Theme Management
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
             const htmlElement = document.documentElement;
-            const themeToggleBtn = document.getElementById('themeToggle');
 
-            // Theme detection logic (Saved setting > System preference > Default dark)
-            const getPreferredTheme = () => {
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme) {
-                    return savedTheme;
-                }
-                return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-            };
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-            const setTheme = (theme) => {
-                htmlElement.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
-            };
+            if (savedTheme) {
+                htmlElement.setAttribute('data-theme', savedTheme);
+            } else {
+                htmlElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
+            }
 
-            // Initial theme setup
-            setTheme(getPreferredTheme());
-
-            // Theme toggle event handler
             themeToggleBtn.addEventListener('click', () => {
                 const currentTheme = htmlElement.getAttribute('data-theme');
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                setTheme(newTheme);
+                
+                htmlElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
             });
 
-            const mobileToggle = document.getElementById('mobileToggle');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
             const navMenu = document.getElementById('navMenu');
 
-            mobileToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-
-            // Close mobile menu on link click
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
+            if (hamburgerBtn && navMenu) {
+                hamburgerBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
                 });
-            });
 
-            const tabs = document.querySelectorAll('.product-tab');
-            const items = document.querySelectorAll('.product-item');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-
-                    const category = tab.getAttribute('data-category');
-
-                    items.forEach(item => {
-                        if (category === 'all' || item.getAttribute('data-cat') === category) {
-                            item.style.display = 'flex';
-                        } else {
-                            item.style.display = 'none';
-                        }
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
                     });
                 });
-            });
+            }
+
+            const promoModal = document.getElementById('promoModal');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const modalClaimBtn = document.getElementById('modalClaimBtn');
+
+            // Show modal 1.5 seconds after page load finishes
+            setTimeout(() => {
+                if (promoModal) {
+                    promoModal.classList.add('active');
+                    promoModal.setAttribute('aria-hidden', 'false');
+                }
+            }, 1500);
+
+            const closeModal = () => {
+                if (promoModal) {
+                    promoModal.classList.remove('active');
+                    promoModal.setAttribute('aria-hidden', 'true');
+                }
+            };
+
+            if (modalCloseBtn) {
+                modalCloseBtn.addEventListener('click', closeModal);
+            }
+
+            if (promoModal) {
+                promoModal.addEventListener('click', (e) => {
+                    if (e.target === promoModal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            if (modalClaimBtn) {
+                modalClaimBtn.addEventListener('click', () => {
+                    closeModal();
+                    window.open('https://wa.me/6281220613226?text=Hello%20Boucherie%20Lenggana%2C%20I%20would%20like%20to%20claim%20my%2010%25%20first%20order%20discount%20(LENGGANA10).', '_blank');
+                });
+            }
         });
     </script>
 </body>
