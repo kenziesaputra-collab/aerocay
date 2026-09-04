@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boucherie Lenggana — Artisanal Halal Butchery</title>
+    
     <!-- Google Fonts for Luxury Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +25,7 @@
             --bg-primary: #0D0D0D;
             --bg-secondary: #141414;
             --bg-card: #1A1A1A;
-            --bg-modal-overlay: rgba(0, 0, 0, 0.8);
+            --bg-modal-overlay: rgba(0, 0, 0, 0.85);
             --text-primary: #F2F2F2;
             --text-secondary: #A0A0A0;
             --border-color: #262626;
@@ -133,6 +134,26 @@
             width: 40px;
             height: 1px;
             background-color: var(--color-accent-red);
+        }
+
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal-section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-section {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
         }
 
         header {
@@ -499,6 +520,77 @@
             font-size: 0.85rem;
         }
 
+        .reviews-carousel-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .reviews-carousel-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .reviews-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            will-change: transform;
+        }
+
+        .review-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 340px;
+            flex-shrink: 0;
+            transition: border-color var(--transition-speed) ease;
+        }
+
+        .review-card:hover {
+            border-color: var(--border-highlight);
+        }
+
+        .review-stars {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent-red);
+        }
+
+        .review-stars svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .review-stars svg.star-outline {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+        }
+
+        .review-text {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .review-author {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -792,13 +884,13 @@
                     <li><a href="#specialties" class="nav-link">Specialties</a></li>
                     <li><a href="#products" class="nav-link">Products</a></li>
                     <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#reviews" class="nav-link">Reviews</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
 
             <div class="nav-actions">
                 <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
-                    <!-- Sun Icon (Light Mode) -->
                     <svg class="sun-icon" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -810,7 +902,6 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                    <!-- Moon Icon (Dark Mode) -->
                     <svg class="moon-icon" viewBox="0 0 24 24">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
@@ -828,7 +919,7 @@
     </header>
 
     <main>
-        <section id="home" class="hero">
+        <section id="home" class="hero reveal-section">
             <div class="container">
                 <div class="hero-content">
                     <span class="hero-badge">Strictly Halal Certified</span>
@@ -842,7 +933,7 @@
             </div>
         </section>
 
-        <section id="specialties" class="section-padding">
+        <section id="specialties" class="section-padding reveal-section">
             <div class="container">
                 <div class="section-header">
                     <span class="section-subtitle">Crafted Precision</span>
@@ -850,7 +941,6 @@
                 </div>
 
                 <div class="specialties-grid">
-                    <!-- Specialty Card 1 -->
                     <article class="specialty-card">
                         <div class="specialty-img-wrapper">
                             <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Artisanal Merguez Sausage" class="specialty-img" loading="lazy">
@@ -861,7 +951,6 @@
                         </div>
                     </article>
 
-                    <!-- Specialty Card 2 -->
                     <article class="specialty-card">
                         <div class="specialty-img-wrapper">
                             <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Prime Halal Brisket" class="specialty-img" loading="lazy">
@@ -872,7 +961,6 @@
                         </div>
                     </article>
 
-                    <!-- Specialty Card 3 -->
                     <article class="specialty-card">
                         <div class="specialty-img-wrapper">
                             <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Slow Roasted Beef" class="specialty-img" loading="lazy">
@@ -886,7 +974,7 @@
             </div>
         </section>
 
-        <section id="products" class="section-padding" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <section id="products" class="section-padding reveal-section" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
             <div class="container">
                 <div class="section-header">
                     <span class="section-subtitle">Curated Selection</span>
@@ -894,7 +982,6 @@
                 </div>
 
                 <div class="products-grid">
-                    <!-- Product 1 -->
                     <div class="product-card">
                         <div>
                             <span class="product-category">Beef Cuts</span>
@@ -907,7 +994,6 @@
                         </div>
                     </div>
 
-                    <!-- Product 2 -->
                     <div class="product-card">
                         <div>
                             <span class="product-category">Beef Cuts</span>
@@ -920,7 +1006,6 @@
                         </div>
                     </div>
 
-                    <!-- Product 3 -->
                     <div class="product-card">
                         <div>
                             <span class="product-category">Sauces</span>
@@ -933,7 +1018,6 @@
                         </div>
                     </div>
 
-                    <!-- Product 4 -->
                     <div class="product-card">
                         <div>
                             <span class="product-category">Mushrooms &amp; Add-ons</span>
@@ -946,7 +1030,6 @@
                         </div>
                     </div>
 
-                    <!-- Product 5 -->
                     <div class="product-card">
                         <div>
                             <span class="product-category">Sauces</span>
@@ -959,7 +1042,6 @@
                         </div>
                     </div>
 
-                    <!-- Product 6 -->
                     <div class="product-card">
                         <div>
                             <span class="product-category">Beef Cuts</span>
@@ -975,7 +1057,7 @@
             </div>
         </section>
 
-        <section id="about" class="section-padding">
+        <section id="about" class="section-padding reveal-section">
             <div class="container">
                 <div class="about-content">
                     <span class="section-subtitle">Heritage &amp; Integrity</span>
@@ -1003,7 +1085,81 @@
             </div>
         </section>
 
-        <section id="contact" class="section-padding" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <!-- NOTE: These review cards are placeholders to be replaced with real customer feedback in the future -->
+        <section id="reviews" class="section-padding reveal-section" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); overflow: hidden;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Patron Experiences</span>
+                    <h2 class="section-title">What Our Customers Say</h2>
+                </div>
+            </div>
+
+            <div class="reviews-carousel-wrapper" id="reviewsWrapper">
+                <div class="reviews-track" id="reviewsTrack">
+                    <!-- Review Card 1 -->
+                    <div class="review-card">
+                        <div>
+                            <div class="review-stars" aria-label="5 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                            <p class="review-text">"Exceptional quality Wagyu and Merguez. The attention to halal preparation and custom trimming is unmatched."</p>
+                        </div>
+                        <span class="review-author">Amir R.</span>
+                    </div>
+
+                    <!-- Review Card 2 -->
+                    <div class="review-card">
+                        <div>
+                            <div class="review-stars" aria-label="5 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                            <p class="review-text">"Ordering over WhatsApp was seamless. The beef brisket was beautifully marbled and made our dinner truly special."</p>
+                        </div>
+                        <span class="review-author">Sarah K.</span>
+                    </div>
+
+                    <!-- Review Card 3 -->
+                    <div class="review-card">
+                        <div>
+                            <div class="review-stars" aria-label="4 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg class="star-outline" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                            <p class="review-text">"Very polite service and supreme freshness. The truffle chimichurri and tenderloin combination is outstanding."</p>
+                        </div>
+                        <span class="review-author">David M.</span>
+                    </div>
+
+                    <!-- Review Card 4 -->
+                    <div class="review-card">
+                        <div>
+                            <div class="review-stars" aria-label="5 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                            <p class="review-text">"Authentic artisanal butchery with pristine standards. The butcher gave excellent cooking recommendations."</p>
+                        </div>
+                        <span class="review-author">Youssef B.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding reveal-section" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
             <div class="container">
                 <div class="section-header">
                     <span class="section-subtitle">Visit or Order</span>
@@ -1050,6 +1206,7 @@
         </div>
     </footer>
 
+    <!-- On-Brand Floating Red Accent WhatsApp CTA -->
     <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contact us on WhatsApp">
         <svg viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.12-1.32C8.54 21.53 10.22 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.57 0-3.04-.42-4.32-1.15l-.31-.18-3.1.8 1.05-2.95-.2-.32C4.37 14.93 3.8 13.52 3.8 12c0-4.52 3.68-8.2 8.2-8.2 4.52 0 8.2 3.68 8.2 8.2 0 4.52-3.68 8.2-8.2 8.2zm4.51-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.18-.48-.3z"/>
@@ -1077,13 +1234,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Set dynamic current year in footer
             const currentYearElem = document.getElementById('currentYear');
             if (currentYearElem) {
                 currentYearElem.textContent = new Date().getFullYear();
             }
 
-            // Theme Management
             const themeToggleBtn = document.getElementById('themeToggleBtn');
             const htmlElement = document.documentElement;
 
@@ -1096,13 +1251,14 @@
                 htmlElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
             }
 
-            themeToggleBtn.addEventListener('click', () => {
-                const currentTheme = htmlElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                htmlElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-            });
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const currentTheme = htmlElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    htmlElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
 
             const hamburgerBtn = document.getElementById('hamburgerBtn');
             const navMenu = document.getElementById('navMenu');
@@ -1119,11 +1275,132 @@
                 });
             }
 
+            const revealSections = document.querySelectorAll('.reveal-section');
+            if ('IntersectionObserver' in window) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -50px 0px',
+                    threshold: 0.12
+                };
+
+                const revealObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                        } else {
+                            entry.target.classList.remove('in-view');
+                        }
+                    });
+                }, observerOptions);
+
+                revealSections.forEach(section => revealObserver.observe(section));
+            } else {
+                revealSections.forEach(section => section.classList.add('in-view'));
+            }
+
+            const reviewsTrack = document.getElementById('reviewsTrack');
+            const reviewsWrapper = document.getElementById('reviewsWrapper');
+
+            if (reviewsTrack && reviewsWrapper) {
+                // Seamless DOM Cloning
+                const originalCards = Array.from(reviewsTrack.children);
+                originalCards.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    reviewsTrack.appendChild(clone);
+                });
+
+                let scrollPos = 0;
+                let speed = 0.8; // Smooth luxury auto-scroll speed
+                let isPaused = false;
+                let isDragging = false;
+                let startX = 0;
+                let currentTranslate = 0;
+                let animationFrameId = null;
+
+                const getSingleSetWidth = () => {
+                    let total = 0;
+                    const gap = 32; // 2rem = 32px
+                    for (let i = 0; i < originalCards.length; i++) {
+                        total += originalCards[i].offsetWidth + gap;
+                    }
+                    return total;
+                };
+
+                let singleSetWidth = getSingleSetWidth();
+                window.addEventListener('resize', () => {
+                    singleSetWidth = getSingleSetWidth();
+                });
+
+                const step = () => {
+                    if (!isPaused && !isDragging) {
+                        scrollPos -= speed;
+                        if (Math.abs(scrollPos) >= singleSetWidth) {
+                            scrollPos = 0;
+                        }
+                        reviewsTrack.style.transform = `translateX(${scrollPos}px)`;
+                    }
+                    animationFrameId = requestAnimationFrame(step);
+                };
+
+                animationFrameId = requestAnimationFrame(step);
+
+                // Pause on Hover & Touch Hover
+                reviewsWrapper.addEventListener('mouseenter', () => { isPaused = true; });
+                reviewsWrapper.addEventListener('mouseleave', () => { 
+                    if (!isDragging) isPaused = false; 
+                });
+
+                // Pointer / Mouse Drag & Touch Swipe Controls
+                const startDrag = (clientX) => {
+                    isDragging = true;
+                    isPaused = true;
+                    startX = clientX - scrollPos;
+                };
+
+                const moveDrag = (clientX) => {
+                    if (!isDragging) return;
+                    scrollPos = clientX - startX;
+                    
+                    // Seamless loop bounds check during manual drag
+                    if (scrollPos > 0) {
+                        scrollPos -= singleSetWidth;
+                        startX -= singleSetWidth;
+                    } else if (Math.abs(scrollPos) >= singleSetWidth) {
+                        scrollPos += singleSetWidth;
+                        startX += singleSetWidth;
+                    }
+                    reviewsTrack.style.transform = `translateX(${scrollPos}px)`;
+                };
+
+                const endDrag = () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        isPaused = false;
+                    }
+                };
+
+                // Mouse Events
+                reviewsWrapper.addEventListener('mousedown', (e) => startDrag(e.clientX));
+                window.addEventListener('mousemove', (e) => moveDrag(e.clientX));
+                window.addEventListener('mouseup', endDrag);
+
+                // Touch Events
+                reviewsWrapper.addEventListener('touchstart', (e) => {
+                    if (e.touches.length > 0) startDrag(e.touches[0].clientX);
+                }, { passive: true });
+
+                reviewsWrapper.addEventListener('touchmove', (e) => {
+                    if (e.touches.length > 0) moveDrag(e.touches[0].clientX);
+                }, { passive: true });
+
+                reviewsWrapper.addEventListener('touchend', endDrag);
+            }
+
             const promoModal = document.getElementById('promoModal');
             const modalCloseBtn = document.getElementById('modalCloseBtn');
             const modalClaimBtn = document.getElementById('modalClaimBtn');
 
-            // Show modal 1.5 seconds after page load finishes
+            // Trigger modal 1.5s after load
             setTimeout(() => {
                 if (promoModal) {
                     promoModal.classList.add('active');
