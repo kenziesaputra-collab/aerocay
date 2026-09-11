@@ -66,6 +66,9 @@
             font-weight: 300;
             transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -92,6 +95,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            width: 100%;
         }
 
         .section-padding {
@@ -136,24 +140,42 @@
             background-color: var(--color-accent-red);
         }
 
-        .reveal-section {
+        .page-view {
+            display: none;
             opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            width: 100%;
+            flex-grow: 1;
+            padding-top: 80px;
         }
 
-        .reveal-section.in-view {
+        .page-view.active {
+            display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .reveal-section {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
+        .page-banner {
+            padding: 4.5rem 0 3.5rem;
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-banner .banner-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-accent-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-banner h1 {
+            font-size: 3rem;
+            font-weight: 400;
         }
 
         header {
@@ -182,6 +204,7 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--text-primary);
+            cursor: pointer;
         }
 
         .brand-logo span {
@@ -191,7 +214,7 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
+            gap: 2.2rem;
             list-style: none;
         }
 
@@ -202,9 +225,10 @@
             color: var(--text-secondary);
             position: relative;
             padding: 0.25rem 0;
+            cursor: pointer;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active {
             color: var(--text-primary);
         }
 
@@ -219,7 +243,7 @@
             transition: width var(--transition-speed) ease;
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
 
@@ -320,13 +344,13 @@
         }
 
         .hero {
-            min-height: 100vh;
+            min-height: calc(100vh - 80px);
             display: flex;
             align-items: center;
             position: relative;
-            padding-top: 80px;
             background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
             border-bottom: 1px solid var(--border-color);
+            padding: 4rem 0;
         }
 
         .hero-content {
@@ -363,7 +387,7 @@
 
         .specialties-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
         }
 
@@ -372,6 +396,8 @@
             border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
             transition: transform var(--transition-speed) ease, border-color var(--transition-speed) ease;
         }
 
@@ -397,12 +423,30 @@
         }
 
         .specialty-card:hover .specialty-img {
-            transform: scale(1.03);
+            transform: scale(1.04);
             filter: grayscale(0%);
+        }
+
+        .specialty-origin-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(13, 13, 13, 0.85);
+            color: var(--color-accent-gold);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(4px);
         }
 
         .specialty-body {
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .specialty-name {
@@ -414,12 +458,49 @@
         .specialty-desc {
             font-size: 0.9rem;
             line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .specialty-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .category-filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.6rem 1.4rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--color-accent-red);
+            color: var(--text-primary);
+            background: var(--bg-secondary);
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.75rem;
         }
 
         .product-card {
@@ -430,11 +511,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: border-color var(--transition-speed) ease;
+            transition: border-color var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
 
         .product-card:hover {
             border-color: var(--color-accent-red);
+            transform: translateY(-3px);
         }
 
         .product-category {
@@ -448,22 +530,23 @@
         }
 
         .product-title {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 0.5rem;
             text-transform: none;
             letter-spacing: 0.03em;
         }
 
         .product-desc {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             margin-bottom: 1.5rem;
             flex-grow: 1;
+            line-height: 1.6;
         }
 
         .product-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
             border-top: 1px solid var(--border-color);
             padding-top: 1rem;
             margin-top: auto;
@@ -471,7 +554,7 @@
 
         .product-price {
             font-family: var(--font-heading);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--text-primary);
             font-weight: 600;
         }
@@ -481,6 +564,80 @@
             color: var(--text-secondary);
             font-family: var(--font-body);
             font-weight: 300;
+        }
+
+        .faq-grid {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: border-color var(--transition-speed) ease;
+        }
+
+        .faq-item:hover, .faq-item.open {
+            border-color: var(--border-highlight);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .faq-question:hover {
+            color: var(--color-accent-gold);
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            stroke: var(--color-accent-red);
+            stroke-width: 2;
+            fill: none;
+            transition: transform var(--transition-speed) ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 2rem 1.75rem 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 0.5rem;
+            padding-top: 1rem;
         }
 
         .about-section {
@@ -538,6 +695,16 @@
             gap: 2rem;
             width: max-content;
             will-change: transform;
+            animation: scrollCarousel 38s linear infinite;
+        }
+
+        .reviews-carousel-wrapper:hover .reviews-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollCarousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .review-card {
@@ -568,12 +735,6 @@
             width: 16px;
             height: 16px;
             fill: currentColor;
-        }
-
-        .review-stars svg.star-outline {
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.5;
         }
 
         .review-text {
@@ -654,6 +815,7 @@
             padding: 2.5rem 0;
             border-top: 1px solid var(--border-color);
             background-color: var(--bg-primary);
+            margin-top: auto;
         }
 
         .footer-container {
@@ -876,16 +1038,16 @@
 
     <header>
         <div class="container header-container">
-            <a href="#" class="brand-logo">Boucherie <span>Lenggana</span></a>
+            <a onclick="navigateTo('home')" class="brand-logo">Boucherie <span>Lenggana</span></a>
             
             <nav>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#home" class="nav-link">Home</a></li>
-                    <li><a href="#specialties" class="nav-link">Specialties</a></li>
-                    <li><a href="#products" class="nav-link">Products</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#reviews" class="nav-link">Reviews</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a onclick="navigateTo('home')" class="nav-link active" id="nav-home">Home</a></li>
+                    <li><a onclick="navigateTo('specialties')" class="nav-link" id="nav-specialties">Specialties</a></li>
+                    <li><a onclick="navigateTo('products')" class="nav-link" id="nav-products">Products</a></li>
+                    <li><a onclick="navigateTo('faq')" class="nav-link" id="nav-faq">FAQ</a></li>
+                    <li><a onclick="navigateTo('home', 'about')" class="nav-link">About</a></li>
+                    <li><a onclick="navigateTo('home', 'contact')" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
 
@@ -918,521 +1080,790 @@
         </div>
     </header>
 
-    <main>
-        <section id="home" class="hero reveal-section">
-            <div class="container">
-                <div class="hero-content">
-                    <span class="hero-badge">Strictly Halal Certified</span>
-                    <h1 class="hero-title">Artisanal Butchery &amp; Fine Culinary Cuts</h1>
-                    <p class="hero-tagline">Experience exceptionally sourced, premium grade halal meats, hand-selected and expertly prepared by our master butchers with uncompromising family traditions.</p>
-                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
-                        <a href="#specialties" class="btn btn-outline">Explore Specialties</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main id="mainContainer">
 
-        <section id="specialties" class="section-padding reveal-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle">Crafted Precision</span>
-                    <h2 class="section-title">House Specialties</h2>
-                </div>
-
-                <div class="specialties-grid">
-                    <article class="specialty-card">
-                        <div class="specialty-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Artisanal Merguez Sausage" class="specialty-img" loading="lazy">
-                        </div>
-                        <div class="specialty-body">
-                            <h3 class="specialty-name">Artisanal Merguez</h3>
-                            <p class="specialty-desc">Hand-crafted North African beef and lamb sausages, seasoned with our proprietary blend of cumin, paprika, and subtle harissa spice notes.</p>
-                        </div>
-                    </article>
-
-                    <article class="specialty-card">
-                        <div class="specialty-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Prime Halal Brisket" class="specialty-img" loading="lazy">
-                        </div>
-                        <div class="specialty-body">
-                            <h3 class="specialty-name">Prime Beef Brisket</h3>
-                            <p class="specialty-desc">Generously marbled cuts selected specifically for slow smoking and braising, yielding unparalleled tenderness and rich flavor depth.</p>
-                        </div>
-                    </article>
-
-                    <article class="specialty-card">
-                        <div class="specialty-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Slow Roasted Beef" class="specialty-img" loading="lazy">
-                        </div>
-                        <div class="specialty-body">
-                            <h3 class="specialty-name">Herb-Crusted Roasted Beef</h3>
-                            <p class="specialty-desc">Pre-marinated premium roast wrapped in wild rosemary, garlic, and cracked pepper, ready for fine home roasting.</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="products" class="section-padding reveal-section" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle">Curated Selection</span>
-                    <h2 class="section-title">Boutique Offerings</h2>
-                </div>
-
-                <div class="products-grid">
-                    <div class="product-card">
-                        <div>
-                            <span class="product-category">Beef Cuts</span>
-                            <h3 class="product-title">Wagyu Ribeye Steak</h3>
-                            <p class="product-desc">Grade A5/MS7 halal certified wagyu ribeye, highly marbled for melt-in-the-mouth texture.</p>
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">Market Price</span>
-                            <span class="product-unit">per 200g</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div>
-                            <span class="product-category">Beef Cuts</span>
-                            <h3 class="product-title">Dry-Aged Tenderloin</h3>
-                            <p class="product-desc">Aged 28 days under controlled humidity to concentrate rich savory aromas and tenderness.</p>
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">Market Price</span>
-                            <span class="product-unit">per 250g</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div>
-                            <span class="product-category">Sauces</span>
-                            <h3 class="product-title">Truffle Chimichurri</h3>
-                            <p class="product-desc">Freshly minced parsley, garlic, red wine vinegar, infused with black winter truffle oil.</p>
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">Market Price</span>
-                            <span class="product-unit">250ml jar</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div>
-                            <span class="product-category">Mushrooms &amp; Add-ons</span>
-                            <h3 class="product-title">Wild Morel Mushrooms</h3>
-                            <p class="product-desc">Premium dried morels, carefully inspected, providing an earthy complement to rich beef cuts.</p>
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">Market Price</span>
-                            <span class="product-unit">per 100g</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div>
-                            <span class="product-category">Sauces</span>
-                            <h3 class="product-title">Smoked Demi-Glace</h3>
-                            <p class="product-desc">Rich 48-hour simmered veal-style beef stock reduction flavored with toasted spices.</p>
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">Market Price</span>
-                            <span class="product-unit">300ml jar</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div>
-                            <span class="product-category">Beef Cuts</span>
-                            <h3 class="product-title">Short Ribs (Flanken Cut)</h3>
-                            <p class="product-desc">Cross-cut short ribs ideal for Korean-style BBQ, braising, or high-heat searing.</p>
-                        </div>
-                        <div class="product-footer">
-                            <span class="product-price">Market Price</span>
-                            <span class="product-unit">per 500g</span>
+        <div id="page-home" class="page-view active">
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <span class="hero-badge">Strictly Halal Certified</span>
+                        <h1 class="hero-title">Artisanal Butchery &amp; Fine Culinary Cuts</h1>
+                        <p class="hero-tagline">Experience exceptionally sourced, premium grade halal meats, hand-selected and expertly prepared by our master butchers with uncompromising family traditions.</p>
+                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
+                            <button onclick="navigateTo('specialties')" class="btn btn-outline">Explore World Specialties</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="about" class="section-padding reveal-section">
-            <div class="container">
-                <div class="about-content">
-                    <span class="section-subtitle">Heritage &amp; Integrity</span>
-                    <h2 class="section-title" style="margin-bottom: 2rem;">The Lenggana Legacy</h2>
-                    
-                    <p class="about-text">
-                        Boucherie Lenggana was founded on a singular commitment: delivering uncompromised quality meats prepared according to rigorous halal standards. As a family-owned operation, we honor classical butchery techniques passed through generations while introducing modern culinary refinement to discerning tables.
-                    </p>
-
-                    <div class="values-grid">
-                        <div class="value-item">
-                            <h4>100% Halal</h4>
-                            <p>Full traceability and strict halal certification from farm source to counter display.</p>
-                        </div>
-                        <div class="value-item">
-                            <h4>Ethical Sourcing</h4>
-                            <p>We partner exclusively with pastures practicing humane, sustainable livestock care.</p>
-                        </div>
-                        <div class="value-item">
-                            <h4>Master Craftsmanship</h4>
-                            <p>Every cut is hand-trimmed with precision to maximize flavor, tenderness, and presentation.</p>
-                        </div>
+            <!-- Featured Overview -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-subtitle">Crafted Precision</span>
+                        <h2 class="section-title">Signature Selections</h2>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- NOTE: These review cards are placeholders to be replaced with real customer feedback in the future -->
-        <section id="reviews" class="section-padding reveal-section" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); overflow: hidden;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle">Patron Experiences</span>
-                    <h2 class="section-title">What Our Customers Say</h2>
-                </div>
-            </div>
-
-            <div class="reviews-carousel-wrapper" id="reviewsWrapper">
-                <div class="reviews-track" id="reviewsTrack">
-                    <!-- Review Card 1 -->
-                    <div class="review-card">
-                        <div>
-                            <div class="review-stars" aria-label="5 out of 5 stars">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <div class="specialties-grid">
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">North Africa</span>
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Artisanal Merguez Sausage" class="specialty-img" loading="lazy">
                             </div>
-                            <p class="review-text">"Exceptional quality Wagyu and Merguez. The attention to halal preparation and custom trimming is unmatched."</p>
-                        </div>
-                        <span class="review-author">Amir R.</span>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">Artisanal Merguez</h3>
+                                <p class="specialty-desc">Hand-crafted North African beef and lamb sausages, seasoned with our proprietary blend of cumin, paprika, and subtle harissa spice notes.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 120.000</span>
+                                    <span class="product-unit">per 300g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">France</span>
+                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Halal Beef Saucisson" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">French Beef Saucisson</h3>
+                                <p class="specialty-desc">Dry-cured French-style beef salami prepared using age-old European charcuterie techniques with cracked black pepper.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 145.000</span>
+                                    <span class="product-unit">per 200g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">Japan</span>
+                                <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Wagyu Steak" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">A5 Wagyu Striploin</h3>
+                                <p class="specialty-desc">Authentic Japanese Halal Wagyu boasting intramuscular marbling score 8+, offering an unforgettable buttery melt.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 680.000</span>
+                                    <span class="product-unit">per 200g</span>
+                                </div>
+                            </div>
+                        </article>
                     </div>
 
-                    <!-- Review Card 2 -->
-                    <div class="review-card">
-                        <div>
-                            <div class="review-stars" aria-label="5 out of 5 stars">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <div style="text-align: center; margin-top: 3.5rem;">
+                        <button onclick="navigateTo('specialties')" class="btn btn-primary">View All International Specialties</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section inside Home -->
+            <section id="about" class="section-padding about-section">
+                <div class="container">
+                    <div class="about-content">
+                        <span class="section-subtitle">Our Heritage</span>
+                        <h2 class="section-title" style="margin-bottom: 2rem;">The Lenggana Promise</h2>
+                        <p class="about-text">Founded with a deep reverence for traditional butchery, Boucherie Lenggana bridges French charcuterie mastery with global meat culinary traditions. Every single cut is meticulously selected from ethically raised, 100% certified Halal livestock, ensuring pristine quality, succulence, and absolute peace of mind.</p>
+                        
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <h4>Strictly Halal</h4>
+                                <p>Traceable from farm to knife under verified Halal humane slaughter standards.</p>
                             </div>
-                            <p class="review-text">"Ordering over WhatsApp was seamless. The beef brisket was beautifully marbled and made our dinner truly special."</p>
+                            <div class="value-item">
+                                <h4>Artisanal Craft</h4>
+                                <p>Custom butchering, dry aging, and house-made curing by trained butcher craftsmen.</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Freshness Sealed</h4>
+                                <p>Vacuum-sealed instantly in thermal temperature-controlled packaging.</p>
+                            </div>
                         </div>
-                        <span class="review-author">Sarah K.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reviews Section -->
+            <section id="reviews" class="section-padding">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-subtitle">Testimonials</span>
+                        <h2 class="section-title">Customer Acclaim</h2>
+                    </div>
+                </div>
+
+                <div class="reviews-carousel-wrapper">
+                    <div class="reviews-track">
+                        <!-- Review Card 1 -->
+                        <div class="review-card">
+                            <div class="review-stars">
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <p class="review-text">"The Merguez sausage brought me straight back to North Africa! Incredible depth of flavor and the Halal Wagyu Ribeye was tender beyond belief."</p>
+                            <span class="review-author">— Chef Karim S.</span>
+                        </div>
+                        <!-- Review Card 2 -->
+                        <div class="review-card">
+                            <div class="review-stars">
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <p class="review-text">"Finding premium French saucisson and custom cut lamb chops in Jakarta that are certified Halal felt impossible until I found Boucherie Lenggana."</p>
+                            <span class="review-author">— Beatrice V.</span>
+                        </div>
+                        <!-- Review Card 3 -->
+                        <div class="review-card">
+                            <div class="review-stars">
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <p class="review-text">"Prompt delivery in thermal insulation, perfectly trimmed Rendang cut and lamb racks. The quality is consistently five stars."</p>
+                            <span class="review-author">— Rian H.</span>
+                        </div>
+                        <!-- Review Card 4 -->
+                        <div class="review-card">
+                            <div class="review-stars">
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <p class="review-text">"Their Korean Galbi and Duck Breast Magret made our dinner party spectacular. Couldn't recommend them higher!"</p>
+                            <span class="review-author">— Amanda T.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section-padding" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-subtitle">Get In Touch</span>
+                        <h2 class="section-title">Boutique &amp; Concierge</h2>
                     </div>
 
-                    <!-- Review Card 3 -->
-                    <div class="review-card">
-                        <div>
-                            <div class="review-stars" aria-label="4 out of 5 stars">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg class="star-outline" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="contact-block">
+                                <h4>Location &amp; Atelier</h4>
+                                <p>Jl. Senopati No. 84, Kebayoran Baru<br>Jakarta Selatan, DKI Jakarta 12110</p>
                             </div>
-                            <p class="review-text">"Very polite service and supreme freshness. The truffle chimichurri and tenderloin combination is outstanding."</p>
-                        </div>
-                        <span class="review-author">David M.</span>
-                    </div>
 
-                    <!-- Review Card 4 -->
-                    <div class="review-card">
-                        <div>
-                            <div class="review-stars" aria-label="5 out of 5 stars">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <div class="contact-block">
+                                <h4>Boutique Hours</h4>
+                                <p>Monday — Saturday: 08:00 – 19:00 WIB<br>Sunday: 09:00 – 17:00 WIB</p>
                             </div>
-                            <p class="review-text">"Authentic artisanal butchery with pristine standards. The butcher gave excellent cooking recommendations."</p>
+
+                            <div class="contact-block">
+                                <h4>Direct Enquiries</h4>
+                                <p>WhatsApp: +62 812-2061-3226<br>Email: concierge@boucherielenggana.com</p>
+                            </div>
+
+                            <div class="whatsapp-cta-card">
+                                <h4>Custom Cuts &amp; Bulk Orders</h4>
+                                <p>Speak directly with our Master Butcher for special aged cuts, catering, or dinner party consultations.</p>
+                                <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Chat on WhatsApp</a>
+                            </div>
                         </div>
-                        <span class="review-author">Youssef B.</span>
+
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.273611369325!2d106.8066!3d-6.2276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTMnMzkuNCJTIDEwNsKwNDgnMjMuOCJF!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy" title="Boucherie Lenggana Location"></iframe>
+                        </div>
                     </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-specialties" class="page-view">
+            <div class="page-banner">
+                <div class="container">
+                    <span class="banner-subtitle">Global Culinary Heritage</span>
+                    <h1>World Meat Specialties</h1>
+                    <p style="max-width: 600px; margin: 1rem auto 0;">Authentic international butcher recipes prepared by hand with premium 100% Halal meats and authentic spice traditions.</p>
                 </div>
             </div>
-        </section>
 
-        <section id="contact" class="section-padding reveal-section" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle">Visit or Order</span>
-                    <h2 class="section-title">Get In Touch</h2>
+            <section class="section-padding" style="padding-top: 1rem;">
+                <div class="container">
+                    <div class="specialties-grid">
+                        <!-- Moroccan -->
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">Morocco</span>
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Moroccan Artisanal Merguez" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">Moroccan Merguez</h3>
+                                <p class="specialty-desc">Hand-crafted North African beef and lamb sausages, infused with cumin, sweet coriander, garlic, and fiery red harissa paste.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 120.000</span>
+                                    <span class="product-unit">per 300g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- French Saucisson -->
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">France</span>
+                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="French Beef Saucisson Sec" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">French Beef Saucisson</h3>
+                                <p class="specialty-desc">Classic dry-cured French charcuterie style salami using prime aged beef, whole white peppercorns, and garlic clove infusion.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 145.000</span>
+                                    <span class="product-unit">per 200g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Indonesian Rendang Cut -->
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">Indonesia</span>
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Daging Rendang Cut" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">Daging Rendang Premium</h3>
+                                <p class="specialty-desc">Master-cut dense beef chuck and shank pieces with perfect lean-to-collagen balance designed for slow Minang rendang stewing.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 165.000</span>
+                                    <span class="product-unit">per 500g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Japanese A5 Wagyu -->
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">Japan</span>
+                                <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Japanese Wagyu A5 Striploin" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">Japanese A5 Wagyu</h3>
+                                <p class="specialty-desc">Certified Halal Japanese Kuroge Washu Wagyu Striploin with intricate snowflake BMS 9+ fat distribution for ultimate richness.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 680.000</span>
+                                    <span class="product-unit">per 200g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Turkish Adana Kebab -->
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">Turkey</span>
+                                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="Turkish Adana Kebab Mince" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">Turkish Adana Kebab</h3>
+                                <p class="specialty-desc">Hand-minced lamb and beef blend mixed with red bell pepper, sumac, and Turkish tail fat, pre-spiced for skewer grilling.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 110.000</span>
+                                    <span class="product-unit">per 400g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Italian Bresaola -->
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">Italy</span>
+                                <img src="https://images.unsplash.com/photo-1514944288352-fffac99f0bdf?auto=format&fit=crop&w=800&q=80" alt="Italian Halal Bresaola" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">Italian Halal Bresaola</h3>
+                                <p class="specialty-desc">Air-dried, salted beef eye of round aged for 3 months with juniper berries and bay leaf. Thinly sliced for carpaccio.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 175.000</span>
+                                    <span class="product-unit">per 150g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Argentine Asado Short Ribs -->
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">Argentina</span>
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Argentine Asado Ribs" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">Argentine Asado Ribs</h3>
+                                <p class="specialty-desc">Flanken-style cross-cut beef short ribs designed specifically for open-fire parrillada roasting and chimichurri pairing.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 220.000</span>
+                                    <span class="product-unit">per 500g</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Korean Galbi Ribs -->
+                        <article class="specialty-card">
+                            <div class="specialty-img-wrapper">
+                                <span class="specialty-origin-tag">South Korea</span>
+                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Korean Marinated Galbi" class="specialty-img" loading="lazy">
+                            </div>
+                            <div class="specialty-body">
+                                <h3 class="specialty-name">Korean Marinated Galbi</h3>
+                                <p class="specialty-desc">LA-style butterflied short ribs soaked in soy, Asian pear puree, sesame oil, and ginger marinade ready for charcoal BBQ.</p>
+                                <div class="specialty-footer">
+                                    <span class="product-price">Rp 240.000</span>
+                                    <span class="product-unit">per 450g</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="whatsapp-cta-card" style="margin-top: 4rem;">
+                        <h3>Looking for a specific international specialty?</h3>
+                        <p>We source specialty rare meats and formulate custom charcuterie recipes upon request.</p>
+                        <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order Specialty via WhatsApp</a>
+                    </div>
                 </div>
+            </section>
+        </div>
 
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <div class="contact-block">
-                            <h4>Boutique Address</h4>
-                            <p>Villa Mahkota Pesona Blok D3 No.24<br>West Java, Indonesia</p>
-                        </div>
-
-                        <div class="contact-block">
-                            <h4>Operating Hours</h4>
-                            <p>Tuesday – Sunday: 08:00 AM – 07:00 PM<br>Monday: Closed for Preparation</p>
-                        </div>
-
-                        <div class="whatsapp-cta-card">
-                            <h4>Direct Orders</h4>
-                            <p>Speak directly with our butcher to customize cuts, reserve specialty items, or organize delivery.</p>
-                            <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">Order on WhatsApp</a>
-                        </div>
-                    </div>
-
-                    <div class="map-container">
-                        <iframe 
-                            title="Boucherie Lenggana Location Map"
-                            src="https://www.google.com/maps?q=Villa+Mahkota+Pesona+Blok+D3+No.24&output=embed" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
+        <div id="page-products" class="page-view">
+            <div class="page-banner">
+                <div class="container">
+                    <span class="banner-subtitle">Boutique Selection</span>
+                    <h1>Artisanal Cuts of Meat</h1>
+                    <p style="max-width: 600px; margin: 1rem auto 0;">Explore our full range of fresh, hand-trimmed Halal beef, lamb, poultry, and gourmet house preparations.</p>
                 </div>
             </div>
-        </section>
+
+            <section class="section-padding" style="padding-top: 1rem;">
+                <div class="container">
+
+                    <!-- Category Filter Buttons -->
+                    <div class="category-filter-bar">
+                        <button class="filter-btn active" onclick="filterProducts('all')">All Cuts</button>
+                        <button class="filter-btn" onclick="filterProducts('beef')">Prime Beef</button>
+                        <button class="filter-btn" onclick="filterProducts('lamb')">Lamb &amp; Mutton</button>
+                        <button class="filter-btn" onclick="filterProducts('poultry')">Poultry &amp; Duck</button>
+                        <button class="filter-btn" onclick="filterProducts('pantry')">Gourmet Stocks</button>
+                    </div>
+
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Beef 1 -->
+                        <div class="product-card" data-category="beef">
+                            <div>
+                                <span class="product-category">Beef Cut</span>
+                                <h3 class="product-title">Wagyu Ribeye Steak MB7+</h3>
+                                <p class="product-desc">Highly marbled Australian Wagyu ribeye offering luxurious tenderness and deep buttery aromas.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 380.000</span>
+                                <span class="product-unit">per 250g</span>
+                            </div>
+                        </div>
+
+                        <!-- Beef 2 -->
+                        <div class="product-card" data-category="beef">
+                            <div>
+                                <span class="product-category">Beef Cut</span>
+                                <h3 class="product-title">Black Angus Striploin</h3>
+                                <p class="product-desc">Grain-fed 150 days Black Angus sirloin with a robust beef flavor cap and tender muscle grain.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 210.000</span>
+                                <span class="product-unit">per 250g</span>
+                            </div>
+                        </div>
+
+                        <!-- Beef 3 -->
+                        <div class="product-card" data-category="beef">
+                            <div>
+                                <span class="product-category">Beef Cut</span>
+                                <h3 class="product-title">Dry-Aged Tenderloin Filet</h3>
+                                <p class="product-desc">Grass-fed beef fillet aged 28 days in Himalayan salt chambers for ultimate tenderness.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 245.000</span>
+                                <span class="product-unit">per 200g</span>
+                            </div>
+                        </div>
+
+                        <!-- Beef 4 -->
+                        <div class="product-card" data-category="beef">
+                            <div>
+                                <span class="product-category">Beef Cut</span>
+                                <h3 class="product-title">Prime Beef Brisket Cut</h3>
+                                <p class="product-desc">Generous fat cap brisket flat and point cut tailored specifically for Texas-style slow smoking.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 195.000</span>
+                                <span class="product-unit">per 500g</span>
+                            </div>
+                        </div>
+
+                        <!-- Beef 5 -->
+                        <div class="product-card" data-category="beef">
+                            <div>
+                                <span class="product-category">Beef Cut</span>
+                                <h3 class="product-title">Oxtail Super Cut (Buntut Sapi)</h3>
+                                <p class="product-desc">Center-cut thick oxtail pieces ideal for rich Indonesian sop buntut broth or braising.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 175.000</span>
+                                <span class="product-unit">per 500g</span>
+                            </div>
+                        </div>
+
+                        <!-- Lamb 1 -->
+                        <div class="product-card" data-category="lamb">
+                            <div>
+                                <span class="product-category">Lamb Cut</span>
+                                <h3 class="product-title">Australian Frenched Lamb Rack</h3>
+                                <p class="product-desc">Cleanly frenched 8-rib lamb rack, succulent and mild, perfect for herb crust pan roasting.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 290.000</span>
+                                <span class="product-unit">per 400g</span>
+                            </div>
+                        </div>
+
+                        <!-- Lamb 2 -->
+                        <div class="product-card" data-category="lamb">
+                            <div>
+                                <span class="product-category">Lamb Cut</span>
+                                <h3 class="product-title">Bone-In Lamb Shank</h3>
+                                <p class="product-desc">Meaty hind lamb shanks packed with rich marrow, structured for fall-off-the-bone braises.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 185.000</span>
+                                <span class="product-unit">per 500g</span>
+                            </div>
+                        </div>
+
+                        <!-- Lamb 3 -->
+                        <div class="product-card" data-category="lamb">
+                            <div>
+                                <span class="product-category">Lamb Cut</span>
+                                <h3 class="product-title">Gourmet Lamb Loin Chops</h3>
+                                <p class="product-desc">T-bone style mini lamb chops trimmed clean for quick high-heat pan searing with rosemary butter.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 230.000</span>
+                                <span class="product-unit">per 350g</span>
+                            </div>
+                        </div>
+
+                        <!-- Poultry 1 -->
+                        <div class="product-card" data-category="poultry">
+                            <div>
+                                <span class="product-category">Poultry</span>
+                                <h3 class="product-title">Organic Free-Range Ayam Kampung</h3>
+                                <p class="product-desc">Whole probiotic organic free-range chicken, lean, flavorful, and antibiotic-free.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 85.000</span>
+                                <span class="product-unit">per 1.1kg</span>
+                            </div>
+                        </div>
+
+                        <!-- Poultry 2 -->
+                        <div class="product-card" data-category="poultry">
+                            <div>
+                                <span class="product-category">Poultry</span>
+                                <h3 class="product-title">French Duck Breast (Magret de Canard)</h3>
+                                <p class="product-desc">Plump skin-on duck breast cut, scored and ready for crispy skin pan roasting.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 135.000</span>
+                                <span class="product-unit">per 300g</span>
+                            </div>
+                        </div>
+
+                        <!-- Poultry 3 -->
+                        <div class="product-card" data-category="poultry">
+                            <div>
+                                <span class="product-category">Poultry</span>
+                                <h3 class="product-title">Duck Leg Confit Cut</h3>
+                                <p class="product-desc">Meaty duck legs prepared for slow oil confit or aromatic baking until golden crisp.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 120.000</span>
+                                <span class="product-unit">per 450g</span>
+                            </div>
+                        </div>
+
+                        <!-- Pantry 1 -->
+                        <div class="product-card" data-category="pantry">
+                            <div>
+                                <span class="product-category">Gourmet Pantry</span>
+                                <h3 class="product-title">Slow-Simmered Beef Bone Broth</h3>
+                                <p class="product-desc">24-hour slow simmered collagen-rich beef marrow broth infused with roasted herbs.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 55.000</span>
+                                <span class="product-unit">per 500ml</span>
+                            </div>
+                        </div>
+
+                        <!-- Pantry 2 -->
+                        <div class="product-card" data-category="pantry">
+                            <div>
+                                <span class="product-category">Gourmet Pantry</span>
+                                <h3 class="product-title">Rendered Wagyu Beef Tallow</h3>
+                                <p class="product-desc">Pure, clarified Halal Wagyu fat for frying, roasting potatoes, or searing steaks.</p>
+                            </div>
+                            <div class="product-footer">
+                                <span class="product-price">Rp 75.000</span>
+                                <span class="product-unit">per 300g</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="whatsapp-cta-card" style="margin-top: 4rem;">
+                        <h3>Custom Thick-Cuts &amp; Weight Requests</h3>
+                        <p>Prefer your steaks cut to 1.5 inches, custom vacuum sealed, or custom marinated? Let us know on WhatsApp!</p>
+                        <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Custom Order on WhatsApp</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-faq" class="page-view">
+            <div class="page-banner">
+                <div class="container">
+                    <span class="banner-subtitle">Client Information</span>
+                    <h1>Frequently Asked Questions</h1>
+                    <p style="max-width: 600px; margin: 1rem auto 0;">Find detailed answers regarding our Halal certification, cold-chain delivery, custom butchery options, and storage advice.</p>
+                </div>
+            </div>
+
+            <section class="section-padding" style="padding-top: 1rem;">
+                <div class="container">
+                    <div class="faq-grid">
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                How is Boucherie Lenggana certified Halal?
+                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="faq-answer">
+                                All our meats, including imported Wagyu, Australian lamb, and French charcuterie items, are 100% Halal certified by recognized international bodies (such as JAKIM, MUI, and AUS-MEAT Halal). Slaughtering follows strict Zabiha humane guidelines, and no non-halal items ever enter our facilities.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                How do you package and deliver fresh meats safely?
+                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="faq-answer">
+                                Every single order is custom sliced, vacuum-sealed in food-grade airtight pouching, and packed in thermal insulated cooling bags with gel ice packs. We deliver via instant cold-chain couriers across Greater Jakarta (Jabodetabek) and overnight express cold freight for other major Indonesian cities.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                Can I request custom cut thickness or dry-aging?
+                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="faq-answer">
+                                Absolutely. As an artisanal butchery, customization is our pride. You can specify exact steak thickness (e.g., 1 inch, 2 inch), bone trimming, de-boning, or custom dry-aging duration in our salt-lined aging chambers when placing your order via WhatsApp.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                What is the recommended shelf life and storage for fresh meat?
+                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="faq-answer">
+                                Unopened vacuum-sealed fresh chilled meat remains in optimal condition for 3 to 5 days in a standard refrigerator (0°C to 4°C). If you plan to store it longer, place the vacuum pack directly into the freezer (-18°C), where it maintains peak quality for up to 6 months.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                What are the prices in Indonesian Rupiah (Rp)?
+                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="faq-answer">
+                                All our prices are transparently priced per precise grammage in Indonesian Rupiah (Rp). For example, our Japanese A5 Wagyu is Rp 680.000 / 200g, Artisanal Merguez is Rp 120.000 / 300g, and Australian Lamb Rack is Rp 290.000 / 400g. Check our Products and Specialties pages for all itemized rates!
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                Do you provide catering or bulk corporate orders?
+                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </button>
+                            <div class="faq-answer">
+                                Yes, we regularly cater for private chef dinners, family BBQ parties, holiday gifts, and restaurant supply. Contact our concierge team via WhatsApp for wholesale pricing and tailored order planning.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="whatsapp-cta-card" style="margin-top: 4rem;">
+                        <h3>Have a question not answered here?</h3>
+                        <p>Our concierge butchery team is online daily to assist with cooking times, cut suggestions, and orders.</p>
+                        <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ask Us on WhatsApp</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </main>
 
     <footer>
         <div class="container footer-container">
-            <p class="copyright">&copy; <span id="currentYear"></span> Boucherie Lenggana. All rights reserved.</p>
-            <span class="footer-tag">Family-Owned Halal Boucherie</span>
+            <div class="brand-logo" onclick="navigateTo('home')">Boucherie <span>Lenggana</span></div>
+            <div class="copyright">&copy; 2026 Boucherie Lenggana. All Rights Reserved.</div>
+            <div class="footer-tag">Artisanal Halal Charcuterie &amp; Butchery</div>
         </div>
     </footer>
 
-    <!-- On-Brand Floating Red Accent WhatsApp CTA -->
-    <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contact us on WhatsApp">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contact on WhatsApp">
         <svg viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.12-1.32C8.54 21.53 10.22 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.57 0-3.04-.42-4.32-1.15l-.31-.18-3.1.8 1.05-2.95-.2-.32C4.37 14.93 3.8 13.52 3.8 12c0-4.52 3.68-8.2 8.2-8.2 4.52 0 8.2 3.68 8.2 8.2 0 4.52-3.68 8.2-8.2 8.2zm4.51-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.57.12-.17.25-.66.81-.81.98-.15.17-.3.19-.55.07-.25-.12-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.57-1.37-.78-1.87-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.18-.48-.3z"/>
+            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.76.459 3.474 1.333 4.988l-1.417 5.176 5.297-1.389c1.462.797 3.111 1.216 4.773 1.217h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.667-1.037-5.176-2.922-7.062-1.885-1.885-4.394-2.923-7.067-2.93zm5.727 14.186c-.244.686-1.42 1.31-1.954 1.388-.501.072-1.155.103-1.865-.124-.431-.138-.985-.32-1.705-.632-3.031-1.314-5.006-4.398-5.158-4.601-.152-.202-1.233-1.64-1.233-3.128 0-1.488.777-2.22 1.053-2.524.275-.305.602-.381.803-.381.202 0 .403.002.578.01.188.008.439-.071.687.525.253.606.862 2.102.937 2.254.075.152.126.33.025.531-.1.202-.151.328-.302.505-.152.176-.32.393-.456.527-.151.151-.309.316-.133.618.176.302.783 1.272 1.68 2.071 1.154 1.029 2.129 1.348 2.431 1.499.302.151.478.126.654-.075.176-.202.753-.878.954-1.18.202-.302.403-.252.678-.151.275.101 1.755.828 2.057.979.302.151.503.227.578.353.075.126.075.732-.169 1.418z"/>
         </svg>
     </a>
 
-    <div class="modal-overlay" id="promoModal" aria-hidden="true" role="dialog">
+    <!-- Promotional Welcome Modal -->
+    <div class="modal-overlay" id="promoModal">
         <div class="modal-container">
-            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close promotion modal">
-                <svg viewBox="0 0 24 24">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
-            <span class="modal-badge">Exclusive Welcome Privilege</span>
-            <h3 class="modal-title">Special Offer — 10% Off Your First Order</h3>
+            <span class="modal-badge">Boutique Welcome Offer</span>
+            <h3 class="modal-title">Artisanal Tasting Experience</h3>
             <div class="modal-divider"></div>
-            <p class="modal-desc">Experience our signature cuts and house specialties. Mention this welcome code during your WhatsApp consultation to claim your discount.</p>
-            
-            <div class="modal-code-box">LENGGANA10</div>
-
-            <button class="btn btn-primary" id="modalClaimBtn" style="width: 100%;">Claim Now</button>
+            <p class="modal-desc">Enjoy complimentary house-crafted Merguez sausages on your first gourmet order above Rp 500.000.</p>
+            <div class="modal-code-box">CODE: LENGGANA2026</div>
+            <a href="https://wa.me/6281220613226?text=Hello,%20I%20would%20like%20to%20claim%20the%20LENGGANA2026%20welcome%20offer!" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">Claim via WhatsApp</a>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentYearElem = document.getElementById('currentYear');
-            if (currentYearElem) {
-                currentYearElem.textContent = new Date().getFullYear();
+        // SPA Multi-Page Navigation Logic
+        function navigateTo(pageId, sectionId = null) {
+            // Hide all page views
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Show target page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
             }
 
-            const themeToggleBtn = document.getElementById('themeToggleBtn');
-            const htmlElement = document.documentElement;
+            // Update nav active link styles
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
 
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            // Close mobile navigation drawer if open
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
 
-            if (savedTheme) {
-                htmlElement.setAttribute('data-theme', savedTheme);
+            // Scroll to top or specific section
+            if (sectionId) {
+                setTimeout(() => {
+                    const el = document.getElementById(sectionId);
+                    if (el) {
+                        el.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
             } else {
-                htmlElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+        }
 
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', () => {
-                    const currentTheme = htmlElement.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    htmlElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                });
+        // Product Category Filter Function
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('#productsGrid .product-card');
+            const buttons = document.querySelectorAll('.category-filter-bar .filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // FAQ Accordion Toggle Function
+        function toggleFaq(buttonElement) {
+            const faqItem = buttonElement.parentElement;
+            const isOpen = faqItem.classList.contains('open');
+
+            // Close all open FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('open');
+            });
+
+            // Toggle clicked FAQ
+            if (!isOpen) {
+                faqItem.classList.add('open');
             }
+        }
 
+        // DOM Loaded Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dark / Light Theme Toggle
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const htmlTag = document.documentElement;
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlTag.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                htmlTag.setAttribute('data-theme', newTheme);
+            });
+
+            // Mobile Hamburger Menu Toggle
             const hamburgerBtn = document.getElementById('hamburgerBtn');
             const navMenu = document.getElementById('navMenu');
 
-            if (hamburgerBtn && navMenu) {
-                hamburgerBtn.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
-                });
+            hamburgerBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
 
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navMenu.classList.remove('active');
-                    });
-                });
-            }
-
-            const revealSections = document.querySelectorAll('.reveal-section');
-            if ('IntersectionObserver' in window) {
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '0px 0px -50px 0px',
-                    threshold: 0.12
-                };
-
-                const revealObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('in-view');
-                        } else {
-                            entry.target.classList.remove('in-view');
-                        }
-                    });
-                }, observerOptions);
-
-                revealSections.forEach(section => revealObserver.observe(section));
-            } else {
-                revealSections.forEach(section => section.classList.add('in-view'));
-            }
-
-            const reviewsTrack = document.getElementById('reviewsTrack');
-            const reviewsWrapper = document.getElementById('reviewsWrapper');
-
-            if (reviewsTrack && reviewsWrapper) {
-                // Seamless DOM Cloning
-                const originalCards = Array.from(reviewsTrack.children);
-                originalCards.forEach(card => {
-                    const clone = card.cloneNode(true);
-                    reviewsTrack.appendChild(clone);
-                });
-
-                let scrollPos = 0;
-                let speed = 0.8; // Smooth luxury auto-scroll speed
-                let isPaused = false;
-                let isDragging = false;
-                let startX = 0;
-                let currentTranslate = 0;
-                let animationFrameId = null;
-
-                const getSingleSetWidth = () => {
-                    let total = 0;
-                    const gap = 32; // 2rem = 32px
-                    for (let i = 0; i < originalCards.length; i++) {
-                        total += originalCards[i].offsetWidth + gap;
-                    }
-                    return total;
-                };
-
-                let singleSetWidth = getSingleSetWidth();
-                window.addEventListener('resize', () => {
-                    singleSetWidth = getSingleSetWidth();
-                });
-
-                const step = () => {
-                    if (!isPaused && !isDragging) {
-                        scrollPos -= speed;
-                        if (Math.abs(scrollPos) >= singleSetWidth) {
-                            scrollPos = 0;
-                        }
-                        reviewsTrack.style.transform = `translateX(${scrollPos}px)`;
-                    }
-                    animationFrameId = requestAnimationFrame(step);
-                };
-
-                animationFrameId = requestAnimationFrame(step);
-
-                // Pause on Hover & Touch Hover
-                reviewsWrapper.addEventListener('mouseenter', () => { isPaused = true; });
-                reviewsWrapper.addEventListener('mouseleave', () => { 
-                    if (!isDragging) isPaused = false; 
-                });
-
-                // Pointer / Mouse Drag & Touch Swipe Controls
-                const startDrag = (clientX) => {
-                    isDragging = true;
-                    isPaused = true;
-                    startX = clientX - scrollPos;
-                };
-
-                const moveDrag = (clientX) => {
-                    if (!isDragging) return;
-                    scrollPos = clientX - startX;
-                    
-                    // Seamless loop bounds check during manual drag
-                    if (scrollPos > 0) {
-                        scrollPos -= singleSetWidth;
-                        startX -= singleSetWidth;
-                    } else if (Math.abs(scrollPos) >= singleSetWidth) {
-                        scrollPos += singleSetWidth;
-                        startX += singleSetWidth;
-                    }
-                    reviewsTrack.style.transform = `translateX(${scrollPos}px)`;
-                };
-
-                const endDrag = () => {
-                    if (isDragging) {
-                        isDragging = false;
-                        isPaused = false;
-                    }
-                };
-
-                // Mouse Events
-                reviewsWrapper.addEventListener('mousedown', (e) => startDrag(e.clientX));
-                window.addEventListener('mousemove', (e) => moveDrag(e.clientX));
-                window.addEventListener('mouseup', endDrag);
-
-                // Touch Events
-                reviewsWrapper.addEventListener('touchstart', (e) => {
-                    if (e.touches.length > 0) startDrag(e.touches[0].clientX);
-                }, { passive: true });
-
-                reviewsWrapper.addEventListener('touchmove', (e) => {
-                    if (e.touches.length > 0) moveDrag(e.touches[0].clientX);
-                }, { passive: true });
-
-                reviewsWrapper.addEventListener('touchend', endDrag);
-            }
-
+            // Promo Welcome Modal Timeout Trigger
             const promoModal = document.getElementById('promoModal');
             const modalCloseBtn = document.getElementById('modalCloseBtn');
-            const modalClaimBtn = document.getElementById('modalClaimBtn');
 
-            // Trigger modal 1.5s after load
             setTimeout(() => {
-                if (promoModal) {
-                    promoModal.classList.add('active');
-                    promoModal.setAttribute('aria-hidden', 'false');
-                }
-            }, 1500);
+                promoModal.classList.add('active');
+            }, 3500);
 
-            const closeModal = () => {
-                if (promoModal) {
+            modalCloseBtn.addEventListener('click', () => {
+                promoModal.classList.remove('active');
+            });
+
+            promoModal.addEventListener('click', (e) => {
+                if (e.target === promoModal) {
                     promoModal.classList.remove('active');
-                    promoModal.setAttribute('aria-hidden', 'true');
                 }
-            };
-
-            if (modalCloseBtn) {
-                modalCloseBtn.addEventListener('click', closeModal);
-            }
-
-            if (promoModal) {
-                promoModal.addEventListener('click', (e) => {
-                    if (e.target === promoModal) {
-                        closeModal();
-                    }
-                });
-            }
-
-            if (modalClaimBtn) {
-                modalClaimBtn.addEventListener('click', () => {
-                    closeModal();
-                    window.open('https://wa.me/6281220613226?text=Hello%20Boucherie%20Lenggana%2C%20I%20would%20like%20to%20claim%20my%2010%25%20first%20order%20discount%20(LENGGANA10).', '_blank');
-                });
-            }
+            });
         });
     </script>
 </body>
