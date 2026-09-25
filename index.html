@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boucherie Lenggana — Artisanal Halal Butchery</title>
-    
-    <!-- Google Fonts for Luxury Typography -->
+    <title>Boucherie Lenggana | Artisanal French Butchery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --color-accent-red: #B01E28;
             --color-accent-red-hover: #8B0000;
             --color-accent-gold: #C5A059;
             --transition-speed: 0.3s;
-            --border-radius: 3px;
+            --border-radius: 4px;
             --font-heading: 'Cormorant Garamond', Georgia, serif;
             --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
         }
@@ -74,7 +71,7 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-heading);
             font-weight: 500;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--text-primary);
         }
@@ -99,7 +96,7 @@
         }
 
         .section-padding {
-            padding: 6rem 0;
+            padding: 5rem 0;
         }
 
         .text-center {
@@ -108,7 +105,7 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
         }
 
         .section-subtitle {
@@ -157,7 +154,7 @@
         }
 
         .page-banner {
-            padding: 4.5rem 0 3.5rem;
+            padding: 4rem 0 3rem;
             background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
             border-bottom: 1px solid var(--border-color);
             text-align: center;
@@ -174,7 +171,7 @@
         }
 
         .page-banner h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 400;
         }
 
@@ -343,6 +340,14 @@
             color: var(--color-accent-red);
         }
 
+        .btn:disabled, .btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: var(--border-color);
+            color: var(--text-secondary);
+            background-color: transparent;
+        }
+
         .hero {
             min-height: calc(100vh - 80px);
             display: flex;
@@ -399,6 +404,8 @@
             display: flex;
             flex-direction: column;
             transition: transform var(--transition-speed) ease, border-color var(--transition-speed) ease;
+            cursor: pointer;
+            user-select: none;
         }
 
         .specialty-card:hover {
@@ -440,6 +447,74 @@
             border-radius: 20px;
             border: 1px solid var(--border-color);
             backdrop-filter: blur(4px);
+            z-index: 10;
+        }
+
+        /* --- SIGNATURE CARD SCROLLABLE PHOTO GALLERY --- */
+        .card-img-gallery {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            cursor: grab;
+        }
+
+        .card-img-gallery:active {
+            cursor: grabbing;
+        }
+
+        .card-img-gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card-img-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .card-img-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%);
+            transition: filter 0.6s ease, transform 0.6s ease;
+        }
+
+        .specialty-card:hover .card-img-slide img {
+            filter: grayscale(0%);
+        }
+
+        .card-gallery-dots {
+            position: absolute;
+            bottom: 0.75rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+            z-index: 8;
+            pointer-events: none;
+        }
+
+        .card-gallery-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .card-gallery-dot.active {
+            background-color: var(--color-accent-red);
+            transform: scale(1.35);
         }
 
         .specialty-body {
@@ -470,10 +545,91 @@
             padding-top: 1rem;
         }
 
+        .signature-scroll-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .signature-scroll-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 0.75rem 0.25rem 1.5rem;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+        }
+
+        .signature-scroll-container:active {
+            cursor: grabbing;
+        }
+
+        .signature-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .signature-scroll-container .specialty-card {
+            flex: 0 0 340px;
+            width: 340px;
+            scroll-snap-align: start;
+        }
+
+        .signature-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(13, 13, 13, 0.75);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 25;
+            transition: all var(--transition-speed) ease;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .signature-arrow:hover {
+            border-color: var(--color-accent-red);
+            color: var(--color-accent-red);
+            background: rgba(13, 13, 13, 0.95);
+        }
+
+        .signature-arrow.prev { left: -1.25rem; }
+        .signature-arrow.next { right: -1.25rem; }
+
+        @media (max-width: 1260px) {
+            .signature-arrow.prev { left: 0.25rem; }
+            .signature-arrow.next { right: 0.25rem; }
+        }
+
+        @media (max-width: 600px) {
+            .signature-scroll-container .specialty-card {
+                flex: 0 0 85vw;
+                width: 85vw;
+                max-width: 320px;
+            }
+            .signature-arrow {
+                display: none;
+            }
+        }
+
+        /* --- PRODUCTS PAGE & CATEGORY FILTERS --- */
         .category-filter-bar {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
             margin-bottom: 3rem;
         }
@@ -512,6 +668,7 @@
             flex-direction: column;
             justify-content: space-between;
             transition: border-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -566,6 +723,510 @@
             font-weight: 300;
         }
 
+        .detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .back-nav {
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .back-btn:hover {
+            color: var(--color-accent-red);
+        }
+
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+
+        .gallery-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 480px;
+            scroll-snap-align: start;
+            position: relative;
+            background-color: var(--bg-secondary);
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(13, 13, 13, 0.6);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all var(--transition-speed) ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .gallery-arrow:hover {
+            border-color: var(--color-accent-red);
+            color: var(--color-accent-red);
+            background: rgba(13, 13, 13, 0.85);
+        }
+
+        .gallery-arrow.prev { left: 1rem; }
+        .gallery-arrow.next { right: 1rem; }
+
+        .gallery-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--border-highlight);
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .gallery-dot.active {
+            background-color: var(--color-accent-red);
+            transform: scale(1.25);
+        }
+
+        .detail-content {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+        }
+
+        .detail-header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .detail-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--color-accent-gold);
+            font-weight: 500;
+        }
+
+        .stock-badge {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .stock-badge.in-stock {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .stock-badge.out-of-stock {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .detail-title {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .detail-price-box {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-accent-red);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .detail-price-unit {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .detail-desc {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .floating-basket {
+            position: fixed;
+            bottom: 5.5rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--color-accent-red);
+            color: var(--color-accent-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            z-index: 900;
+            transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease;
+            cursor: pointer;
+        }
+
+        .floating-basket:hover {
+            transform: scale(1.08);
+            background-color: var(--bg-secondary);
+        }
+
+        .floating-basket svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .basket-counter {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: var(--color-accent-red);
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+            border: 2px solid var(--bg-primary);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-modal-overlay);
+            backdrop-filter: blur(6px);
+            z-index: 1200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            max-width: 550px;
+            width: 100%;
+            position: relative;
+            border-radius: var(--border-radius);
+            transform: scale(0.95);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 20px 40px var(--shadow-color);
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.open .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--color-accent-red);
+        }
+
+        .basket-items-list {
+            overflow-y: auto;
+            margin: 1.5rem 0;
+            padding-right: 0.5rem;
+            flex-grow: 1;
+            max-height: 320px;
+        }
+
+        .basket-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .basket-item-info {
+            flex-grow: 1;
+            padding-right: 1rem;
+        }
+
+        .basket-item-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .basket-item-price {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .basket-qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 0.2rem 0.5rem;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1rem;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .qty-btn:hover {
+            color: var(--color-accent-red);
+        }
+
+        .qty-val {
+            font-size: 0.85rem;
+            font-weight: 500;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .basket-remove-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            margin-left: 0.75rem;
+            padding: 0.25rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .basket-remove-btn:hover {
+            color: var(--color-accent-red);
+        }
+
+        .basket-summary {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.25rem;
+            margin-top: auto;
+        }
+
+        .basket-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-basket-msg {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background-color: #25D366;
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 900;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        /* --- REVIEWS CAROUSEL --- */
+        .reviews-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .reviews-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .reviews-scroll:active {
+            cursor: grabbing;
+        }
+
+        .review-card {
+            flex: 0 0 100%;
+            width: 100%;
+            scroll-snap-align: start;
+            padding: 2.5rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .review-stars {
+            color: var(--color-accent-gold);
+            letter-spacing: 0.3em;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+        }
+
+        .review-quote {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .review-author {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-accent-gold);
+            font-weight: 500;
+        }
+
+        .reviews-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+        }
+
+        /* --- FAQ ACCORDION --- */
         .faq-grid {
             max-width: 860px;
             margin: 0 auto;
@@ -640,6 +1301,7 @@
             padding-top: 1rem;
         }
 
+        /* --- ABOUT & HERITAGE SECTION --- */
         .about-section {
             background-color: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
@@ -652,1219 +1314,1130 @@
             text-align: center;
         }
 
-        .about-text {
+        .about-content p {
+            margin-bottom: 1.5rem;
             font-size: 1.05rem;
-            line-height: 2;
-            margin-bottom: 3rem;
+            line-height: 1.9;
         }
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 3rem;
-        }
-
-        .value-item h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        /* --- PROMO MODAL --- */
+        .promo-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
             color: var(--color-accent-gold);
-        }
-
-        .value-item p {
-            font-size: 0.85rem;
-        }
-
-        .reviews-carousel-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            padding: 1rem 0;
-            cursor: grab;
-            user-select: none;
-        }
-
-        .reviews-carousel-wrapper:active {
-            cursor: grabbing;
-        }
-
-        .reviews-track {
-            display: flex;
-            gap: 2rem;
-            width: max-content;
-            will-change: transform;
-            animation: scrollCarousel 38s linear infinite;
-        }
-
-        .reviews-carousel-wrapper:hover .reviews-track {
-            animation-play-state: paused;
-        }
-
-        @keyframes scrollCarousel {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .review-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 340px;
-            flex-shrink: 0;
-            transition: border-color var(--transition-speed) ease;
-        }
-
-        .review-card:hover {
-            border-color: var(--border-highlight);
-        }
-
-        .review-stars {
-            display: flex;
-            gap: 0.25rem;
             margin-bottom: 1rem;
-            color: var(--color-accent-red);
-        }
-
-        .review-stars svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        .review-text {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .review-author {
-            font-family: var(--font-heading);
-            font-size: 1.05rem;
-            letter-spacing: 0.05em;
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-block h4 {
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-            letter-spacing: 0.1em;
-            color: var(--color-accent-gold);
-        }
-
-        .contact-block p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .whatsapp-cta-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            margin-top: 1rem;
-            text-align: center;
-        }
-
-        .whatsapp-cta-card p {
-            margin-bottom: 1.5rem;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 420px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            background-color: var(--bg-card);
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            filter: grayscale(80%) invert(90%) contrast(120%);
-            transition: filter var(--transition-speed) ease;
-        }
-
-        [data-theme="light"] .map-container iframe {
-            filter: grayscale(20%);
-        }
-
-        footer {
-            padding: 2.5rem 0;
-            border-top: 1px solid var(--border-color);
-            background-color: var(--bg-primary);
-            margin-top: auto;
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .copyright {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .footer-tag {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-secondary);
-        }
-
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 56px;
-            height: 56px;
-            background-color: var(--color-accent-red);
-            color: #FFFFFF;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            z-index: 900;
-            transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .floating-whatsapp:hover {
-            transform: scale(1.08);
-            background-color: var(--color-accent-red-hover);
-            box-shadow: 0 6px 24px rgba(176, 30, 40, 0.4);
-        }
-
-        .floating-whatsapp svg {
-            width: 26px;
-            height: 26px;
-            fill: currentColor;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-modal-overlay);
-            backdrop-filter: blur(6px);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-container {
-            background-color: var(--bg-card);
-            border: 1px solid var(--color-accent-red);
-            padding: 3rem 2.5rem;
-            max-width: 500px;
-            width: 100%;
-            position: relative;
-            text-align: center;
-            border-radius: var(--border-radius);
-            transform: scale(0.95);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 20px 40px var(--shadow-color);
-        }
-
-        .modal-overlay.active .modal-container {
-            transform: scale(1);
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color var(--transition-speed) ease;
-        }
-
-        .modal-close-btn:hover {
-            color: var(--text-primary);
-        }
-
-        .modal-close-btn svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            stroke-width: 1.5;
-        }
-
-        .modal-badge {
-            font-size: 0.65rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--color-accent-gold);
             display: block;
-            margin-bottom: 0.75rem;
         }
 
-        .modal-title {
-            font-size: 1.8rem;
+        .promo-title {
+            font-size: 2.2rem;
             margin-bottom: 1rem;
             line-height: 1.2;
         }
 
-        .modal-divider {
-            width: 30px;
-            height: 1px;
-            background-color: var(--color-accent-red);
-            margin: 1.25rem auto;
-        }
-
-        .modal-desc {
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .modal-code-box {
-            background-color: var(--bg-secondary);
-            border: 1px dashed var(--border-highlight);
-            padding: 0.75rem;
-            margin-bottom: 2rem;
-            font-family: monospace;
-            letter-spacing: 0.15em;
+        .promo-desc {
             font-size: 0.95rem;
-            color: var(--color-accent-gold);
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
-        @media (max-width: 768px) {
-            .hamburger-btn {
-                display: block;
-            }
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+            margin-top: auto;
+        }
 
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            color: var(--color-accent-gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent-red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 900px) {
             .nav-menu {
                 position: fixed;
                 top: 80px;
                 left: 0;
                 width: 100%;
-                background-color: var(--bg-primary);
+                background-color: var(--bg-card);
                 border-bottom: 1px solid var(--border-color);
                 flex-direction: column;
                 padding: 2rem;
                 gap: 1.5rem;
                 transform: translateY(-150%);
                 transition: transform 0.4s ease;
-                z-index: 999;
+                box-shadow: 0 10px 20px var(--shadow-color);
             }
-
-            .nav-menu.active {
+            .nav-menu.mobile-open {
                 transform: translateY(0);
             }
-
+            .hamburger-btn {
+                display: block;
+            }
             .hero-title {
                 font-size: 2.5rem;
             }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .values-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .section-padding {
-                padding: 4rem 0;
-            }
-
-            .map-container {
-                height: 320px;
-            }
-
-            .floating-whatsapp {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                width: 48px;
-                height: 48px;
-            }
-
-            .floating-whatsapp svg {
-                width: 22px;
-                height: 22px;
+            .gallery-slide {
+                height: 340px;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container header-container">
-            <a onclick="navigateTo('home')" class="brand-logo">Boucherie <span>Lenggana</span></a>
-            
-            <nav>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a onclick="navigateTo('home')" class="nav-link active" id="nav-home">Home</a></li>
-                    <li><a onclick="navigateTo('specialties')" class="nav-link" id="nav-specialties">Specialties</a></li>
-                    <li><a onclick="navigateTo('products')" class="nav-link" id="nav-products">Products</a></li>
-                    <li><a onclick="navigateTo('faq')" class="nav-link" id="nav-faq">FAQ</a></li>
-                    <li><a onclick="navigateTo('home', 'about')" class="nav-link">About</a></li>
-                    <li><a onclick="navigateTo('home', 'contact')" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-
-            <div class="nav-actions">
-                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle theme">
-                    <svg class="sun-icon" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                    <svg class="moon-icon" viewBox="0 0 24 24">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-
-                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu">
-                    <svg viewBox="0 0 24 24">
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
+<!-- HEADER / NAVIGATION -->
+<header>
+    <div class="container header-container">
+        <div class="brand-logo" onclick="showPage('home-view')">
+            Boucherie <span>Lenggana</span>
         </div>
-    </header>
+        
+        <ul class="nav-menu" id="navMenu">
+            <li><a class="nav-link active" onclick="showPage('home-view')">Home</a></li>
+            <li><a class="nav-link" onclick="showPage('specialties-view')">Specialties</a></li>
+            <li><a class="nav-link" onclick="showPage('products-view')">All Cuts</a></li>
+            <li><a class="nav-link" onclick="showPage('faq-view')">FAQ</a></li>
+            <li><a class="nav-link" onclick="showPage('about-view')">Heritage</a></li>
+        </ul>
 
-    <main id="mainContainer">
-
-        <div id="page-home" class="page-view active">
-            <section class="hero">
-                <div class="container">
-                    <div class="hero-content">
-                        <span class="hero-badge">Strictly Halal Certified</span>
-                        <h1 class="hero-title">Artisanal Butchery &amp; Fine Culinary Cuts</h1>
-                        <p class="hero-tagline">Experience exceptionally sourced, premium grade halal meats, hand-selected and expertly prepared by our master butchers with uncompromising family traditions.</p>
-                        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                            <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order on WhatsApp</a>
-                            <button onclick="navigateTo('specialties')" class="btn btn-outline">Explore World Specialties</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Featured Overview -->
-            <section class="section-padding">
-                <div class="container">
-                    <div class="section-header">
-                        <span class="section-subtitle">Crafted Precision</span>
-                        <h2 class="section-title">Signature Selections</h2>
-                    </div>
-
-                    <div class="specialties-grid">
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">North Africa</span>
-                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Artisanal Merguez Sausage" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">Artisanal Merguez</h3>
-                                <p class="specialty-desc">Hand-crafted North African beef and lamb sausages, seasoned with our proprietary blend of cumin, paprika, and subtle harissa spice notes.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 120.000</span>
-                                    <span class="product-unit">per 300g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">France</span>
-                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Halal Beef Saucisson" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">French Beef Saucisson</h3>
-                                <p class="specialty-desc">Dry-cured French-style beef salami prepared using age-old European charcuterie techniques with cracked black pepper.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 145.000</span>
-                                    <span class="product-unit">per 200g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">Japan</span>
-                                <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Wagyu Steak" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">A5 Wagyu Striploin</h3>
-                                <p class="specialty-desc">Authentic Japanese Halal Wagyu boasting intramuscular marbling score 8+, offering an unforgettable buttery melt.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 680.000</span>
-                                    <span class="product-unit">per 200g</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div style="text-align: center; margin-top: 3.5rem;">
-                        <button onclick="navigateTo('specialties')" class="btn btn-primary">View All International Specialties</button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- About Section inside Home -->
-            <section id="about" class="section-padding about-section">
-                <div class="container">
-                    <div class="about-content">
-                        <span class="section-subtitle">Our Heritage</span>
-                        <h2 class="section-title" style="margin-bottom: 2rem;">The Lenggana Promise</h2>
-                        <p class="about-text">Founded with a deep reverence for traditional butchery, Boucherie Lenggana bridges French charcuterie mastery with global meat culinary traditions. Every single cut is meticulously selected from ethically raised, 100% certified Halal livestock, ensuring pristine quality, succulence, and absolute peace of mind.</p>
-                        
-                        <div class="values-grid">
-                            <div class="value-item">
-                                <h4>Strictly Halal</h4>
-                                <p>Traceable from farm to knife under verified Halal humane slaughter standards.</p>
-                            </div>
-                            <div class="value-item">
-                                <h4>Artisanal Craft</h4>
-                                <p>Custom butchering, dry aging, and house-made curing by trained butcher craftsmen.</p>
-                            </div>
-                            <div class="value-item">
-                                <h4>Freshness Sealed</h4>
-                                <p>Vacuum-sealed instantly in thermal temperature-controlled packaging.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Reviews Section -->
-            <section id="reviews" class="section-padding">
-                <div class="container">
-                    <div class="section-header">
-                        <span class="section-subtitle">Testimonials</span>
-                        <h2 class="section-title">Customer Acclaim</h2>
-                    </div>
-                </div>
-
-                <div class="reviews-carousel-wrapper">
-                    <div class="reviews-track">
-                        <!-- Review Card 1 -->
-                        <div class="review-card">
-                            <div class="review-stars">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            </div>
-                            <p class="review-text">"The Merguez sausage brought me straight back to North Africa! Incredible depth of flavor and the Halal Wagyu Ribeye was tender beyond belief."</p>
-                            <span class="review-author">— Chef Karim S.</span>
-                        </div>
-                        <!-- Review Card 2 -->
-                        <div class="review-card">
-                            <div class="review-stars">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            </div>
-                            <p class="review-text">"Finding premium French saucisson and custom cut lamb chops in Jakarta that are certified Halal felt impossible until I found Boucherie Lenggana."</p>
-                            <span class="review-author">— Beatrice V.</span>
-                        </div>
-                        <!-- Review Card 3 -->
-                        <div class="review-card">
-                            <div class="review-stars">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            </div>
-                            <p class="review-text">"Prompt delivery in thermal insulation, perfectly trimmed Rendang cut and lamb racks. The quality is consistently five stars."</p>
-                            <span class="review-author">— Rian H.</span>
-                        </div>
-                        <!-- Review Card 4 -->
-                        <div class="review-card">
-                            <div class="review-stars">
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            </div>
-                            <p class="review-text">"Their Korean Galbi and Duck Breast Magret made our dinner party spectacular. Couldn't recommend them higher!"</p>
-                            <span class="review-author">— Amanda T.</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="section-padding" style="background-color: var(--bg-secondary); border-top: 1px solid var(--border-color);">
-                <div class="container">
-                    <div class="section-header">
-                        <span class="section-subtitle">Get In Touch</span>
-                        <h2 class="section-title">Boutique &amp; Concierge</h2>
-                    </div>
-
-                    <div class="contact-grid">
-                        <div class="contact-info">
-                            <div class="contact-block">
-                                <h4>Location &amp; Atelier</h4>
-                                <p>Jl. Senopati No. 84, Kebayoran Baru<br>Jakarta Selatan, DKI Jakarta 12110</p>
-                            </div>
-
-                            <div class="contact-block">
-                                <h4>Boutique Hours</h4>
-                                <p>Monday — Saturday: 08:00 – 19:00 WIB<br>Sunday: 09:00 – 17:00 WIB</p>
-                            </div>
-
-                            <div class="contact-block">
-                                <h4>Direct Enquiries</h4>
-                                <p>WhatsApp: +62 812-2061-3226<br>Email: concierge@boucherielenggana.com</p>
-                            </div>
-
-                            <div class="whatsapp-cta-card">
-                                <h4>Custom Cuts &amp; Bulk Orders</h4>
-                                <p>Speak directly with our Master Butcher for special aged cuts, catering, or dinner party consultations.</p>
-                                <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Chat on WhatsApp</a>
-                            </div>
-                        </div>
-
-                        <div class="map-container">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.273611369325!2d106.8066!3d-6.2276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTMnMzkuNCJTIDEwNsKwNDgnMjMuOCJF!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid" allowfullscreen="" loading="lazy" title="Boucherie Lenggana Location"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div id="page-specialties" class="page-view">
-            <div class="page-banner">
-                <div class="container">
-                    <span class="banner-subtitle">Global Culinary Heritage</span>
-                    <h1>World Meat Specialties</h1>
-                    <p style="max-width: 600px; margin: 1rem auto 0;">Authentic international butcher recipes prepared by hand with premium 100% Halal meats and authentic spice traditions.</p>
-                </div>
-            </div>
-
-            <section class="section-padding" style="padding-top: 1rem;">
-                <div class="container">
-                    <div class="specialties-grid">
-                        <!-- Moroccan -->
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">Morocco</span>
-                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Moroccan Artisanal Merguez" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">Moroccan Merguez</h3>
-                                <p class="specialty-desc">Hand-crafted North African beef and lamb sausages, infused with cumin, sweet coriander, garlic, and fiery red harissa paste.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 120.000</span>
-                                    <span class="product-unit">per 300g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- French Saucisson -->
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">France</span>
-                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="French Beef Saucisson Sec" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">French Beef Saucisson</h3>
-                                <p class="specialty-desc">Classic dry-cured French charcuterie style salami using prime aged beef, whole white peppercorns, and garlic clove infusion.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 145.000</span>
-                                    <span class="product-unit">per 200g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Indonesian Rendang Cut -->
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">Indonesia</span>
-                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Daging Rendang Cut" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">Daging Rendang Premium</h3>
-                                <p class="specialty-desc">Master-cut dense beef chuck and shank pieces with perfect lean-to-collagen balance designed for slow Minang rendang stewing.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 165.000</span>
-                                    <span class="product-unit">per 500g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Japanese A5 Wagyu -->
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">Japan</span>
-                                <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=800&q=80" alt="Japanese Wagyu A5 Striploin" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">Japanese A5 Wagyu</h3>
-                                <p class="specialty-desc">Certified Halal Japanese Kuroge Washu Wagyu Striploin with intricate snowflake BMS 9+ fat distribution for ultimate richness.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 680.000</span>
-                                    <span class="product-unit">per 200g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Turkish Adana Kebab -->
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">Turkey</span>
-                                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="Turkish Adana Kebab Mince" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">Turkish Adana Kebab</h3>
-                                <p class="specialty-desc">Hand-minced lamb and beef blend mixed with red bell pepper, sumac, and Turkish tail fat, pre-spiced for skewer grilling.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 110.000</span>
-                                    <span class="product-unit">per 400g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Italian Bresaola -->
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">Italy</span>
-                                <img src="https://images.unsplash.com/photo-1514944288352-fffac99f0bdf?auto=format&fit=crop&w=800&q=80" alt="Italian Halal Bresaola" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">Italian Halal Bresaola</h3>
-                                <p class="specialty-desc">Air-dried, salted beef eye of round aged for 3 months with juniper berries and bay leaf. Thinly sliced for carpaccio.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 175.000</span>
-                                    <span class="product-unit">per 150g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Argentine Asado Short Ribs -->
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">Argentina</span>
-                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80" alt="Argentine Asado Ribs" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">Argentine Asado Ribs</h3>
-                                <p class="specialty-desc">Flanken-style cross-cut beef short ribs designed specifically for open-fire parrillada roasting and chimichurri pairing.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 220.000</span>
-                                    <span class="product-unit">per 500g</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Korean Galbi Ribs -->
-                        <article class="specialty-card">
-                            <div class="specialty-img-wrapper">
-                                <span class="specialty-origin-tag">South Korea</span>
-                                <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=80" alt="Korean Marinated Galbi" class="specialty-img" loading="lazy">
-                            </div>
-                            <div class="specialty-body">
-                                <h3 class="specialty-name">Korean Marinated Galbi</h3>
-                                <p class="specialty-desc">LA-style butterflied short ribs soaked in soy, Asian pear puree, sesame oil, and ginger marinade ready for charcoal BBQ.</p>
-                                <div class="specialty-footer">
-                                    <span class="product-price">Rp 240.000</span>
-                                    <span class="product-unit">per 450g</span>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="whatsapp-cta-card" style="margin-top: 4rem;">
-                        <h3>Looking for a specific international specialty?</h3>
-                        <p>We source specialty rare meats and formulate custom charcuterie recipes upon request.</p>
-                        <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Order Specialty via WhatsApp</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div id="page-products" class="page-view">
-            <div class="page-banner">
-                <div class="container">
-                    <span class="banner-subtitle">Boutique Selection</span>
-                    <h1>Artisanal Cuts of Meat</h1>
-                    <p style="max-width: 600px; margin: 1rem auto 0;">Explore our full range of fresh, hand-trimmed Halal beef, lamb, poultry, and gourmet house preparations.</p>
-                </div>
-            </div>
-
-            <section class="section-padding" style="padding-top: 1rem;">
-                <div class="container">
-
-                    <!-- Category Filter Buttons -->
-                    <div class="category-filter-bar">
-                        <button class="filter-btn active" onclick="filterProducts('all')">All Cuts</button>
-                        <button class="filter-btn" onclick="filterProducts('beef')">Prime Beef</button>
-                        <button class="filter-btn" onclick="filterProducts('lamb')">Lamb &amp; Mutton</button>
-                        <button class="filter-btn" onclick="filterProducts('poultry')">Poultry &amp; Duck</button>
-                        <button class="filter-btn" onclick="filterProducts('pantry')">Gourmet Stocks</button>
-                    </div>
-
-                    <div class="products-grid" id="productsGrid">
-                        <!-- Beef 1 -->
-                        <div class="product-card" data-category="beef">
-                            <div>
-                                <span class="product-category">Beef Cut</span>
-                                <h3 class="product-title">Wagyu Ribeye Steak MB7+</h3>
-                                <p class="product-desc">Highly marbled Australian Wagyu ribeye offering luxurious tenderness and deep buttery aromas.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 380.000</span>
-                                <span class="product-unit">per 250g</span>
-                            </div>
-                        </div>
-
-                        <!-- Beef 2 -->
-                        <div class="product-card" data-category="beef">
-                            <div>
-                                <span class="product-category">Beef Cut</span>
-                                <h3 class="product-title">Black Angus Striploin</h3>
-                                <p class="product-desc">Grain-fed 150 days Black Angus sirloin with a robust beef flavor cap and tender muscle grain.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 210.000</span>
-                                <span class="product-unit">per 250g</span>
-                            </div>
-                        </div>
-
-                        <!-- Beef 3 -->
-                        <div class="product-card" data-category="beef">
-                            <div>
-                                <span class="product-category">Beef Cut</span>
-                                <h3 class="product-title">Dry-Aged Tenderloin Filet</h3>
-                                <p class="product-desc">Grass-fed beef fillet aged 28 days in Himalayan salt chambers for ultimate tenderness.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 245.000</span>
-                                <span class="product-unit">per 200g</span>
-                            </div>
-                        </div>
-
-                        <!-- Beef 4 -->
-                        <div class="product-card" data-category="beef">
-                            <div>
-                                <span class="product-category">Beef Cut</span>
-                                <h3 class="product-title">Prime Beef Brisket Cut</h3>
-                                <p class="product-desc">Generous fat cap brisket flat and point cut tailored specifically for Texas-style slow smoking.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 195.000</span>
-                                <span class="product-unit">per 500g</span>
-                            </div>
-                        </div>
-
-                        <!-- Beef 5 -->
-                        <div class="product-card" data-category="beef">
-                            <div>
-                                <span class="product-category">Beef Cut</span>
-                                <h3 class="product-title">Oxtail Super Cut (Buntut Sapi)</h3>
-                                <p class="product-desc">Center-cut thick oxtail pieces ideal for rich Indonesian sop buntut broth or braising.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 175.000</span>
-                                <span class="product-unit">per 500g</span>
-                            </div>
-                        </div>
-
-                        <!-- Lamb 1 -->
-                        <div class="product-card" data-category="lamb">
-                            <div>
-                                <span class="product-category">Lamb Cut</span>
-                                <h3 class="product-title">Australian Frenched Lamb Rack</h3>
-                                <p class="product-desc">Cleanly frenched 8-rib lamb rack, succulent and mild, perfect for herb crust pan roasting.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 290.000</span>
-                                <span class="product-unit">per 400g</span>
-                            </div>
-                        </div>
-
-                        <!-- Lamb 2 -->
-                        <div class="product-card" data-category="lamb">
-                            <div>
-                                <span class="product-category">Lamb Cut</span>
-                                <h3 class="product-title">Bone-In Lamb Shank</h3>
-                                <p class="product-desc">Meaty hind lamb shanks packed with rich marrow, structured for fall-off-the-bone braises.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 185.000</span>
-                                <span class="product-unit">per 500g</span>
-                            </div>
-                        </div>
-
-                        <!-- Lamb 3 -->
-                        <div class="product-card" data-category="lamb">
-                            <div>
-                                <span class="product-category">Lamb Cut</span>
-                                <h3 class="product-title">Gourmet Lamb Loin Chops</h3>
-                                <p class="product-desc">T-bone style mini lamb chops trimmed clean for quick high-heat pan searing with rosemary butter.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 230.000</span>
-                                <span class="product-unit">per 350g</span>
-                            </div>
-                        </div>
-
-                        <!-- Poultry 1 -->
-                        <div class="product-card" data-category="poultry">
-                            <div>
-                                <span class="product-category">Poultry</span>
-                                <h3 class="product-title">Organic Free-Range Ayam Kampung</h3>
-                                <p class="product-desc">Whole probiotic organic free-range chicken, lean, flavorful, and antibiotic-free.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 85.000</span>
-                                <span class="product-unit">per 1.1kg</span>
-                            </div>
-                        </div>
-
-                        <!-- Poultry 2 -->
-                        <div class="product-card" data-category="poultry">
-                            <div>
-                                <span class="product-category">Poultry</span>
-                                <h3 class="product-title">French Duck Breast (Magret de Canard)</h3>
-                                <p class="product-desc">Plump skin-on duck breast cut, scored and ready for crispy skin pan roasting.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 135.000</span>
-                                <span class="product-unit">per 300g</span>
-                            </div>
-                        </div>
-
-                        <!-- Poultry 3 -->
-                        <div class="product-card" data-category="poultry">
-                            <div>
-                                <span class="product-category">Poultry</span>
-                                <h3 class="product-title">Duck Leg Confit Cut</h3>
-                                <p class="product-desc">Meaty duck legs prepared for slow oil confit or aromatic baking until golden crisp.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 120.000</span>
-                                <span class="product-unit">per 450g</span>
-                            </div>
-                        </div>
-
-                        <!-- Pantry 1 -->
-                        <div class="product-card" data-category="pantry">
-                            <div>
-                                <span class="product-category">Gourmet Pantry</span>
-                                <h3 class="product-title">Slow-Simmered Beef Bone Broth</h3>
-                                <p class="product-desc">24-hour slow simmered collagen-rich beef marrow broth infused with roasted herbs.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 55.000</span>
-                                <span class="product-unit">per 500ml</span>
-                            </div>
-                        </div>
-
-                        <!-- Pantry 2 -->
-                        <div class="product-card" data-category="pantry">
-                            <div>
-                                <span class="product-category">Gourmet Pantry</span>
-                                <h3 class="product-title">Rendered Wagyu Beef Tallow</h3>
-                                <p class="product-desc">Pure, clarified Halal Wagyu fat for frying, roasting potatoes, or searing steaks.</p>
-                            </div>
-                            <div class="product-footer">
-                                <span class="product-price">Rp 75.000</span>
-                                <span class="product-unit">per 300g</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="whatsapp-cta-card" style="margin-top: 4rem;">
-                        <h3>Custom Thick-Cuts &amp; Weight Requests</h3>
-                        <p>Prefer your steaks cut to 1.5 inches, custom vacuum sealed, or custom marinated? Let us know on WhatsApp!</p>
-                        <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Custom Order on WhatsApp</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div id="page-faq" class="page-view">
-            <div class="page-banner">
-                <div class="container">
-                    <span class="banner-subtitle">Client Information</span>
-                    <h1>Frequently Asked Questions</h1>
-                    <p style="max-width: 600px; margin: 1rem auto 0;">Find detailed answers regarding our Halal certification, cold-chain delivery, custom butchery options, and storage advice.</p>
-                </div>
-            </div>
-
-            <section class="section-padding" style="padding-top: 1rem;">
-                <div class="container">
-                    <div class="faq-grid">
-
-                        <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)">
-                                How is Boucherie Lenggana certified Halal?
-                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="faq-answer">
-                                All our meats, including imported Wagyu, Australian lamb, and French charcuterie items, are 100% Halal certified by recognized international bodies (such as JAKIM, MUI, and AUS-MEAT Halal). Slaughtering follows strict Zabiha humane guidelines, and no non-halal items ever enter our facilities.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)">
-                                How do you package and deliver fresh meats safely?
-                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="faq-answer">
-                                Every single order is custom sliced, vacuum-sealed in food-grade airtight pouching, and packed in thermal insulated cooling bags with gel ice packs. We deliver via instant cold-chain couriers across Greater Jakarta (Jabodetabek) and overnight express cold freight for other major Indonesian cities.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)">
-                                Can I request custom cut thickness or dry-aging?
-                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="faq-answer">
-                                Absolutely. As an artisanal butchery, customization is our pride. You can specify exact steak thickness (e.g., 1 inch, 2 inch), bone trimming, de-boning, or custom dry-aging duration in our salt-lined aging chambers when placing your order via WhatsApp.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)">
-                                What is the recommended shelf life and storage for fresh meat?
-                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="faq-answer">
-                                Unopened vacuum-sealed fresh chilled meat remains in optimal condition for 3 to 5 days in a standard refrigerator (0°C to 4°C). If you plan to store it longer, place the vacuum pack directly into the freezer (-18°C), where it maintains peak quality for up to 6 months.
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)">
-                                What are the prices in Indonesian Rupiah (Rp)?
-                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="faq-answer">
-                                All our prices are transparently priced per precise grammage in Indonesian Rupiah (Rp). For example, our Japanese A5 Wagyu is Rp 680.000 / 200g, Artisanal Merguez is Rp 120.000 / 300g, and Australian Lamb Rack is Rp 290.000 / 400g. Check our Products and Specialties pages for all itemized rates!
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)">
-                                Do you provide catering or bulk corporate orders?
-                                <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="faq-answer">
-                                Yes, we regularly cater for private chef dinners, family BBQ parties, holiday gifts, and restaurant supply. Contact our concierge team via WhatsApp for wholesale pricing and tailored order planning.
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="whatsapp-cta-card" style="margin-top: 4rem;">
-                        <h3>Have a question not answered here?</h3>
-                        <p>Our concierge butchery team is online daily to assist with cooking times, cut suggestions, and orders.</p>
-                        <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ask Us on WhatsApp</a>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-    </main>
-
-    <footer>
-        <div class="container footer-container">
-            <div class="brand-logo" onclick="navigateTo('home')">Boucherie <span>Lenggana</span></div>
-            <div class="copyright">&copy; 2026 Boucherie Lenggana. All Rights Reserved.</div>
-            <div class="footer-tag">Artisanal Halal Charcuterie &amp; Butchery</div>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/6281220613226" target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Contact on WhatsApp">
-        <svg viewBox="0 0 24 24">
-            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984 0 1.76.459 3.474 1.333 4.988l-1.417 5.176 5.297-1.389c1.462.797 3.111 1.216 4.773 1.217h.004c5.505 0 9.988-4.478 9.989-9.985 0-2.667-1.037-5.176-2.922-7.062-1.885-1.885-4.394-2.923-7.067-2.93zm5.727 14.186c-.244.686-1.42 1.31-1.954 1.388-.501.072-1.155.103-1.865-.124-.431-.138-.985-.32-1.705-.632-3.031-1.314-5.006-4.398-5.158-4.601-.152-.202-1.233-1.64-1.233-3.128 0-1.488.777-2.22 1.053-2.524.275-.305.602-.381.803-.381.202 0 .403.002.578.01.188.008.439-.071.687.525.253.606.862 2.102.937 2.254.075.152.126.33.025.531-.1.202-.151.328-.302.505-.152.176-.32.393-.456.527-.151.151-.309.316-.133.618.176.302.783 1.272 1.68 2.071 1.154 1.029 2.129 1.348 2.431 1.499.302.151.478.126.654-.075.176-.202.753-.878.954-1.18.202-.302.403-.252.678-.151.275.101 1.755.828 2.057.979.302.151.503.227.578.353.075.126.075.732-.169 1.418z"/>
-        </svg>
-    </a>
-
-    <!-- Promotional Welcome Modal -->
-    <div class="modal-overlay" id="promoModal">
-        <div class="modal-container">
-            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">
-                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <div class="nav-actions">
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" onclick="toggleTheme()">
+                <!-- Sun Icon -->
+                <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <!-- Moon Icon -->
+                <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </button>
-            <span class="modal-badge">Boutique Welcome Offer</span>
-            <h3 class="modal-title">Artisanal Tasting Experience</h3>
-            <div class="modal-divider"></div>
-            <p class="modal-desc">Enjoy complimentary house-crafted Merguez sausages on your first gourmet order above Rp 500.000.</p>
-            <div class="modal-code-box">CODE: LENGGANA2026</div>
-            <a href="https://wa.me/6281220613226?text=Hello,%20I%20would%20like%20to%20claim%20the%20LENGGANA2026%20welcome%20offer!" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">Claim via WhatsApp</a>
+
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle Navigation" onclick="toggleMobileMenu()">
+                <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
         </div>
     </div>
+</header>
 
-    <script>
-        // SPA Multi-Page Navigation Logic
-        function navigateTo(pageId, sectionId = null) {
-            // Hide all page views
-            const pages = document.querySelectorAll('.page-view');
-            pages.forEach(page => page.classList.remove('active'));
+<!-- PAGE VIEW 1: HOME -->
+<main id="home-view" class="page-view active">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">100% Strictly Halal & Artisanal</span>
+                <h1 class="hero-title">Unrivaled Excellence in French Butchery</h1>
+                <p class="hero-tagline">Savor meticulously dry-aged beef, Japanese A5 Wagyu, and hand-crafted charcuterie prepared by master butchers with uncompromising French precision.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="showPage('specialties-view')">Explore Specialties</button>
+                    <button class="btn btn-outline" onclick="showPage('products-view')">Browse All Cuts</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            // Show target page
-            const targetPage = document.getElementById('page-' + pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
+    <!-- Signature Cuts Section (Horizontally Scrollable) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Exclusives</span>
+                <h2 class="section-title">Signature Cuts</h2>
+            </div>
 
-            // Update nav active link styles
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-            const activeNav = document.getElementById('nav-' + pageId);
-            if (activeNav) {
-                activeNav.classList.add('active');
-            }
+            <div class="signature-scroll-wrapper">
+                <button class="signature-arrow prev" onclick="scrollSignatureCuts('left')" aria-label="Previous Cut">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
 
-            // Close mobile navigation drawer if open
-            const navMenu = document.getElementById('navMenu');
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-            }
+                <div class="signature-scroll-container" id="featured-specialties-container">
+                    <!-- Rendered via JS -->
+                </div>
 
-            // Scroll to top or specific section
-            if (sectionId) {
-                setTimeout(() => {
-                    const el = document.getElementById(sectionId);
-                    if (el) {
-                        el.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }, 100);
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+                <button class="signature-arrow next" onclick="scrollSignatureCuts('right')" aria-label="Next Cut">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Philosophy Section -->
+    <section class="section-padding about-section">
+        <div class="container">
+            <div class="about-content">
+                <span class="section-subtitle">Our Tradition</span>
+                <h2 class="section-title" style="margin-bottom: 2rem;">The Art of Halal Haute Butchery</h2>
+                <p>At Boucherie Lenggana, we fuse classical French butchery heritage with rigorous certified Halal standards. Every cut is hand-selected from ethically raised heritage livestock, perfectly aged in temperature-controlled Himalayan salt chambers, and prepared fresh daily.</p>
+                <button class="btn btn-outline" style="margin-top: 1rem;" onclick="showPage('about-view')">Discover Our Heritage</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews / Testimonials Carousel -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Accolades</span>
+                <h2 class="section-title">Patron Testimonials</h2>
+            </div>
+
+            <div class="reviews-container">
+                <div class="reviews-scroll" id="reviewsScroll">
+                    <div class="review-card">
+                        <div class="review-stars">★ ★ ★ ★ ★</div>
+                        <blockquote class="review-quote">"The 45-Day Himalayan Salt Dry Aged Côte de Bœuf is simply transcendent. The depth of flavor and tenderness rival the top Michelin-starred steak-houses in Paris."</blockquote>
+                        <div class="review-author">— Chef Jean-Pierre V., Executive Chef</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★ ★ ★ ★ ★</div>
+                        <blockquote class="review-quote">"Finding true artisanal, certified Halal A5 Wagyu of this caliber was nearly impossible until Boucherie Lenggana opened. Immaculate service and packaging."</blockquote>
+                        <div class="review-author">— Tariq Al-Mansoor, Fine Dining Connoisseur</div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">★ ★ ★ ★ ★</div>
+                        <blockquote class="review-quote">"Their handmade lamb merguez sausages elevate every barbecue. Crisp, rich, spiced to absolute perfection!"</blockquote>
+                        <div class="review-author">— Sarah Jenkins, Gourmet Home Cook</div>
+                    </div>
+                </div>
+                <div class="reviews-indicators" id="reviewsIndicators">
+                    <div class="gallery-dot active" onclick="scrollToReview(0)"></div>
+                    <div class="gallery-dot" onclick="scrollToReview(1)"></div>
+                    <div class="gallery-dot" onclick="scrollToReview(2)"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- PAGE VIEW 2: SPECIALTIES -->
+<main id="specialties-view" class="page-view">
+    <div class="page-banner">
+        <span class="banner-subtitle">Artisanal Specialties</span>
+        <h1>Signature Cuts & Rare Selections</h1>
+    </div>
+    <div class="container section-padding" style="padding-top: 0;">
+        <div class="specialties-grid" id="full-specialties-grid">
+            <!-- Static Grid Rendered via JS -->
+        </div>
+    </div>
+</main>
+
+<!-- PAGE VIEW 3: ALL PRODUCTS -->
+<main id="products-view" class="page-view">
+    <div class="page-banner">
+        <span class="banner-subtitle">Our Complete Boutique</span>
+        <h1>Artisanal Cuts & Provisions</h1>
+    </div>
+    <div class="container section-padding" style="padding-top: 0;">
+        <div class="category-filter-bar" id="categoryFilterBar">
+            <button class="filter-btn active" onclick="filterProducts('All', this)">All</button>
+            <button class="filter-btn" onclick="filterProducts('Wagyu', this)">Japanese Wagyu</button>
+            <button class="filter-btn" onclick="filterProducts('Dry-Aged', this)">Dry-Aged Beef</button>
+            <button class="filter-btn" onclick="filterProducts('Heritage Beef', this)">Heritage Beef</button>
+            <button class="filter-btn" onclick="filterProducts('Lamb & Poultry', this)">Lamb & Poultry</button>
+            <button class="filter-btn" onclick="filterProducts('Charcuterie', this)">Charcuterie</button>
+        </div>
+        <div class="products-grid" id="products-grid">
+            <!-- Static Grid Rendered via JS -->
+        </div>
+    </div>
+</main>
+
+<!-- PAGE VIEW 4: PRODUCT DETAIL -->
+<main id="product-detail-view" class="page-view">
+    <div class="detail-container">
+        <div class="back-nav">
+            <button class="back-btn" onclick="goBackToPreviousPage()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to Collections
+            </button>
+        </div>
+
+        <div class="gallery-wrapper">
+            <button class="gallery-arrow prev" onclick="scrollGallery('left')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <div class="gallery-scroll" id="detailGalleryScroll">
+                <!-- Images rendered via JS -->
+            </div>
+            <button class="gallery-arrow next" onclick="scrollGallery('right')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+        <div class="gallery-indicators" id="detailGalleryIndicators"></div>
+
+        <div class="detail-content">
+            <div class="detail-header-meta">
+                <span class="detail-tag" id="detailCategory">Category</span>
+                <span class="stock-badge in-stock" id="detailStock">In Stock</span>
+            </div>
+            <h1 class="detail-title" id="detailTitle">Product Title</h1>
+            <div class="detail-price-box">
+                <span id="detailPrice">$0.00</span>
+                <span class="detail-price-unit" id="detailUnit">/ 500g</span>
+            </div>
+            <p class="detail-desc" id="detailDescription">Product full description...</p>
+            <div class="detail-actions">
+                <button class="btn btn-primary" id="detailAddToCartBtn" style="flex-grow: 1;">Add To Basket</button>
+                <button class="btn btn-outline" id="detailDirectWaBtn">Inquire via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- PAGE VIEW 5: FAQ -->
+<main id="faq-view" class="page-view">
+    <div class="page-banner">
+        <span class="banner-subtitle">Client Support</span>
+        <h1>Frequently Asked Questions</h1>
+    </div>
+    <div class="container section-padding" style="padding-top: 0;">
+        <div class="faq-grid">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What guarantees your 100% Halal certification?
+                    <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="faq-answer">
+                    Every animal is hand-slaughtered strictly following Islamic rites by certified Muslim butchers. We maintain full traceability from accredited farms in France, Japan, and Australia to our boutique counter.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How is cold-chain delivery handled for online orders?
+                    <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="faq-answer">
+                    All orders are vacuum-sealed in food-grade eco-packaging, surrounded by dry ice gel packs inside insulated thermal boxes. We guarantee temperature stability for up to 36 hours during transit.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can I request custom thickness or specialized butchery cuts?
+                    <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="faq-answer">
+                    Absolument. You can specify exact steak thickness, bone frenching, or custom marinades in the checkout notes or directly via our WhatsApp conciergerie.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What is your Himalayan Salt Dry-Aging process?
+                    <svg class="faq-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="faq-answer">
+                    We dry-age our primal ribs in dedicated chambers lined with pink Himalayan salt bricks for 30 to 60 days. This controls humidity, drawing out moisture while concentrating flavors into tender, nutty perfection.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- PAGE VIEW 6: ABOUT / HERITAGE -->
+<main id="about-view" class="page-view">
+    <div class="page-banner">
+        <span class="banner-subtitle">Our Story</span>
+        <h1>The Heritage of Boucherie Lenggana</h1>
+    </div>
+    <div class="container section-padding" style="padding-top: 0;">
+        <div class="about-content" style="max-width: 840px;">
+            <p>Founded on the principles of classic Parisian boucherie culture and refined gourmet standards, Boucherie Lenggana represents the pinnacle of ethical, artisanal meat production.</p>
+            <p>Our founder, trained under master artisans in Lyon and Paris, recognized the growing desire for uncompromising quality in the Halal culinary sphere. By partnering exclusively with small-batch heritage farms that prioritize animal welfare, organic feeding, and stress-free environments, we deliver unmatched meat tenderness and rich flavor.</p>
+            <p>Whether you require delicate Wagyu marbling for a festive celebration or dry-aged roasts for an extraordinary dinner, our master butchers cut each piece to order with pride and artistry.</p>
+        </div>
+    </div>
+</main>
+
+<!-- SHOPPING BASKET MODAL -->
+<div class="modal-overlay" id="basketModalOverlay">
+    <div class="modal-card">
+        <button class="modal-close-btn" onclick="closeBasketModal()">&times;</button>
+        <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Your Selection</h2>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">Review your chosen artisanal cuts before ordering.</p>
+
+        <div class="basket-items-list" id="basketItemsList">
+            <!-- Rendered dynamically via JS -->
+        </div>
+
+        <div class="basket-summary">
+            <div class="basket-total-row">
+                <span>Total Estimate:</span>
+                <span id="basketTotalAmount" style="color: var(--color-accent-red);">$0.00</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkoutWhatsApp()">Proceed to WhatsApp Order</button>
+        </div>
+    </div>
+</div>
+
+<!-- PROMO MODAL -->
+<div class="modal-overlay" id="promoModalOverlay">
+    <div class="modal-card text-center" style="max-width: 480px;">
+        <button class="modal-close-btn" onclick="closePromoModal()">&times;</button>
+        <span class="promo-tag">Boutique Privilege</span>
+        <h2 class="promo-title">The Master's Tasting Experience</h2>
+        <p class="promo-desc">Receive a complimentary jar of our signature Truffle-Infused Finishing Salt and 10% off on your first order of Dry-Aged Cuts exceeding $150.</p>
+        <div style="background-color: var(--bg-secondary); border: 1px dashed var(--color-accent-gold); padding: 0.8rem; border-radius: var(--border-radius); font-family: monospace; letter-spacing: 0.2em; font-weight: 600; margin-bottom: 1.5rem; color: var(--color-accent-gold);">
+            CODE: LENGGANA10
+        </div>
+        <button class="btn btn-primary" style="width: 100%;" onclick="closePromoModal()">Claim Privilege</button>
+    </div>
+</div>
+
+<!-- FLOATING BASKET BUTTON -->
+<div class="floating-basket" onclick="openBasketModal()" title="View Basket">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+    <div class="basket-counter" id="basketCounter">0</div>
+</div>
+
+<!-- FLOATING WHATSAPP CONCIERGE BUTTON -->
+<a href="https://wa.me/6281234567890?text=Hello%20Boucherie%20Lenggana%2C%20I%20would%20like%20to%20inquire%20about%20your%20artisanal%20cuts." class="whatsapp-float" target="_blank" aria-label="Contact Concierge on WhatsApp">
+    <svg viewBox="0 0 32 32"><path d="M16 2A13 13 0 0 0 3.12 19.34L2 29.88l10.74-2.82A13 13 0 1 0 16 2zm0 23.8a10.8 10.8 0 0 1-5.5-1.5l-.4-.2-6 1.6 1.6-5.8-.2-.4A10.8 10.8 0 1 1 16 25.8zm5.9-8.1c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2s-.8 1-.9 1.2-.3.2-.6.1a8.3 8.3 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.4.3-.6 0-.2 0-.4-.1-.6s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4A3.8 3.8 0 0 0 8 13.7a6.6 6.6 0 0 0 1.4 3.5 15.1 15.1 0 0 0 6.2 5.5c.8.3 1.5.5 2 .7a4.9 4.9 0 0 0 2.2.1c.7-.1 2.2-.9 2.5-1.8s.3-1.6.2-1.8c-.1-.1-.3-.2-.6-.4z"/></svg>
+</a>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Boucherie <span>Lenggana</span></h3>
+                <p>Artisanal Halal Butchery blending classical French mastery with ethical, sustainable farm sourcing.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Navigation</h4>
+                <ul class="footer-links">
+                    <li><a onclick="showPage('home-view')">Home</a></li>
+                    <li><a onclick="showPage('specialties-view')">Specialties</a></li>
+                    <li><a onclick="showPage('products-view')">All Products</a></li>
+                    <li><a onclick="showPage('about-view')">Our Heritage</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Concierge</h4>
+                <ul class="footer-links">
+                    <li><a onclick="showPage('faq-view')">FAQ & Shipping</a></li>
+                    <li><a href="https://wa.me/6281234567890">WhatsApp Orders</a></li>
+                    <li><a onclick="openPromoModal()">Current Offers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Boutique Hours</h4>
+                <p style="font-size: 0.85rem; line-height: 1.8;">
+                    Tue – Sat: 09:00 – 19:00<br>
+                    Sunday: 09:00 – 15:00<br>
+                    Monday: Closed
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Boucherie Lenggana. All Rights Reserved. Artisanal Halal Butchery.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+    /* --- PRODUCT DATA --- */
+    const productsData = [
+        {
+            id: 'A5-WAGYU-RIBEYE',
+            name: 'Japanese A5 Wagyu Ribeye',
+            category: 'Wagyu',
+            price: 185.00,
+            unit: '/ 500g',
+            origin: 'Miyazaki, Japan',
+            isSpecialty: true,
+            stock: true,
+            description: 'Certified BMS 11+ A5 Miyazaki Wagyu Ribeye. Decadent melt-in-the-mouth marbling with rich umami depth.',
+            images: [
+                'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80',
+                'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80',
+                'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=1000&q=80'
+            ]
+        },
+        {
+            id: 'COTE-DE-BOEUF-45D',
+            name: '45-Day Dry Aged Côte de Bœuf',
+            category: 'Dry-Aged',
+            price: 120.00,
+            unit: '/ 800g',
+            origin: 'Limousin, France',
+            isSpecialty: true,
+            stock: true,
+            description: 'Bone-in prime rib aged 45 days in our Himalayan pink salt chamber. Intensely nutty, tender, and robust.',
+            images: [
+                'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=1000&q=80',
+                'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80',
+                'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1000&q=80'
+            ]
+        },
+        {
+            id: 'LAMB-MERGUEZ',
+            name: 'Artisanal Lamb Merguez',
+            category: 'Charcuterie',
+            price: 32.00,
+            unit: '/ 1kg (12 pcs)',
+            origin: 'House Recipe',
+            isSpecialty: true,
+            stock: true,
+            description: 'Traditional spiced lamb sausages crafted with harissa, roasted cumin, and fresh garlic in natural sheep casing.',
+            images: [
+                'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1000&q=80',
+                'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80',
+                'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80'
+            ]
+        },
+        {
+            id: 'HERITAGE-TENDERLOIN',
+            name: 'Grass-Fed Angus Filet Mignon',
+            category: 'Heritage Beef',
+            price: 75.00,
+            unit: '/ 400g',
+            origin: 'Victoria, Australia',
+            isSpecialty: true,
+            stock: true,
+            description: 'Lean, supremely tender pasture-raised Angus tenderloin. Exceptionally buttery texture with clean natural flavor.',
+            images: [
+                'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80',
+                'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=1000&q=80',
+                'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80'
+            ]
+        },
+        {
+            id: 'WAGYU-STRIPLOIN-A4',
+            name: 'Kagoshima A4 Wagyu Striploin',
+            category: 'Wagyu',
+            price: 140.00,
+            unit: '/ 500g',
+            origin: 'Kagoshima, Japan',
+            isSpecialty: false,
+            stock: true,
+            description: 'Perfect balance of rich marbling and meaty striploin texture. Searing creates a beautiful karamelized crust.',
+            images: [
+                'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80'
+            ]
+        },
+        {
+            id: 'FRENCH-RACK-LAMB',
+            name: 'Frenched Crown Rack of Lamb',
+            category: 'Lamb & Poultry',
+            price: 68.00,
+            unit: '/ 700g',
+            origin: 'Sisteron, France',
+            isSpecialty: false,
+            stock: true,
+            description: 'Elegantly frenched pasture-fed rack of lamb. Delicate flavor profile ideal for herb roasting.',
+            images: [
+                'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=1000&q=80'
+            ]
+        },
+        {
+            id: 'DUCK-BREAST-BRESSE',
+            name: 'Magret de Canard Halal',
+            category: 'Lamb & Poultry',
+            price: 38.00,
+            unit: '/ 450g',
+            origin: 'South-West France',
+            isSpecialty: false,
+            stock: true,
+            description: 'Plump, grain-fed duck breast with a thick fat cap engineered for crisp searing and rosy roasting.',
+            images: [
+                'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1000&q=80'
+            ]
+        },
+        {
+            id: 'BEEF-BRESAOLA',
+            name: 'Cured Wagyu Beef Bresaola',
+            category: 'Charcuterie',
+            price: 28.00,
+            unit: '/ 200g sliced',
+            origin: 'Boutique Cured',
+            isSpecialty: false,
+            stock: true,
+            description: 'Air-dried Wagyu eye round air-cured for 90 days with herbs de Provence and sea salt.',
+            images: [
+                'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1000&q=80'
+            ]
+        }
+    ];
+
+    /* --- STATE VARIABLES --- */
+    let cart = [];
+    let currentDetailProduct = null;
+    let previousPageId = 'home-view';
+
+    /* --- INITIALIZATION --- */
+    document.addEventListener('DOMContentLoaded', () => {
+        renderFeaturedSpecialties();
+        renderFullSpecialties();
+        renderProducts('All');
+        initSignatureCutsScroll();
+        initReviewsScroll();
+        
+        // Show promo modal after slight delay
+        setTimeout(() => {
+            const promoModal = document.getElementById('promoModalOverlay');
+            if (promoModal) promoModal.classList.add('open');
+        }, 1200);
+    });
+
+    /* --- THEME TOGGLE --- */
+    function toggleTheme() {
+        const htmlEl = document.documentElement;
+        const currentTheme = htmlEl.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        htmlEl.setAttribute('data-theme', newTheme);
+    }
+
+    /* --- MOBILE MENU TOGGLE --- */
+    function toggleMobileMenu() {
+        const navMenu = document.getElementById('navMenu');
+        navMenu.classList.toggle('mobile-open');
+    }
+
+    /* --- SPA NAVIGATION --- */
+    function showPage(pageId) {
+        const activePage = document.querySelector('.page-view.active');
+        if (activePage) {
+            previousPageId = activePage.id;
         }
 
-        // Product Category Filter Function
-        function filterProducts(category) {
-            const cards = document.querySelectorAll('#productsGrid .product-card');
-            const buttons = document.querySelectorAll('.category-filter-bar .filter-btn');
+        const pageViews = document.querySelectorAll('.page-view');
+        pageViews.forEach(view => view.classList.remove('active'));
 
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+        const targetView = document.getElementById(pageId);
+        if (targetView) {
+            targetView.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // FAQ Accordion Toggle Function
-        function toggleFaq(buttonElement) {
-            const faqItem = buttonElement.parentElement;
-            const isOpen = faqItem.classList.contains('open');
-
-            // Close all open FAQs
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('open');
-            });
-
-            // Toggle clicked FAQ
-            if (!isOpen) {
-                faqItem.classList.add('open');
+        // Update Nav Active State
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)) {
+                link.classList.add('active');
             }
-        }
-
-        // DOM Loaded Event Listeners
-        document.addEventListener('DOMContentLoaded', () => {
-            // Dark / Light Theme Toggle
-            const themeToggleBtn = document.getElementById('themeToggleBtn');
-            const htmlTag = document.documentElement;
-
-            themeToggleBtn.addEventListener('click', () => {
-                const currentTheme = htmlTag.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                htmlTag.setAttribute('data-theme', newTheme);
-            });
-
-            // Mobile Hamburger Menu Toggle
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-            const navMenu = document.getElementById('navMenu');
-
-            hamburgerBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-
-            // Promo Welcome Modal Timeout Trigger
-            const promoModal = document.getElementById('promoModal');
-            const modalCloseBtn = document.getElementById('modalCloseBtn');
-
-            setTimeout(() => {
-                promoModal.classList.add('active');
-            }, 3500);
-
-            modalCloseBtn.addEventListener('click', () => {
-                promoModal.classList.remove('active');
-            });
-
-            promoModal.addEventListener('click', (e) => {
-                if (e.target === promoModal) {
-                    promoModal.classList.remove('active');
-                }
-            });
         });
-    </script>
+
+        // Close mobile menu if open
+        const navMenu = document.getElementById('navMenu');
+        if (navMenu) navMenu.classList.remove('mobile-open');
+    }
+
+    function goBackToPreviousPage() {
+        showPage(previousPageId || 'home-view');
+    }
+
+    /* --- RENDER HOME PAGE HORIZONTALLY SCROLLABLE SIGNATURE CUTS --- */
+    function renderFeaturedSpecialties() {
+        const container = document.getElementById('featured-specialties-container');
+        if (!container) return;
+
+        const specialties = productsData.filter(p => p.isSpecialty);
+
+        container.innerHTML = specialties.map(item => `
+            <div class="specialty-card" data-card-id="${item.id}">
+                <div class="specialty-img-wrapper">
+                    <span class="specialty-origin-tag">${item.origin}</span>
+                    <div class="card-img-gallery">
+                        ${item.images.map((img, i) => `
+                            <div class="card-img-slide">
+                                <img src="${img}" alt="${item.name} image ${i+1}" loading="lazy">
+                            </div>
+                        `).join('')}
+                    </div>
+                    ${item.images.length > 1 ? `
+                        <div class="card-gallery-dots">
+                            ${item.images.map((_, i) => `<div class="card-gallery-dot ${i === 0 ? 'active' : ''}"></div>`).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="specialty-body" onclick="openProductDetail('${item.id}')">
+                    <h3 class="specialty-name">${item.name}</h3>
+                    <p class="specialty-desc">${item.description}</p>
+                    <div class="specialty-footer">
+                        <div>
+                            <span style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; color: var(--text-primary);">$${item.price.toFixed(2)}</span>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">${item.unit}</span>
+                        </div>
+                        <button class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.65rem;" onclick="event.stopPropagation(); openProductDetail('${item.id}')">View Cut</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        initCardGalleryScrollers();
+    }
+
+    /* --- CARD PHOTO GALLERY DRAG & SCROLL INTERACTION --- */
+    function initCardGalleryScrollers() {
+        const cardGalleries = document.querySelectorAll('#featured-specialties-container .card-img-gallery');
+
+        cardGalleries.forEach(gallery => {
+            const card = gallery.closest('.specialty-card');
+            const productId = card ? card.getAttribute('data-card-id') : null;
+
+            // Prevent default browser image drag behavior
+            gallery.querySelectorAll('img').forEach(img => {
+                img.ondragstart = (e) => e.preventDefault();
+            });
+
+            let isDown = false;
+            let startX, startY;
+            let scrollLeft;
+            let isDragging = false;
+
+            // Update dot indicators on manual scroll/swipe
+            gallery.addEventListener('scroll', () => {
+                const index = Math.round(gallery.scrollLeft / gallery.clientWidth);
+                const dots = gallery.parentElement.querySelectorAll('.card-gallery-dot');
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            });
+
+            gallery.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDragging = false;
+                startX = e.pageX;
+                startY = e.pageY;
+                scrollLeft = gallery.scrollLeft;
+                e.stopPropagation(); // Stop parent container drag
+            });
+
+            gallery.addEventListener('touchstart', (e) => {
+                e.stopPropagation();
+            }, { passive: true });
+
+            gallery.addEventListener('mouseleave', () => { isDown = false; });
+            gallery.addEventListener('mouseup', () => { isDown = false; });
+
+            gallery.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const dx = e.pageX - startX;
+                const dy = e.pageY - startY;
+                if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+                    isDragging = true;
+                }
+                if (isDragging) {
+                    gallery.scrollLeft = scrollLeft - dx;
+                    e.stopPropagation();
+                }
+            });
+
+            // Prevent detail page popup if user dragged photos; open if simple click
+            gallery.addEventListener('click', (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else if (productId) {
+                    openProductDetail(productId);
+                }
+            }, true);
+        });
+    }
+
+    /* --- REVIEWS SCROLL & DRAG LOGIC --- */
+    function initReviewsScroll() {
+        const reviewsScroll = document.getElementById('reviewsScroll');
+        if (!reviewsScroll) return;
+
+        // Auto update indicator dots on manual scroll / swipe
+        reviewsScroll.addEventListener('scroll', () => {
+            const index = Math.round(reviewsScroll.scrollLeft / reviewsScroll.clientWidth);
+            const dots = document.querySelectorAll('#reviewsIndicators .gallery-dot');
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        });
+
+        // Mouse Drag to Scroll
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        reviewsScroll.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - reviewsScroll.offsetLeft;
+            scrollLeft = reviewsScroll.scrollLeft;
+        });
+
+        reviewsScroll.addEventListener('mouseleave', () => { isDown = false; });
+        reviewsScroll.addEventListener('mouseup', () => { isDown = false; });
+
+        reviewsScroll.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - reviewsScroll.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            reviewsScroll.scrollLeft = scrollLeft - walk;
+        });
+    }
+
+    /* --- SIGNATURE CUTS HORIZONTAL SCROLLING & DRAG LOGIC --- */
+    function scrollSignatureCuts(direction) {
+        const container = document.getElementById('featured-specialties-container');
+        if (!container) return;
+
+        const scrollAmount = 360;
+        if (direction === 'left') {
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        } else {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    }
+
+    function initSignatureCutsScroll() {
+        const container = document.getElementById('featured-specialties-container');
+        if (!container) return;
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        let draggedFar = false;
+
+        container.addEventListener('mousedown', (e) => {
+            // Only trigger if clicking on card container directly
+            if (e.target.closest('.card-img-gallery')) return;
+            isDown = true;
+            draggedFar = false;
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+        });
+
+        container.addEventListener('mouseleave', () => { isDown = false; });
+        container.addEventListener('mouseup', () => { isDown = false; });
+
+        container.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            if (Math.abs(walk) > 5) {
+                draggedFar = true;
+            }
+            container.scrollLeft = scrollLeft - walk;
+        });
+
+        container.addEventListener('click', (e) => {
+            if (draggedFar) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true);
+
+        container.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                container.scrollBy({ left: e.deltaY * 0.8, behavior: 'smooth' });
+            }
+        }, { passive: false });
+    }
+
+    /* --- RENDER SPECIALTIES PAGE STATIC GRID --- */
+    function renderFullSpecialties() {
+        const container = document.getElementById('full-specialties-grid');
+        if (!container) return;
+
+        const specialties = productsData.filter(p => p.isSpecialty);
+
+        container.innerHTML = specialties.map(item => `
+            <div class="specialty-card" onclick="openProductDetail('${item.id}')">
+                <div class="specialty-img-wrapper">
+                    <img src="${item.images[0]}" alt="${item.name}" class="specialty-img" loading="lazy">
+                    <span class="specialty-origin-tag">${item.origin}</span>
+                </div>
+                <div class="specialty-body">
+                    <h3 class="specialty-name">${item.name}</h3>
+                    <p class="specialty-desc">${item.description}</p>
+                    <div class="specialty-footer">
+                        <div>
+                            <span style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 600; color: var(--text-primary);">$${item.price.toFixed(2)}</span>
+                            <span style="font-size: 0.75rem; color: var(--text-secondary);">${item.unit}</span>
+                        </div>
+                        <button class="btn btn-outline" style="padding: 0.4rem 0.9rem; font-size: 0.65rem;">View Cut</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    /* --- RENDER PRODUCTS PAGE GRID & FILTERS --- */
+    function filterProducts(category, btnEl) {
+        if (btnEl) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+        }
+        renderProducts(category);
+    }
+
+    function renderProducts(category) {
+        const container = document.getElementById('products-grid');
+        if (!container) return;
+
+        const filtered = category === 'All' 
+            ? productsData 
+            : productsData.filter(p => p.category === category);
+
+        container.innerHTML = filtered.map(item => `
+            <div class="product-card" onclick="openProductDetail('${item.id}')">
+                <div>
+                    <span class="product-category">${item.category}</span>
+                    <h3 class="product-title">${item.name}</h3>
+                    <p class="product-desc">${item.description}</p>
+                </div>
+                <div class="product-footer">
+                    <div>
+                        <span class="product-price">$${item.price.toFixed(2)}</span>
+                        <span class="product-unit">${item.unit}</span>
+                    </div>
+                    <button class="btn btn-outline" style="padding: 0.45rem 0.85rem; font-size: 0.65rem;">Inspect</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    /* --- PRODUCT DETAIL PAGE & GALLERY --- */
+    function openProductDetail(productId) {
+        const product = productsData.find(p => p.id === productId);
+        if (!product) return;
+
+        currentDetailProduct = product;
+
+        document.getElementById('detailCategory').textContent = product.category + ' • ' + product.origin;
+        document.getElementById('detailTitle').textContent = product.name;
+        document.getElementById('detailPrice').textContent = '$' + product.price.toFixed(2);
+        document.getElementById('detailUnit').textContent = product.unit;
+        document.getElementById('detailDescription').textContent = product.description;
+
+        const stockBadge = document.getElementById('detailStock');
+        if (product.stock) {
+            stockBadge.textContent = 'In Stock';
+            stockBadge.className = 'stock-badge in-stock';
+        } else {
+            stockBadge.textContent = 'Sold Out';
+            stockBadge.className = 'stock-badge out-of-stock';
+        }
+
+        // Render Gallery Slides
+        const galleryScroll = document.getElementById('detailGalleryScroll');
+        const galleryIndicators = document.getElementById('detailGalleryIndicators');
+
+        galleryScroll.innerHTML = product.images.map(img => `
+            <div class="gallery-slide">
+                <img src="${img}" alt="${product.name}">
+            </div>
+        `).join('');
+
+        galleryIndicators.innerHTML = product.images.map((_, index) => `
+            <div class="gallery-dot ${index === 0 ? 'active' : ''}" onclick="scrollToGallerySlide(${index})"></div>
+        `).join('');
+
+        // Action Buttons Setup
+        const addToCartBtn = document.getElementById('detailAddToCartBtn');
+        addToCartBtn.onclick = () => {
+            addToCart(product);
+            openBasketModal();
+        };
+
+        const directWaBtn = document.getElementById('detailDirectWaBtn');
+        directWaBtn.onclick = () => {
+            const message = encodeURIComponent(`Hello Boucherie Lenggana, I am interested in inquiring about the ${product.name} ($${product.price.toFixed(2)} ${product.unit}).`);
+            window.open(`https://wa.me/6281234567890?text=${message}`, '_blank');
+        };
+
+        showPage('product-detail-view');
+    }
+
+    function scrollGallery(direction) {
+        const scrollEl = document.getElementById('detailGalleryScroll');
+        if (!scrollEl) return;
+        const slideWidth = scrollEl.clientWidth;
+        scrollEl.scrollBy({
+            left: direction === 'left' ? -slideWidth : slideWidth,
+            behavior: 'smooth'
+        });
+        setTimeout(updateGalleryDots, 350);
+    }
+
+    function scrollToGallerySlide(index) {
+        const scrollEl = document.getElementById('detailGalleryScroll');
+        if (!scrollEl) return;
+        const slideWidth = scrollEl.clientWidth;
+        scrollEl.scrollTo({
+            left: slideWidth * index,
+            behavior: 'smooth'
+        });
+        setTimeout(updateGalleryDots, 350);
+    }
+
+    function updateGalleryDots() {
+        const scrollEl = document.getElementById('detailGalleryScroll');
+        if (!scrollEl) return;
+        const index = Math.round(scrollEl.scrollLeft / scrollEl.clientWidth);
+        const dots = document.querySelectorAll('#detailGalleryIndicators .gallery-dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    /* --- SHOPPING BASKET LOGIC --- */
+    function addToCart(product) {
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        updateBasketUI();
+    }
+
+    function updateQuantity(productId, delta) {
+        const item = cart.find(i => i.id === productId);
+        if (!item) return;
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+            cart = cart.filter(i => i.id !== productId);
+        }
+        updateBasketUI();
+    }
+
+    function removeFromCart(productId) {
+        cart = cart.filter(i => i.id !== productId);
+        updateBasketUI();
+    }
+
+    function updateBasketUI() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+        document.getElementById('basketCounter').textContent = totalItems;
+        document.getElementById('basketTotalAmount').textContent = '$' + totalPrice.toFixed(2);
+
+        const itemsListContainer = document.getElementById('basketItemsList');
+        if (!itemsListContainer) return;
+
+        if (cart.length === 0) {
+            itemsListContainer.innerHTML = '<div class="empty-basket-msg">Your basket is currently empty.</div>';
+            return;
+        }
+
+        itemsListContainer.innerHTML = cart.map(item => `
+            <div class="basket-item">
+                <div class="basket-item-info">
+                    <div class="basket-item-title">${item.name}</div>
+                    <div class="basket-item-price">$${item.price.toFixed(2)} ${item.unit}</div>
+                </div>
+                <div class="basket-qty-controls">
+                    <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
+                    <span class="qty-val">${item.quantity}</span>
+                    <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+                </div>
+                <button class="basket-remove-btn" onclick="removeFromCart('${item.id}')" title="Remove Item">&times;</button>
+            </div>
+        `).join('');
+    }
+
+    function openBasketModal() {
+        updateBasketUI();
+        const modal = document.getElementById('basketModalOverlay');
+        if (modal) modal.classList.add('open');
+    }
+
+    function closeBasketModal() {
+        const modal = document.getElementById('basketModalOverlay');
+        if (modal) modal.classList.remove('open');
+    }
+
+    function checkoutWhatsApp() {
+        if (cart.length === 0) return;
+        let text = "Hello Boucherie Lenggana, I would like to place an order for the following artisanal cuts:\n\n";
+        cart.forEach((item, i) => {
+            text += `${i + 1}. ${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}\n`;
+        });
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        text += `\n*Total Estimated Order: $${total.toFixed(2)}*\n\nPlease confirm availability and delivery scheduling.`;
+
+        window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    /* --- PROMO MODAL LOGIC --- */
+    function closePromoModal() {
+        const promo = document.getElementById('promoModalOverlay');
+        if (promo) promo.classList.remove('open');
+    }
+
+    function openPromoModal() {
+        const promo = document.getElementById('promoModalOverlay');
+        if (promo) promo.classList.add('open');
+    }
+
+    /* --- REVIEWS CAROUSEL --- */
+    function scrollToReview(index) {
+        const scrollEl = document.getElementById('reviewsScroll');
+        if (!scrollEl) return;
+        scrollEl.scrollTo({
+            left: scrollEl.clientWidth * index,
+            behavior: 'smooth'
+        });
+        const dots = document.querySelectorAll('#reviewsIndicators .gallery-dot');
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    }
+
+    /* --- FAQ ACCORDION TOGGLE --- */
+    function toggleFaq(btn) {
+        const faqItem = btn.parentElement;
+        const isOpen = faqItem.classList.contains('open');
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('open');
+        });
+
+        if (!isOpen) {
+            faqItem.classList.add('open');
+        }
+    }
+</script>
 </body>
 </html>
