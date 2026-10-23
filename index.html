@@ -6,42 +6,42 @@
     <title>Boucherie Lenggana | Artisanal French Butchery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --color-accent-red: #B01E28;
             --color-accent-red-hover: #8B0000;
             --color-accent-gold: #C5A059;
             --transition-speed: 0.3s;
-            --border-radius: 4px;
+            --border-radius: 6px;
             --font-heading: 'Cormorant Garamond', Georgia, serif;
             --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         [data-theme="dark"] {
-            --bg-primary: #0D0D0D;
-            --bg-secondary: #141414;
-            --bg-card: #1A1A1A;
-            --bg-modal-overlay: rgba(0, 0, 0, 0.85);
-            --text-primary: #F2F2F2;
-            --text-secondary: #A0A0A0;
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #121212;
+            --bg-card: #181818;
+            --bg-modal-overlay: rgba(0, 0, 0, 0.88);
+            --text-primary: #F5F5F5;
+            --text-secondary: #A3A3A3;
             --border-color: #262626;
-            --border-highlight: #333333;
-            --header-bg: rgba(13, 13, 13, 0.92);
-            --shadow-color: rgba(0, 0, 0, 0.5);
+            --border-highlight: #3A3A3A;
+            --header-bg: rgba(10, 10, 10, 0.92);
+            --shadow-color: rgba(0, 0, 0, 0.6);
         }
 
         [data-theme="light"] {
             --bg-primary: #FAFAFA;
             --bg-secondary: #F3F3F3;
             --bg-card: #FFFFFF;
-            --bg-modal-overlay: rgba(0, 0, 0, 0.6);
-            --text-primary: #1A1A1A;
+            --bg-modal-overlay: rgba(0, 0, 0, 0.65);
+            --text-primary: #171717;
             --text-secondary: #666666;
             --border-color: #E5E5E5;
             --border-highlight: #CCCCCC;
             --header-bg: rgba(250, 250, 250, 0.92);
-            --shadow-color: rgba(0, 0, 0, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -116,11 +116,11 @@
             color: var(--color-accent-red);
             margin-bottom: 0.5rem;
             display: block;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .section-title {
-            font-size: 2.25rem;
+            font-size: 2.3rem;
             position: relative;
             display: inline-block;
             padding-bottom: 1rem;
@@ -132,8 +132,8 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 1px;
+            width: 44px;
+            height: 2px;
             background-color: var(--color-accent-red);
         }
 
@@ -154,7 +154,7 @@
         }
 
         .page-banner {
-            padding: 4rem 0 3rem;
+            padding: 4.5rem 0 3.5rem;
             background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
             border-bottom: 1px solid var(--border-color);
             text-align: center;
@@ -168,6 +168,7 @@
             color: var(--color-accent-gold);
             display: block;
             margin-bottom: 0.5rem;
+            font-weight: 500;
         }
 
         .page-banner h1 {
@@ -182,7 +183,7 @@
             width: 100%;
             z-index: 1000;
             background-color: var(--header-bg);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
         }
@@ -223,6 +224,7 @@
             position: relative;
             padding: 0.25rem 0;
             cursor: pointer;
+            font-weight: 400;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -438,7 +440,7 @@
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background-color: rgba(13, 13, 13, 0.85);
+            background-color: rgba(10, 10, 10, 0.85);
             color: var(--color-accent-gold);
             font-size: 0.65rem;
             letter-spacing: 0.2em;
@@ -450,7 +452,7 @@
             z-index: 10;
         }
 
-        /* --- SIGNATURE CARD SCROLLABLE PHOTO GALLERY --- */
+        /* --- SIGNATURE CARD SCROLLABLE GALLERY --- */
         .card-img-gallery {
             display: flex;
             width: 100%;
@@ -584,7 +586,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(13, 13, 13, 0.75);
+            background: rgba(10, 10, 10, 0.75);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             width: 44px;
@@ -603,7 +605,7 @@
         .signature-arrow:hover {
             border-color: var(--color-accent-red);
             color: var(--color-accent-red);
-            background: rgba(13, 13, 13, 0.95);
+            background: rgba(10, 10, 10, 0.95);
         }
 
         .signature-arrow.prev { left: -1.25rem; }
@@ -625,7 +627,7 @@
             }
         }
 
-        /* --- PRODUCTS PAGE & CATEGORY FILTERS --- */
+        /* --- CATEGORY FILTERS & PRODUCTS --- */
         .category-filter-bar {
             display: flex;
             justify-content: center;
@@ -794,7 +796,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(13, 13, 13, 0.6);
+            background: rgba(10, 10, 10, 0.6);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             width: 42px;
@@ -812,7 +814,7 @@
         .gallery-arrow:hover {
             border-color: var(--color-accent-red);
             color: var(--color-accent-red);
-            background: rgba(13, 13, 13, 0.85);
+            background: rgba(10, 10, 10, 0.85);
         }
 
         .gallery-arrow.prev { left: 1rem; }
@@ -1133,7 +1135,7 @@
             font-size: 0.95rem;
         }
 
-        /* --- FLOATING WHATSAPP BUTTON --- */
+        /* --- WHATSAPP BUTTON --- */
         .whatsapp-float {
             position: fixed;
             bottom: 1.5rem;
@@ -1342,6 +1344,102 @@
             line-height: 1.7;
         }
 
+        /* --- ADMIN PANEL STYLES --- */
+        .admin-form-group {
+            margin-bottom: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .admin-form-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .admin-input, .admin-select, .admin-textarea {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color var(--transition-speed) ease;
+        }
+
+        .admin-input:focus, .admin-select:focus, .admin-textarea:focus {
+            border-color: var(--color-accent-gold);
+        }
+
+        .admin-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .admin-checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-accent-red);
+            cursor: pointer;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        .admin-table th {
+            background-color: var(--bg-secondary);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.7rem;
+            color: var(--color-accent-gold);
+        }
+
+        .admin-table-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .admin-error-msg {
+            color: var(--color-accent-red);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .admin-dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .admin-dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* --- FOOTER --- */
         footer {
             background-color: var(--bg-secondary);
@@ -1449,9 +1547,7 @@
 
         <div class="nav-actions">
             <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" onclick="toggleTheme()">
-                <!-- Sun Icon -->
                 <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <!-- Moon Icon -->
                 <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
             </button>
 
@@ -1479,7 +1575,7 @@
         </div>
     </section>
 
-    <!-- Signature Cuts Section (Horizontally Scrollable) -->
+    <!-- Signature Cuts Section -->
     <section class="section-padding">
         <div class="container">
             <div class="section-header">
@@ -1693,6 +1789,135 @@
     </div>
 </main>
 
+<!-- PAGE VIEW 7: ADMIN DASHBOARD -->
+<main id="admin-view" class="page-view">
+    <div class="page-banner">
+        <span class="banner-subtitle">Boutique Concierge</span>
+        <h1>Admin Control Panel</h1>
+    </div>
+    <div class="container section-padding" style="padding-top: 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <span style="font-size: 0.85rem; color: var(--text-secondary);">Logged in as: <strong style="color: var(--color-accent-gold);">Candra</strong></span>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.7rem;" onclick="showPage('home-view')">Exit to Site</button>
+                <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.7rem;" onclick="logoutAdmin()">Log Out</button>
+            </div>
+        </div>
+
+        <div class="admin-dashboard-grid">
+            <!-- Add / Edit Form -->
+            <div style="background: var(--bg-card); padding: 2rem; border: 1px solid var(--border-color); border-radius: var(--border-radius);">
+                <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem;" id="adminFormTitle">Add New Product</h3>
+                <form id="adminProductForm" onsubmit="handleProductSubmit(event)">
+                    <input type="hidden" id="adminProductId">
+                    
+                    <div class="admin-form-group">
+                        <label for="adminProductName">Product Name</label>
+                        <input type="text" id="adminProductName" class="admin-input" required placeholder="e.g. A5 Wagyu Tenderloin">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="adminProductCategory">Category</label>
+                        <select id="adminProductCategory" class="admin-select" required>
+                            <option value="Wagyu">Wagyu</option>
+                            <option value="Dry-Aged">Dry-Aged</option>
+                            <option value="Heritage Beef">Heritage Beef</option>
+                            <option value="Lamb & Poultry">Lamb & Poultry</option>
+                            <option value="Charcuterie">Charcuterie</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="adminProductPrice">Price ($ USD)</label>
+                        <input type="number" step="0.01" id="adminProductPrice" class="admin-input" required placeholder="150.00">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="adminProductUnit">Unit Portion</label>
+                        <input type="text" id="adminProductUnit" class="admin-input" required placeholder="/ 500g">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="adminProductOrigin">Origin / Tag</label>
+                        <input type="text" id="adminProductOrigin" class="admin-input" required placeholder="Miyazaki, Japan">
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="adminProductDesc">Full Description</label>
+                        <textarea id="adminProductDesc" class="admin-textarea" rows="3" required placeholder="Detailed description..."></textarea>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="adminProductImages">Image URLs (comma separated)</label>
+                        <textarea id="adminProductImages" class="admin-textarea" rows="2" required placeholder="https://..., https://..."></textarea>
+                    </div>
+
+                    <div class="admin-checkbox-group">
+                        <input type="checkbox" id="adminProductStock" checked>
+                        <label for="adminProductStock" style="cursor: pointer;">In Stock</label>
+                    </div>
+
+                    <div class="admin-checkbox-group">
+                        <input type="checkbox" id="adminProductSpecialty">
+                        <label for="adminProductSpecialty" style="cursor: pointer;">Feature in Signature Cuts</label>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="submit" class="btn btn-primary" id="adminSubmitBtn" style="flex: 1;">Save Product</button>
+                        <button type="button" class="btn btn-outline" id="adminCancelBtn" style="display: none;" onclick="resetAdminForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Existing Products Table -->
+            <div>
+                <h3 style="font-size: 1.4rem; margin-bottom: 1.5rem;">Catalog Inventory</h3>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminProductsTableBody">
+                            <!-- Rendered dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ADMIN LOGIN MODAL -->
+<div class="modal-overlay" id="adminLoginModal">
+    <div class="modal-card" style="max-width: 400px;">
+        <button class="modal-close-btn" onclick="closeAdminLogin()">&times;</button>
+        <span class="promo-tag" style="text-align: center;">Boutique Portal</span>
+        <h2 class="promo-title" style="text-align: center; font-size: 1.8rem; margin-bottom: 1.5rem;">Admin Access</h2>
+        
+        <form onsubmit="handleAdminLogin(event)">
+            <div class="admin-form-group">
+                <label for="adminUsername">Username</label>
+                <input type="text" id="adminUsername" class="admin-input" required autocomplete="off">
+            </div>
+
+            <div class="admin-form-group">
+                <label for="adminCode">Code</label>
+                <input type="password" id="adminCode" class="admin-input" required autocomplete="off">
+            </div>
+
+            <div id="adminLoginError" class="admin-error-msg">Invalid Username or Code.</div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Authenticate</button>
+        </form>
+    </div>
+</div>
+
 <!-- SHOPPING BASKET MODAL -->
 <div class="modal-overlay" id="basketModalOverlay">
     <div class="modal-card">
@@ -1734,7 +1959,7 @@
     <div class="basket-counter" id="basketCounter">0</div>
 </div>
 
-<!-- FLOATING WHATSAPP CONCIERGE BUTTON -->
+<!-- FLOATING WHATSAPP BUTTON -->
 <a href="https://wa.me/6281234567890?text=Hello%20Boucherie%20Lenggana%2C%20I%20would%20like%20to%20inquire%20about%20your%20artisanal%20cuts." class="whatsapp-float" target="_blank" aria-label="Contact Concierge on WhatsApp">
     <svg viewBox="0 0 32 32"><path d="M16 2A13 13 0 0 0 3.12 19.34L2 29.88l10.74-2.82A13 13 0 1 0 16 2zm0 23.8a10.8 10.8 0 0 1-5.5-1.5l-.4-.2-6 1.6 1.6-5.8-.2-.4A10.8 10.8 0 1 1 16 25.8zm5.9-8.1c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2s-.8 1-.9 1.2-.3.2-.6.1a8.3 8.3 0 0 1-2.5-1.5 9.2 9.2 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.4.3-.6 0-.2 0-.4-.1-.6s-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4A3.8 3.8 0 0 0 8 13.7a6.6 6.6 0 0 0 1.4 3.5 15.1 15.1 0 0 0 6.2 5.5c.8.3 1.5.5 2 .7a4.9 4.9 0 0 0 2.2.1c.7-.1 2.2-.9 2.5-1.8s.3-1.6.2-1.8c-.1-.1-.3-.2-.6-.4z"/></svg>
 </a>
@@ -1779,10 +2004,9 @@
     </div>
 </footer>
 
-<!-- JAVASCRIPT LOGIC -->
+<!-- JAVASCRIPT -->
 <script>
-    /* --- PRODUCT DATA --- */
-    const productsData = [
+    const defaultProductsData = [
         {
             id: 'A5-WAGYU-RIBEYE',
             name: 'Japanese A5 Wagyu Ribeye',
@@ -1856,7 +2080,7 @@
             origin: 'Kagoshima, Japan',
             isSpecialty: false,
             stock: true,
-            description: 'Perfect balance of rich marbling and meaty striploin texture. Searing creates a beautiful karamelized crust.',
+            description: 'Perfect balance of rich marbling and meaty striploin texture. Searing creates a beautiful caramelized crust.',
             images: [
                 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80'
             ]
@@ -1905,27 +2129,196 @@
         }
     ];
 
-    /* --- STATE VARIABLES --- */
+    let productsData = JSON.parse(localStorage.getItem('boucherie_products')) || defaultProductsData;
+
+    function saveProductsToStorage() {
+        localStorage.setItem('boucherie_products', JSON.stringify(productsData));
+    }
+
     let cart = [];
     let currentDetailProduct = null;
     let previousPageId = 'home-view';
+    let isAdminLoggedIn = false;
 
-    /* --- INITIALIZATION --- */
     document.addEventListener('DOMContentLoaded', () => {
-        renderFeaturedSpecialties();
-        renderFullSpecialties();
-        renderProducts('All');
+        refreshAllProductViews();
         initSignatureCutsScroll();
         initReviewsScroll();
+        initAdminKeyboardListener();
         
-        // Show promo modal after slight delay
         setTimeout(() => {
             const promoModal = document.getElementById('promoModalOverlay');
-            if (promoModal) promoModal.classList.add('open');
+            if (promoModal && !isAdminLoggedIn) promoModal.classList.add('open');
         }, 1200);
     });
 
-    /* --- THEME TOGGLE --- */
+    function refreshAllProductViews() {
+        renderFeaturedSpecialties();
+        renderFullSpecialties();
+        renderProducts('All');
+        if (isAdminLoggedIn) {
+            renderAdminProductsTable();
+        }
+    }
+
+    /* KEYBOARD LISTENER FOR /admin ACCESS */
+    let typedSequence = '';
+    function initAdminKeyboardListener() {
+        document.addEventListener('keydown', (e) => {
+            const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+            if (activeTag === 'input' || activeTag === 'textarea' || activeTag === 'select') {
+                return;
+            }
+
+            typedSequence += e.key;
+            if (typedSequence.length > 10) {
+                typedSequence = typedSequence.slice(-10);
+            }
+
+            if (typedSequence.endsWith('/admin')) {
+                typedSequence = '';
+                openAdminLogin();
+            }
+        });
+    }
+
+    function openAdminLogin() {
+        if (isAdminLoggedIn) {
+            showPage('admin-view');
+            return;
+        }
+        const modal = document.getElementById('adminLoginModal');
+        if (modal) {
+            document.getElementById('adminLoginError').style.display = 'none';
+            modal.classList.add('open');
+        }
+    }
+
+    function closeAdminLogin() {
+        const modal = document.getElementById('adminLoginModal');
+        if (modal) modal.classList.remove('open');
+    }
+
+    function handleAdminLogin(e) {
+        e.preventDefault();
+        const user = document.getElementById('adminUsername').value.trim();
+        const code = document.getElementById('adminCode').value.trim();
+        const errorEl = document.getElementById('adminLoginError');
+
+        if (user === 'Candra' && code === '2910') {
+            isAdminLoggedIn = true;
+            closeAdminLogin();
+            renderAdminProductsTable();
+            showPage('admin-view');
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminCode').value = '';
+        } else {
+            errorEl.style.display = 'block';
+        }
+    }
+
+    function logoutAdmin() {
+        isAdminLoggedIn = false;
+        showPage('home-view');
+    }
+
+    function renderAdminProductsTable() {
+        const tbody = document.getElementById('adminProductsTableBody');
+        if (!tbody) return;
+
+        tbody.innerHTML = productsData.map(item => `
+            <tr>
+                <td style="font-weight: 500;">${item.name}</td>
+                <td><span style="color: var(--color-accent-gold); font-size: 0.75rem;">${item.category}</span></td>
+                <td>$${item.price.toFixed(2)}</td>
+                <td>
+                    <span class="stock-badge ${item.stock ? 'in-stock' : 'out-of-stock'}" style="font-size: 0.6rem; padding: 0.2rem 0.5rem;">
+                        ${item.stock ? 'In Stock' : 'Out'}
+                    </span>
+                </td>
+                <td>
+                    <div class="admin-table-actions">
+                        <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.65rem;" onclick="editProduct('${item.id}')">Edit</button>
+                        <button class="btn btn-primary" style="padding: 0.3rem 0.6rem; font-size: 0.65rem;" onclick="deleteProduct('${item.id}')">Delete</button>
+                    </div>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function handleProductSubmit(e) {
+        e.preventDefault();
+        const idInput = document.getElementById('adminProductId').value;
+        const name = document.getElementById('adminProductName').value.trim();
+        const category = document.getElementById('adminProductCategory').value;
+        const price = parseFloat(document.getElementById('adminProductPrice').value);
+        const unit = document.getElementById('adminProductUnit').value.trim();
+        const origin = document.getElementById('adminProductOrigin').value.trim();
+        const description = document.getElementById('adminProductDesc').value.trim();
+        const imagesRaw = document.getElementById('adminProductImages').value.trim();
+        const stock = document.getElementById('adminProductStock').checked;
+        const isSpecialty = document.getElementById('adminProductSpecialty').checked;
+
+        const images = imagesRaw.split(',').map(url => url.trim()).filter(url => url.length > 0);
+
+        if (idInput) {
+            const index = productsData.findIndex(p => p.id === idInput);
+            if (index !== -1) {
+                productsData[index] = {
+                    ...productsData[index],
+                    name, category, price, unit, origin, description, images, stock, isSpecialty
+                };
+            }
+        } else {
+            const newProduct = {
+                id: 'PROD-' + Date.now(),
+                name, category, price, unit, origin, description, images, stock, isSpecialty
+            };
+            productsData.unshift(newProduct);
+        }
+
+        saveProductsToStorage();
+        refreshAllProductViews();
+        resetAdminForm();
+    }
+
+    function editProduct(id) {
+        const product = productsData.find(p => p.id === id);
+        if (!product) return;
+
+        document.getElementById('adminProductId').value = product.id;
+        document.getElementById('adminProductName').value = product.name;
+        document.getElementById('adminProductCategory').value = product.category;
+        document.getElementById('adminProductPrice').value = product.price;
+        document.getElementById('adminProductUnit').value = product.unit;
+        document.getElementById('adminProductOrigin').value = product.origin;
+        document.getElementById('adminProductDesc').value = product.description;
+        document.getElementById('adminProductImages').value = product.images.join(', ');
+        document.getElementById('adminProductStock').checked = product.stock;
+        document.getElementById('adminProductSpecialty').checked = product.isSpecialty;
+
+        document.getElementById('adminFormTitle').textContent = 'Edit Product';
+        document.getElementById('adminSubmitBtn').textContent = 'Update Product';
+        document.getElementById('adminCancelBtn').style.display = 'inline-flex';
+    }
+
+    function deleteProduct(id) {
+        if (confirm('Are you sure you want to delete this product?')) {
+            productsData = productsData.filter(p => p.id !== id);
+            saveProductsToStorage();
+            refreshAllProductViews();
+            resetAdminForm();
+        }
+    }
+
+    function resetAdminForm() {
+        document.getElementById('adminProductForm').reset();
+        document.getElementById('adminProductId').value = '';
+        document.getElementById('adminFormTitle').textContent = 'Add New Product';
+        document.getElementById('adminSubmitBtn').textContent = 'Save Product';
+        document.getElementById('adminCancelBtn').style.display = 'none';
+    }
+
     function toggleTheme() {
         const htmlEl = document.documentElement;
         const currentTheme = htmlEl.getAttribute('data-theme');
@@ -1933,13 +2326,11 @@
         htmlEl.setAttribute('data-theme', newTheme);
     }
 
-    /* --- MOBILE MENU TOGGLE --- */
     function toggleMobileMenu() {
         const navMenu = document.getElementById('navMenu');
         navMenu.classList.toggle('mobile-open');
     }
 
-    /* --- SPA NAVIGATION --- */
     function showPage(pageId) {
         const activePage = document.querySelector('.page-view.active');
         if (activePage) {
@@ -1955,7 +2346,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Update Nav Active State
         const navLinks = document.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.classList.remove('active');
@@ -1964,7 +2354,6 @@
             }
         });
 
-        // Close mobile menu if open
         const navMenu = document.getElementById('navMenu');
         if (navMenu) navMenu.classList.remove('mobile-open');
     }
@@ -1973,12 +2362,16 @@
         showPage(previousPageId || 'home-view');
     }
 
-    /* --- RENDER HOME PAGE HORIZONTALLY SCROLLABLE SIGNATURE CUTS --- */
     function renderFeaturedSpecialties() {
         const container = document.getElementById('featured-specialties-container');
         if (!container) return;
 
         const specialties = productsData.filter(p => p.isSpecialty);
+
+        if (specialties.length === 0) {
+            container.innerHTML = '<p style="padding: 2rem; text-align: center;">No signature cuts selected.</p>';
+            return;
+        }
 
         container.innerHTML = specialties.map(item => `
             <div class="specialty-card" data-card-id="${item.id}">
@@ -2014,7 +2407,6 @@
         initCardGalleryScrollers();
     }
 
-    /* --- CARD PHOTO GALLERY DRAG & SCROLL INTERACTION --- */
     function initCardGalleryScrollers() {
         const cardGalleries = document.querySelectorAll('#featured-specialties-container .card-img-gallery');
 
@@ -2022,7 +2414,6 @@
             const card = gallery.closest('.specialty-card');
             const productId = card ? card.getAttribute('data-card-id') : null;
 
-            // Prevent default browser image drag behavior
             gallery.querySelectorAll('img').forEach(img => {
                 img.ondragstart = (e) => e.preventDefault();
             });
@@ -2032,7 +2423,6 @@
             let scrollLeft;
             let isDragging = false;
 
-            // Update dot indicators on manual scroll/swipe
             gallery.addEventListener('scroll', () => {
                 const index = Math.round(gallery.scrollLeft / gallery.clientWidth);
                 const dots = gallery.parentElement.querySelectorAll('.card-gallery-dot');
@@ -2045,7 +2435,7 @@
                 startX = e.pageX;
                 startY = e.pageY;
                 scrollLeft = gallery.scrollLeft;
-                e.stopPropagation(); // Stop parent container drag
+                e.stopPropagation();
             });
 
             gallery.addEventListener('touchstart', (e) => {
@@ -2068,7 +2458,6 @@
                 }
             });
 
-            // Prevent detail page popup if user dragged photos; open if simple click
             gallery.addEventListener('click', (e) => {
                 if (isDragging) {
                     e.preventDefault();
@@ -2080,19 +2469,16 @@
         });
     }
 
-    /* --- REVIEWS SCROLL & DRAG LOGIC --- */
     function initReviewsScroll() {
         const reviewsScroll = document.getElementById('reviewsScroll');
         if (!reviewsScroll) return;
 
-        // Auto update indicator dots on manual scroll / swipe
         reviewsScroll.addEventListener('scroll', () => {
             const index = Math.round(reviewsScroll.scrollLeft / reviewsScroll.clientWidth);
             const dots = document.querySelectorAll('#reviewsIndicators .gallery-dot');
             dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
         });
 
-        // Mouse Drag to Scroll
         let isDown = false;
         let startX;
         let scrollLeft;
@@ -2115,7 +2501,6 @@
         });
     }
 
-    /* --- SIGNATURE CUTS HORIZONTAL SCROLLING & DRAG LOGIC --- */
     function scrollSignatureCuts(direction) {
         const container = document.getElementById('featured-specialties-container');
         if (!container) return;
@@ -2138,7 +2523,6 @@
         let draggedFar = false;
 
         container.addEventListener('mousedown', (e) => {
-            // Only trigger if clicking on card container directly
             if (e.target.closest('.card-img-gallery')) return;
             isDown = true;
             draggedFar = false;
@@ -2174,7 +2558,6 @@
         }, { passive: false });
     }
 
-    /* --- RENDER SPECIALTIES PAGE STATIC GRID --- */
     function renderFullSpecialties() {
         const container = document.getElementById('full-specialties-grid');
         if (!container) return;
@@ -2184,7 +2567,7 @@
         container.innerHTML = specialties.map(item => `
             <div class="specialty-card" onclick="openProductDetail('${item.id}')">
                 <div class="specialty-img-wrapper">
-                    <img src="${item.images[0]}" alt="${item.name}" class="specialty-img" loading="lazy">
+                    <img src="${item.images[0] || ''}" alt="${item.name}" class="specialty-img" loading="lazy">
                     <span class="specialty-origin-tag">${item.origin}</span>
                 </div>
                 <div class="specialty-body">
@@ -2202,7 +2585,6 @@
         `).join('');
     }
 
-    /* --- RENDER PRODUCTS PAGE GRID & FILTERS --- */
     function filterProducts(category, btnEl) {
         if (btnEl) {
             const buttons = document.querySelectorAll('.filter-btn');
@@ -2238,7 +2620,6 @@
         `).join('');
     }
 
-    /* --- PRODUCT DETAIL PAGE & GALLERY --- */
     function openProductDetail(productId) {
         const product = productsData.find(p => p.id === productId);
         if (!product) return;
@@ -2260,7 +2641,6 @@
             stockBadge.className = 'stock-badge out-of-stock';
         }
 
-        // Render Gallery Slides
         const galleryScroll = document.getElementById('detailGalleryScroll');
         const galleryIndicators = document.getElementById('detailGalleryIndicators');
 
@@ -2274,7 +2654,6 @@
             <div class="gallery-dot ${index === 0 ? 'active' : ''}" onclick="scrollToGallerySlide(${index})"></div>
         `).join('');
 
-        // Action Buttons Setup
         const addToCartBtn = document.getElementById('detailAddToCartBtn');
         addToCartBtn.onclick = () => {
             addToCart(product);
@@ -2322,7 +2701,6 @@
         });
     }
 
-    /* --- SHOPPING BASKET LOGIC --- */
     function addToCart(product) {
         const existing = cart.find(item => item.id === product.id);
         if (existing) {
@@ -2402,7 +2780,6 @@
         window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(text)}`, '_blank');
     }
 
-    /* --- PROMO MODAL LOGIC --- */
     function closePromoModal() {
         const promo = document.getElementById('promoModalOverlay');
         if (promo) promo.classList.remove('open');
@@ -2413,7 +2790,6 @@
         if (promo) promo.classList.add('open');
     }
 
-    /* --- REVIEWS CAROUSEL --- */
     function scrollToReview(index) {
         const scrollEl = document.getElementById('reviewsScroll');
         if (!scrollEl) return;
@@ -2425,7 +2801,6 @@
         dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
     }
 
-    /* --- FAQ ACCORDION TOGGLE --- */
     function toggleFaq(btn) {
         const faqItem = btn.parentElement;
         const isOpen = faqItem.classList.contains('open');
