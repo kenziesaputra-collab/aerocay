@@ -1547,6 +1547,209 @@
             color: var(--text-secondary);
         }
 
+        /* --- MY PROFILE PAGE STYLES --- */
+        .profile-page-container {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .profile-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 2.75rem;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        .profile-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.75rem;
+            margin-bottom: 2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-card-eyebrow {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--color-accent-gold);
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .profile-card-title {
+            font-size: 1.9rem;
+            font-weight: 500;
+        }
+
+        .profile-status-banner {
+            padding: 0.9rem 1.25rem;
+            border-radius: var(--border-radius);
+            font-size: 0.85rem;
+            margin-bottom: 1.75rem;
+            display: none;
+            letter-spacing: 0.03em;
+        }
+
+        .profile-status-banner.success {
+            display: block;
+            background-color: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.35);
+            color: #22c55e;
+        }
+
+        .profile-status-banner.error {
+            display: block;
+            background-color: rgba(176, 30, 40, 0.12);
+            border: 1px solid rgba(176, 30, 40, 0.4);
+            color: var(--color-accent-red);
+        }
+
+        .profile-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+        }
+
+        .profile-info-item {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.35rem 1.5rem;
+        }
+
+        .profile-info-item.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .profile-info-label {
+            display: block;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--color-accent-gold);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .profile-info-value {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            word-break: break-word;
+            line-height: 1.6;
+        }
+
+        .profile-edit-form {
+            display: none;
+        }
+
+        .profile-edit-form.active {
+            display: block;
+        }
+
+        .profile-form-group {
+            margin-bottom: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .profile-form-group label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .profile-input, .profile-textarea {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.85rem 1rem;
+            border-radius: var(--border-radius);
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color var(--transition-speed) ease;
+            width: 100%;
+        }
+
+        .profile-input:focus, .profile-textarea:focus {
+            border-color: var(--color-accent-gold);
+        }
+
+        .profile-input[readonly] {
+            opacity: 0.7;
+            cursor: not-allowed;
+            border-style: dashed;
+        }
+
+        .profile-readonly-hint {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .profile-form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-privacy-note {
+            margin-top: 2rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .profile-auth-box {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .profile-demo-switcher {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 0.9rem 1.25rem;
+            margin-bottom: 1.75rem;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 700px) {
+            .profile-card {
+                padding: 1.75rem 1.35rem;
+            }
+            .profile-info-grid {
+                grid-template-columns: 1fr;
+            }
+            .profile-form-actions .btn {
+                width: 100%;
+            }
+        }
+
         /* --- RESPONSIVE ADJUSTMENTS --- */
         @media (max-width: 900px) {
             .nav-menu {
@@ -1593,6 +1796,7 @@
             <li><a class="nav-link" onclick="showPage('products-view')">All Cuts</a></li>
             <li><a class="nav-link" onclick="showPage('faq-view')">FAQ</a></li>
             <li><a class="nav-link" onclick="showPage('about-view')">Heritage</a></li>
+            <li><a class="nav-link" onclick="showPage('my-profile-view')">My Profile</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -1962,6 +2166,19 @@
     </div>
 </main>
 
+<!-- PAGE VIEW 8: MY PROFILE -->
+<main id="my-profile-view" class="page-view">
+    <div class="page-banner">
+        <span class="banner-subtitle">Client Account</span>
+        <h1>My Profile</h1>
+    </div>
+    <div class="container section-padding" style="padding-top: 0;">
+        <div class="profile-page-container" id="profilePageRoot">
+            <!-- Rendered via JS -->
+        </div>
+    </div>
+</main>
+
 <!-- ADMIN LOGIN MODAL -->
 <div class="modal-overlay" id="adminLoginModal">
     <div class="modal-card" style="max-width: 400px;">
@@ -2048,6 +2265,7 @@
                     <li><a onclick="showPage('specialties-view')">Specialties</a></li>
                     <li><a onclick="showPage('products-view')">All Products</a></li>
                     <li><a onclick="showPage('about-view')">Our Heritage</a></li>
+                    <li><a onclick="showPage('my-profile-view')">My Profile</a></li>
                 </ul>
             </div>
             <div>
@@ -2216,6 +2434,7 @@
         initReviewsScroll();
         initAdminKeyboardListener();
         initDropzoneEvents();
+        initCustomerProfileSystem();
         
         setTimeout(() => {
             const promoModal = document.getElementById('promoModalOverlay');
@@ -2527,6 +2746,11 @@
         if (targetView) {
             targetView.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        if (pageId === 'my-profile-view') {
+            isProfileEditing = false;
+            renderProfilePage();
         }
 
         const navLinks = document.querySelectorAll('.nav-link');
@@ -2985,6 +3209,273 @@
         text += `\nTotal Estimate: $${total.toFixed(2)}\n\nPlease advise on delivery timing and payment arrangements.`;
 
         window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    /* ==========================================================================
+       MY PROFILE & EDIT PROFILE FEATURE (CUSTOMER ACCOUNT MODULE)
+       Note: The original codebase contains no customer authentication backend
+       (only an admin portal). The following provides a clean frontend customer
+       session demonstration backed by localStorage, completely separate from
+       the admin login.
+       ========================================================================== */
+    const PROFILE_ACCOUNTS_STORAGE_KEY = 'boucherie_customer_profiles_v1';
+    const PROFILE_SESSION_STORAGE_KEY = 'boucherie_customer_session_id_v1';
+
+    const defaultCustomerAccounts = {
+        'CUST-1001': {
+            accountId: 'CUST-1001',
+            fullName: 'Camille Laurent',
+            email: 'camille.laurent@exemple.fr',
+            phone: '+33 6 42 18 90 14',
+            address: '24 Rue du Faubourg Saint-Honoré, 75008 Paris, France'
+        }
+    };
+
+    let customerProfilesStore = {};
+    let currentCustomerAccountId = null;
+    let isProfileEditing = false;
+
+    function escapeProfileHtml(str) {
+        return String(str ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function initCustomerProfileSystem() {
+        try {
+            const savedProfiles = JSON.parse(localStorage.getItem(PROFILE_ACCOUNTS_STORAGE_KEY));
+            if (savedProfiles && typeof savedProfiles === 'object' && Object.keys(savedProfiles).length > 0) {
+                customerProfilesStore = savedProfiles;
+            } else {
+                customerProfilesStore = JSON.parse(JSON.stringify(defaultCustomerAccounts));
+                localStorage.setItem(PROFILE_ACCOUNTS_STORAGE_KEY, JSON.stringify(customerProfilesStore));
+            }
+        } catch (err) {
+            customerProfilesStore = JSON.parse(JSON.stringify(defaultCustomerAccounts));
+        }
+
+        const savedSessionId = localStorage.getItem(PROFILE_SESSION_STORAGE_KEY);
+        if (savedSessionId === null) {
+            currentCustomerAccountId = 'CUST-1001';
+            localStorage.setItem(PROFILE_SESSION_STORAGE_KEY, currentCustomerAccountId);
+        } else if (savedSessionId && customerProfilesStore[savedSessionId]) {
+            currentCustomerAccountId = savedSessionId;
+        } else {
+            currentCustomerAccountId = null;
+        }
+
+        renderProfilePage();
+    }
+
+    function getAuthenticatedCustomerProfile() {
+        if (!currentCustomerAccountId) return null;
+        return customerProfilesStore[currentCustomerAccountId] || null;
+    }
+
+    function saveCustomerProfilesStore() {
+        localStorage.setItem(PROFILE_ACCOUNTS_STORAGE_KEY, JSON.stringify(customerProfilesStore));
+    }
+
+    function renderProfilePage(statusMessage = '', statusType = '') {
+        const root = document.getElementById('profilePageRoot');
+        if (!root) return;
+
+        const profile = getAuthenticatedCustomerProfile();
+
+        if (!profile) {
+            root.innerHTML = `
+                <div class="profile-auth-box">
+                    <span class="profile-card-eyebrow">Customer Sign-In</span>
+                    <h2 style="font-size: 1.8rem; margin-bottom: 0.75rem;">Member Access</h2>
+                    <p style="margin-bottom: 1.75rem; font-size: 0.9rem;">Sign in with your client email address to view and manage your personal account details.</p>
+                    <form onsubmit="handleCustomerDemoSignIn(event)" style="text-align: left;">
+                        <div class="profile-form-group">
+                            <label for="customerSignInEmail">Email Address</label>
+                            <input type="email" id="customerSignInEmail" class="profile-input" required placeholder="camille.laurent@exemple.fr" value="camille.laurent@exemple.fr">
+                        </div>
+                        <div class="profile-form-group">
+                            <label for="customerSignInName">Full Name (for new demo account)</label>
+                            <input type="text" id="customerSignInName" class="profile-input" placeholder="Camille Laurent">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Access My Profile</button>
+                    </form>
+                    <p class="profile-privacy-note" style="text-align: left;">
+                        Frontend Demonstration Notice: No backend authentication server is connected to this static HTML file. Profile data is stored locally in your browser's <code>localStorage</code> and is separate from the administrator portal.
+                    </p>
+                </div>
+            `;
+            return;
+        }
+
+        const bannerHtml = statusMessage
+            ? `<div id="profileStatusBanner" class="profile-status-banner ${statusType}">${escapeProfileHtml(statusMessage)}</div>`
+            : `<div id="profileStatusBanner" class="profile-status-banner"></div>`;
+
+        root.innerHTML = `
+            <div class="profile-demo-switcher">
+                <span style="color: var(--text-secondary);">Active Client Session: <strong style="color: var(--color-accent-gold);">${escapeProfileHtml(profile.email)}</strong></span>
+                <button type="button" class="btn btn-outline" style="padding: 0.45rem 1rem; font-size: 0.68rem;" onclick="signOutCustomerProfile()">Sign Out</button>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-card-header">
+                    <div>
+                        <span class="profile-card-eyebrow">Verified Client Account</span>
+                        <h2 class="profile-card-title">${escapeProfileHtml(profile.fullName)}</h2>
+                    </div>
+                    ${!isProfileEditing ? `
+                        <button type="button" class="btn btn-primary" id="editProfileBtn" onclick="enterProfileEditMode()">Edit Profile</button>
+                    ` : ''}
+                </div>
+
+                ${bannerHtml}
+
+                <div id="profileDisplaySection" style="display: ${isProfileEditing ? 'none' : 'block'};">
+                    <div class="profile-info-grid">
+                        <div class="profile-info-item">
+                            <span class="profile-info-label">Full Name</span>
+                            <div class="profile-info-value" id="profileDisplayFullName">${escapeProfileHtml(profile.fullName)}</div>
+                        </div>
+                        <div class="profile-info-item">
+                            <span class="profile-info-label">Email Address</span>
+                            <div class="profile-info-value" id="profileDisplayEmail">${escapeProfileHtml(profile.email)}</div>
+                        </div>
+                        <div class="profile-info-item">
+                            <span class="profile-info-label">Phone Number</span>
+                            <div class="profile-info-value" id="profileDisplayPhone">${escapeProfileHtml(profile.phone)}</div>
+                        </div>
+                        <div class="profile-info-item full-width">
+                            <span class="profile-info-label">Residential Address</span>
+                            <div class="profile-info-value" id="profileDisplayAddress">${escapeProfileHtml(profile.address)}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="profileEditForm" class="profile-edit-form ${isProfileEditing ? 'active' : ''}" onsubmit="saveProfileChanges(event)" novalidate>
+                    <div class="profile-form-group">
+                        <label for="profileEditFullName">Full Name *</label>
+                        <input type="text" id="profileEditFullName" class="profile-input" required value="${escapeProfileHtml(profile.fullName)}" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="profile-form-group">
+                        <label for="profileEditEmail">Email Address (Read-Only)</label>
+                        <input type="email" id="profileEditEmail" class="profile-input" value="${escapeProfileHtml(profile.email)}" readonly aria-readonly="true">
+                        <span class="profile-readonly-hint">Your email address identifies your account and cannot be modified here.</span>
+                    </div>
+
+                    <div class="profile-form-group">
+                        <label for="profileEditPhone">Phone Number *</label>
+                        <input type="tel" id="profileEditPhone" class="profile-input" required value="${escapeProfileHtml(profile.phone)}" placeholder="e.g. +33 6 42 18 90 14">
+                    </div>
+
+                    <div class="profile-form-group">
+                        <label for="profileEditAddress">Residential Address *</label>
+                        <textarea id="profileEditAddress" class="profile-textarea" rows="3" required placeholder="Enter your residential delivery address">${escapeProfileHtml(profile.address)}</textarea>
+                    </div>
+
+                    <div class="profile-form-actions">
+                        <button type="submit" class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+                        <button type="button" class="btn btn-outline" id="cancelProfileBtn" onclick="cancelProfileEdit()">Cancel</button>
+                    </div>
+                </form>
+
+                <div class="profile-privacy-note">
+                    Account Privacy Notice: Your profile is scoped to your active client session (<code>${escapeProfileHtml(profile.accountId)}</code>). For production multi-user security, connect an authenticated backend (such as Supabase Auth or Firebase Auth) with server-side row-level ownership rules so records are strictly isolated by authenticated user ID.
+                </div>
+            </div>
+        `;
+    }
+
+    function enterProfileEditMode() {
+        const profile = getAuthenticatedCustomerProfile();
+        if (!profile) return;
+        isProfileEditing = true;
+        renderProfilePage();
+    }
+
+    function cancelProfileEdit() {
+        isProfileEditing = false;
+        renderProfilePage();
+    }
+
+    function saveProfileChanges(event) {
+        event.preventDefault();
+        const profile = getAuthenticatedCustomerProfile();
+        if (!profile) return;
+
+        const fullNameInput = document.getElementById('profileEditFullName');
+        const phoneInput = document.getElementById('profileEditPhone');
+        const addressInput = document.getElementById('profileEditAddress');
+
+        const fullName = fullNameInput ? fullNameInput.value.trim() : '';
+        const phone = phoneInput ? phoneInput.value.trim() : '';
+        const address = addressInput ? addressInput.value.trim() : '';
+
+        if (!fullName || !phone || !address) {
+            renderProfilePage('Please complete all required fields (Full Name, Phone Number, and Residential Address).', 'error');
+            return;
+        }
+
+        const phonePattern = /^[+\d][\d\s().-]{5,24}$/;
+        if (!phonePattern.test(phone)) {
+            renderProfilePage('Please enter a valid phone number.', 'error');
+            return;
+        }
+
+        // Update only the authenticated user's own record while preserving accountId and email
+        customerProfilesStore[profile.accountId] = {
+            ...profile,
+            fullName: fullName,
+            phone: phone,
+            address: address
+        };
+
+        saveCustomerProfilesStore();
+        isProfileEditing = false;
+        renderProfilePage('Profile updated successfully.', 'success');
+    }
+
+    function handleCustomerDemoSignIn(event) {
+        event.preventDefault();
+        const emailInput = document.getElementById('customerSignInEmail');
+        const nameInput = document.getElementById('customerSignInName');
+        const email = emailInput ? emailInput.value.trim().toLowerCase() : '';
+        const enteredName = nameInput ? nameInput.value.trim() : '';
+
+        if (!email || !email.includes('@')) return;
+
+        const existingEntry = Object.values(customerProfilesStore).find(
+            acc => acc.email.toLowerCase() === email
+        );
+
+        if (existingEntry) {
+            currentCustomerAccountId = existingEntry.accountId;
+        } else {
+            const newId = 'CUST-' + Date.now();
+            customerProfilesStore[newId] = {
+                accountId: newId,
+                fullName: enteredName || email.split('@')[0],
+                email: email,
+                phone: '+33 1 00 00 00 00',
+                address: 'Please update your residential address'
+            };
+            saveCustomerProfilesStore();
+            currentCustomerAccountId = newId;
+        }
+
+        localStorage.setItem(PROFILE_SESSION_STORAGE_KEY, currentCustomerAccountId);
+        isProfileEditing = false;
+        renderProfilePage();
+    }
+
+    function signOutCustomerProfile() {
+        currentCustomerAccountId = null;
+        isProfileEditing = false;
+        localStorage.setItem(PROFILE_SESSION_STORAGE_KEY, '');
+        renderProfilePage();
     }
 </script>
 </body>
